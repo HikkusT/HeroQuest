@@ -1,0 +1,20 @@
+We identified 5 main systems for our game:
+- Renderer
+  - Abstract every call to put things on the screen
+- DiceManager
+  - Handles the random mechanic
+- Map
+  - Holds the data from the world
+  - Hadles movement
+  - May handle FoV
+  - Random generation
+- Entity
+  - Our game objects
+  - Can interact and be interacted with
+  - AI
+  - Player
+  - May hold data like Items, Skills, etc
+- Game Master/Game Manager
+  - Controls the game loop
+  - Manages the flow of the game, which Entity should be taking action, etc
+  - The bridge between game logic and render
