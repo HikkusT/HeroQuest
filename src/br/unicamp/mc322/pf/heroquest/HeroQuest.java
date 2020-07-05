@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import br.unicamp.mc322.pf.heroquest.render.*;
 
-public class Runner {
+public class HeroQuest {
 	public static void main(String[] args) {
 		Renderer renderer;
 		Scanner keyboard = new Scanner(System.in);
