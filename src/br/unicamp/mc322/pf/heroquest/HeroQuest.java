@@ -3,6 +3,7 @@ package br.unicamp.mc322.pf.heroquest;
 import java.util.Scanner;
 
 import br.unicamp.mc322.pf.heroquest.render.*;
+import br.unicamp.mc322.pf.heroquest.dice.*;
 
 public class HeroQuest {
 	public static void main(String[] args) {
@@ -22,7 +23,6 @@ public class HeroQuest {
 			System.out.println("Unexpected answer. Booting game in terminal.");
 			renderer = new TerminalRenderer();
 		}
-		keyboard.close();
 		
 		renderer.renderEvent("Welcome to HeroQuest!");
 		renderer.renderEvent("foo!");
@@ -30,7 +30,20 @@ public class HeroQuest {
 		
 		// Start GameLoop here
 		while (true) {
+			renderer.renderEvent("Enter anything to move");
+			input = keyboard.nextLine();
+			renderer.renderEvent("You can move " + DiceManager.move() + " positions!");
 			
+			renderer.renderEvent("Enter anything to attack");
+			input = keyboard.nextLine();
+			renderer.renderEvent("You can cause " + DiceManager.attack(3) + " damage!");
+			
+			input = keyboard.nextLine();
+			renderer.renderEvent("Monster defended " + DiceManager.defendMonster(2) + " damage!");
+			
+			renderer.renderEvent("Enter anything to defend");
+			input = keyboard.nextLine();
+			renderer.renderEvent("Hero can defend " + DiceManager.defendHero(2) + " damage!");
 		}
 	}
 }
