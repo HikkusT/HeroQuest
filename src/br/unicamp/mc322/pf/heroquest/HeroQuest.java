@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import br.unicamp.mc322.pf.heroquest.render.*;
 import br.unicamp.mc322.pf.heroquest.dice.*;
+import br.unicamp.mc322.pf.heroquest.map.*;
 
 public class HeroQuest {
 	public static void main(String[] args) {
@@ -28,6 +29,19 @@ public class HeroQuest {
 		renderer.renderEvent("foo!");
 		renderer.renderEvent("bar!");
 		
+		// Print loaded map
+		String path = "map_files/example.txt";
+        try {
+        	char[][] map = MapFileReader.readFile(path);
+        	for(int i = 0; i < 10; i++) {
+        		for(int j = 0; j < 10; j++)
+        			System.out.print(map[i][j]);
+        		System.out.println();
+        	}
+        } catch(Exception exception) {
+        	System.out.println(exception);
+        }
+        
 		// Start GameLoop here
 		while (true) {
 			renderer.renderEvent("Enter anything to move");
