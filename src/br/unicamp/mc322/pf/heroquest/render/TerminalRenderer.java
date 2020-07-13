@@ -1,10 +1,12 @@
 package br.unicamp.mc322.pf.heroquest.render;
 
+import br.unicamp.mc322.pf.heroquest.map.Map;
+
 public class TerminalRenderer extends Renderer {
 
 	@Override
-	public void renderWorld() {
-		// TODO Auto-generated method stub
+	public void renderWorld(Map map) {
+		System.out.print(map);
 	}
 
 	@Override
