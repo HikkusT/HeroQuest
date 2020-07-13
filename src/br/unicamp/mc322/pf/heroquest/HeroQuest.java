@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import br.unicamp.mc322.pf.heroquest.render.*;
 import br.unicamp.mc322.pf.heroquest.dice.*;
+import br.unicamp.mc322.pf.heroquest.map.Map;
+import br.unicamp.mc322.pf.heroquest.map.generation.ClassicalMapGenerator;
+import br.unicamp.mc322.pf.heroquest.map.generation.MockMapGenerator;
 
 public class HeroQuest {
 	public static void main(String[] args) {
@@ -17,7 +20,7 @@ public class HeroQuest {
 			renderer = new TerminalRenderer();
 			break;
 		case "2":
-			renderer = new AWTRenderer(1000, 1000);
+			renderer = new SwingRenderer(1000, 1000);
 			break;
 		default:
 			System.out.println("Unexpected answer. Booting game in terminal.");
@@ -27,6 +30,8 @@ public class HeroQuest {
 		renderer.renderEvent("Welcome to HeroQuest!");
 		renderer.renderEvent("foo!");
 		renderer.renderEvent("bar!");
+		Map world = new Map(new ClassicalMapGenerator());
+		renderer.renderWorld(world);
 		
 		// Start GameLoop here
 		while (true) {
