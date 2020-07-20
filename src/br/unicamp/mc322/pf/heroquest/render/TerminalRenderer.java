@@ -3,9 +3,18 @@ package br.unicamp.mc322.pf.heroquest.render;
 import br.unicamp.mc322.pf.heroquest.map.Map;
 
 public class TerminalRenderer extends Renderer {
-
+	private Map map;
+	
 	@Override
-	public void renderWorld(Map map) {
+	public void setMap(Map map) {
+		this.map = map;
+	}
+	
+	@Override
+	public void renderWorld() {
+		if (map == null) 
+			throw new IllegalStateException("Map is not set");
+		
 		System.out.print(map);
 	}
 
@@ -19,5 +28,4 @@ public class TerminalRenderer extends Renderer {
 	public void renderEvent(String event) {
 		System.out.println(event);
 	}
-
 }
