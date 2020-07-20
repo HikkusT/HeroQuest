@@ -6,6 +6,7 @@ public class TerminalRenderer extends Renderer {
 
 	@Override
 	public void renderWorld(Map map) {
+		map.CalculateIllumation();
 		System.out.print(map);
 	}
 

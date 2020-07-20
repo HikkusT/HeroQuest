@@ -2,6 +2,7 @@ package br.unicamp.mc322.pf.heroquest.map;
 
 public class Tile {
 	private TileType type;
+	private boolean isVisible;
 	
 	public Tile() {
 		this(TileType.FLOOR);
@@ -9,19 +10,37 @@ public class Tile {
 	
 	public Tile(TileType type) {
 		this.type = type;
+		this.isVisible = false;
 	}
 	
-	public boolean isLit() {
-		return true;
+	public void setVisibility(boolean isVisible) {
+		this.isVisible = isVisible;
 	}
 	
-	public void iluminate() {
+	public boolean getVisibility() {
+		return this.isVisible;
+	}
+	
+	public boolean isTranslucent() {
+		// Later, we need to consider the gameObjects visibility.
+		if (this.type == TileType.FLOOR) {
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
+	
+	public TileType getTileType() {
+		//We have to define the final format of the tiles,
+		return this.type;
 		
 	}
 	
 	@Override
 	public String toString() {
-		if (!isLit())
+		if (!this.isVisible)
 			return " ";
 		
 		switch (type) {
