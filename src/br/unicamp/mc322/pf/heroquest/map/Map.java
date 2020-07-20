@@ -12,6 +12,18 @@ public class Map {
 		dimension = generator.retrieveDimension();
 	}
 	
+	public Vector2 getDimension() {
+		return dimension;
+	}
+	
+	public Tile[][] prepareToRender() {
+		Tile[][] rotatedMap = new Tile[dimension.getY()][dimension.getX()];
+		for (int i = 0; i < dimension.getY(); i ++)
+			for (int j = 0; j < dimension.getX(); j ++)
+				rotatedMap[i][j] = map[j][dimension.getY() - 1 - i];
+		return rotatedMap;
+	}
+	
 	@Override
 	public String toString() {
 		String mapRepresentation = "";
