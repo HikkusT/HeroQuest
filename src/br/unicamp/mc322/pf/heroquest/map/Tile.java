@@ -19,6 +19,18 @@ public class Tile {
 		
 	}
 	
+	public String getSprite() {
+		if (!isLit())
+			return "Unlit.png";
+		
+		switch (type) {
+		case WALL:
+			return "Wall.png";
+		default:
+			return "Floor.png";
+		}
+	}
+	
 	@Override
 	public String toString() {
 		if (!isLit())
