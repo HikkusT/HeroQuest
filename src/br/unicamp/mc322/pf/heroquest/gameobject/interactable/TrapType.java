@@ -1,4 +1,4 @@
-package br.unicamp.mc322.pf.heroquest.mapobjects;
+package br.unicamp.mc322.pf.heroquest.gameobject.interactable;
 
 public enum TrapType {
 	HOLE;

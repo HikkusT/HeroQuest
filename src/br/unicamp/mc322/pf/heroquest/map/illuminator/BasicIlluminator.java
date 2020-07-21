@@ -55,7 +55,6 @@ public class BasicIlluminator extends MapIlluminator {
 						if (map.getTileType(new Vector2(i + x, j + y)) == TileType.WALL) {
 							map.setVisibility(new Vector2(i + x, j + y), true);
 						}
-
 					}
 				}
 			}
