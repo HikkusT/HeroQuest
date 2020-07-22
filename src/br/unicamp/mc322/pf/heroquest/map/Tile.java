@@ -1,8 +1,12 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Interactable;
+
 public class Tile {
 	private TileType type;
 	private boolean isVisible;
+	private Entity entity;
+	private Interactable interactable;
 	
 	public Tile() {
 		this(TileType.FLOOR);

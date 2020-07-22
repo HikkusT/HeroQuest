@@ -1,12 +1,14 @@
-package br.unicamp.mc322.pf.heroquest.mapobjects;
+package br.unicamp.mc322.pf.heroquest.gameobject.interactable;
 
-public class Trap extends MapObject {
+import br.unicamp.mc322.pf.heroquest.utils.Vector2;
+
+public class Trap extends Interactable {
 	private boolean detected;
 	private boolean disarmed;
 	private TrapType type;
 	
-	public Trap(int posX, int posY, TrapType traptype) {
-		super(posX, posY);
+	public Trap(Vector2 position, boolean isTranslucent, TrapType traptype) {
+		super(position, isTranslucent);
 		type = traptype;
 		detected = false;
 		disarmed = false;
