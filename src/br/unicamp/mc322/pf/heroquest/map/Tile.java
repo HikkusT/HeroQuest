@@ -5,11 +5,16 @@ import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Interactable;
 public class Tile {
 	private TileType type;
 	private boolean isVisible;
-	private Entity entity;
+	//private Entity entity;
 	private Interactable interactable;
 	
 	public Tile() {
 		this(TileType.FLOOR);
+	}
+	
+	public Tile(Interactable interactable) {
+		this();
+		this.interactable = interactable;
 	}
 	
 	public Tile(TileType type) {
@@ -43,8 +48,13 @@ public class Tile {
 	}
 	
 	public String getSprite() {
-		if (!isLit())
+		if (!isVisible)
 			return "Unlit.png";
+		
+		// TODO: Fix this
+		if (interactable != null) {
+			return "Door.png";
+		}
 		
 		switch (type) {
 		case WALL:
