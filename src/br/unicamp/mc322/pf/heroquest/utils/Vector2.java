@@ -17,11 +17,26 @@ public class Vector2 {
 		return y;
 	}
 	
-	public boolean equals(Vector2 vector) {
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || !(obj instanceof Vector2))
+			return false;
+		
+		Vector2 vector = (Vector2) obj;
 		return x == vector.x && y == vector.y;
+	}
+	
+	@Override
+	public int hashCode() {
+		return 486187739 * y + x;
 	}
 	
 	public static Vector2 sum(Vector2 leftVector, Vector2 rightVector) {
 		return new Vector2(leftVector.getX() + rightVector.getX(), leftVector.getY() + rightVector.getY());
+	}
+	
+	@Override
+	public String toString() {
+		return "X: " + x + " Y: " + y;
 	}
 }

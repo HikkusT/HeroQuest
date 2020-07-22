@@ -1,7 +1,13 @@
 package br.unicamp.mc322.pf.heroquest.map.generation;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Door;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
 import br.unicamp.mc322.pf.heroquest.map.TileType;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -10,10 +16,12 @@ public class ClassicalMapGenerator implements MapGenerator {
 	private final int MAP_WIDTH = 36;
 	private final int MAP_HEIGHT = 27;
 	private Tile[][] map;
-	Random random;
+	private java.util.Map<Integer, List<Vector2>> rooms;
+	private Random random;
 	
 	public ClassicalMapGenerator() {
 		random = new Random();
+		rooms = new HashMap<Integer, List<Vector2>>();
 	}
 	
 	public Tile[][] generate() {
@@ -27,6 +35,8 @@ public class ClassicalMapGenerator implements MapGenerator {
 				   new Vector2(23, 14), new Vector2(33, 24));		// Place top right corner
 		placeCross(new Vector2(19, 2), new Vector2(33, 8),
 				   new Vector2(23, 2), new Vector2(33, 12));		// Place bottom right corner
+		
+		connectMap();
 		
 		return map;
 	}
@@ -151,6 +161,116 @@ public class ClassicalMapGenerator implements MapGenerator {
 			}
 			break;
 		}
+	}
+	
+	private void connectMap() {
+		do {
+			markRooms();
+			createDoor();
+		} while(rooms.size() > 1);
+	}
+	
+	private void markRooms() {
+		rooms.clear();
+		
+		int numRooms = 0;
+		for (int i = 1; i < MAP_WIDTH - 1; i ++) {
+			for (int j = 1; j < MAP_HEIGHT - 1; j ++) {
+				if (map[i][j].getTileType() == TileType.WALL) {
+					continue;
+				}
+				
+				boolean unvisited = true;
+				Vector2 currentNode = new Vector2(i, j);
+				for (int room = 0; room < numRooms; room ++) {
+					if (rooms.get(room).contains(currentNode)) {
+						unvisited = false;
+						break;
+					}
+				}
+				
+				if (unvisited) {
+					floodFill(numRooms++, currentNode);
+				}
+			}
+		}
+	}
+	
+	private void floodFill(int index, Vector2 startingNode) {
+		rooms.put(index, new ArrayList<Vector2>());
+		Queue<Vector2> toVisit = new LinkedList<Vector2>();
+		toVisit.add(startingNode);
+		while(!toVisit.isEmpty()) {
+			Vector2 node = toVisit.remove();
+			if (!rooms.get(index).contains(node)) {
+				rooms.get(index).add(node);
+				Vector2 north = Vector2.sum(node, new Vector2(0, 1));
+				if (map[north.getX()][north.getY()].getTileType() != TileType.WALL)
+					toVisit.add(north);
+				Vector2 east = Vector2.sum(node, new Vector2(1, 0));
+				if (map[east.getX()][east.getY()].getTileType() != TileType.WALL)
+					toVisit.add(east);
+				Vector2 south = Vector2.sum(node, new Vector2(0, -1));
+				if (map[south.getX()][south.getY()].getTileType() != TileType.WALL)
+					toVisit.add(south);
+				Vector2 west = Vector2.sum(node, new Vector2(-1, 0));
+				if (map[west.getX()][west.getY()].getTileType() != TileType.WALL)
+					toVisit.add(west);
+			}
+		}
+	}
+	
+	private void createDoor() {
+		List<Vector2> possibleDoorPositions = new ArrayList<Vector2>();
+		
+		for (int i = 1; i < MAP_WIDTH - 1; i ++) {
+			for (int j = 1; j < MAP_HEIGHT - 1; j ++) {
+				Vector2 current = new Vector2(i, j);
+				Vector2 north = Vector2.sum(current, new Vector2(0, 1));
+				Vector2 east = Vector2.sum(current, new Vector2(1, 0));
+				Vector2 south = Vector2.sum(current, new Vector2(0, -1));
+				Vector2 west = Vector2.sum(current, new Vector2(-1, 0));
+				
+				if (map[current.getX()][current.getY()].getTileType() != TileType.WALL) {
+					continue;
+				}
+				
+				if (map[north.getX()][north.getY()].getTileType() == TileType.WALL &&
+					map[south.getX()][south.getY()].getTileType() == TileType.WALL &&
+					map[east.getX()][east.getY()].getTileType() != TileType.WALL &&
+					map[west.getX()][west.getY()].getTileType() != TileType.WALL) {
+					if (getRoomFromPosition(east) != getRoomFromPosition(west)) {
+						possibleDoorPositions.add(current);
+					}
+				}
+				
+				if (map[north.getX()][north.getY()].getTileType() != TileType.WALL &&
+					map[south.getX()][south.getY()].getTileType() != TileType.WALL &&
+					map[east.getX()][east.getY()].getTileType() == TileType.WALL &&
+					map[west.getX()][west.getY()].getTileType() == TileType.WALL) {
+					if (getRoomFromPosition(north) != getRoomFromPosition(south)) {
+						possibleDoorPositions.add(current);
+					}
+				}
+			}
+		}
+		
+		if (possibleDoorPositions.isEmpty()) {
+			return;
+		}
+		
+		Vector2 doorPosition = possibleDoorPositions.get(random.nextInt(possibleDoorPositions.size()));
+		map[doorPosition.getX()][doorPosition.getY()] = new Tile(new Door(doorPosition));
+	}
+	
+	private int getRoomFromPosition(Vector2 pos) {
+		for (int room = 0; room < rooms.size(); room ++) {
+			if (rooms.get(room).contains(pos)) {
+				return room;
+			}
+		}
+		
+		return -1;
 	}
 	
 	private boolean isInsideRectangle(Vector2 point, Vector2 bl, Vector2 tr) {

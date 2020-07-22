@@ -15,14 +15,21 @@ public class Map {
 		dimension = generator.retrieveDimension();
 	}
 	
+	public Vector2 getDimension() {
+		return dimension;
+	}
+	
+	public Tile[][] prepareToRender() {
+		Tile[][] rotatedMap = new Tile[dimension.getY()][dimension.getX()];
+		for (int i = 0; i < dimension.getY(); i ++)
+			for (int j = 0; j < dimension.getX(); j ++)
+				rotatedMap[i][j] = map[j][dimension.getY() - 1 - i];
+		return rotatedMap;
+	}
+	
 	public void CalculateIllumation() {
 		illuminator.illuminateMap(this, new Vector2(22,9));
 	}
-	
-	public Vector2 getDimension() {
-		return this.dimension;
-	}
-	
 
 	public boolean getTranslucency(Vector2 point) {
 		return this.map[point.getX()][point.getY()].isTranslucent();
