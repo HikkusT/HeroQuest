@@ -1,8 +1,10 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
+import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
 import br.unicamp.mc322.pf.heroquest.item.armor.Armor;
 import br.unicamp.mc322.pf.heroquest.item.weapon.Weapon;
+import br.unicamp.mc322.pf.heroquest.utils.Directions;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Entity extends GameObject {
@@ -18,16 +20,23 @@ public abstract class Entity extends GameObject {
 	}
 	
 	public void attack(Entity entity) {
-		
+		int damage = DiceManager.attack(this.attackPoints + this.weapon.getAttackPoints());
+		entity.defend(damage); 	
 	}
 	
-	public void defend(int Damage) {
-		
+	public abstract void defend(int Damage);
+	
+	public void equipWeapon(Weapon weapon) {
+		this.weapon = weapon;
 	}
 	
+	public void equipArmor(Armor armor) {
+		this.armor = armor;
+	}
 	
-	
-	
+	public void move(Directions direction) {
+		
+	}
 	
 
 }

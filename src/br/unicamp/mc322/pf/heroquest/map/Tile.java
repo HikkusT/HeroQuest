@@ -1,5 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Interactable;
 
 public class Tile {
