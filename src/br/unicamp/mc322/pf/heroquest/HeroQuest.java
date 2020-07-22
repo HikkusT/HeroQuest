@@ -6,6 +6,7 @@ import br.unicamp.mc322.pf.heroquest.render.*;
 import br.unicamp.mc322.pf.heroquest.dice.*;
 import br.unicamp.mc322.pf.heroquest.map.*;
 import br.unicamp.mc322.pf.heroquest.map.generation.ClassicalMapGenerator;
+import br.unicamp.mc322.pf.heroquest.map.illuminator.BasicIlluminator;
 
 public class HeroQuest {
 	Renderer renderer;
@@ -15,12 +16,10 @@ public class HeroQuest {
 	}
 	
 	public void start() {
-		Map world = new Map(new ClassicalMapGenerator());
+		Map world = new Map(new ClassicalMapGenerator(), new BasicIlluminator());
 		renderer.setMap(world);
 		renderer.renderWorld();
-		renderer.renderEvent("aaaaaa");
-		renderer.renderEvent("bbbbbbb");
-		
+				
 		while (true) {
 		}
 	}

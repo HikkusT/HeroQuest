@@ -15,6 +15,7 @@ public class TerminalRenderer extends Renderer {
 		if (map == null) 
 			throw new IllegalStateException("Map is not set");
 		
+		map.CalculateIllumation();
 		System.out.print(map);
 	}
 

@@ -10,7 +10,7 @@ public final class MapFileReader {
 	public static char[][] readFile(String path) throws IOException {
 		BufferedReader buffRead = new BufferedReader(new FileReader(path));
 
-		// Read dimensions of map and create it
+			// Read dimensions of map and create it
 	    String line = buffRead.readLine();
 	    int lines = Integer.parseInt(line);
 	    line = buffRead.readLine();
