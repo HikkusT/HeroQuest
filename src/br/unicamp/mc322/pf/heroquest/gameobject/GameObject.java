@@ -14,4 +14,8 @@ public abstract class GameObject {
 	public void setIsTranslucent(boolean isTranslucent){
 		this.isTranslucent = isTranslucent;
 	}
+	
+	public Vector2 getPosition() {
+		return position;
+	}
 }
