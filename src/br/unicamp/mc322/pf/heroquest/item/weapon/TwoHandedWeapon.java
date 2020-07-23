@@ -1,6 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.item.weapon;
 
-import br.unicamp.mc322.pf.heroquest.item.HandednessType;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 
 public abstract class TwoHandedWeapon extends Weapon {
 
@@ -10,8 +10,12 @@ public abstract class TwoHandedWeapon extends Weapon {
 	}
 
 	@Override
-	public abstract void equip();
+	public void equip(Entity entity) {
+		
+	}
 
 	@Override
-	public abstract void unequip();
+	public void unequip(Entity entity) {
+		
+	}
 }

@@ -7,14 +7,14 @@ public class Treasure extends Interactable {
 	private Trap trap;
 	private boolean isOpened;
 	
-	public Treasure(Vector2 position, boolean isTranslucent, Item[] items) {
-		super(position, isTranslucent);
+	public Treasure(Vector2 position, Item[] items) {
+		super(position, true, false);
 		isOpened = false;
 		content = items;
 	}
 	
-	public Treasure(Vector2 position, boolean isTranslucent, Trap trap) {
-		super(position, isTranslucent);
+	public Treasure(Vector2 position, Trap trap) {
+		super(position, true, false);
 		isOpened = false;
 		this.trap = trap;
 	}

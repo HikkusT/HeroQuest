@@ -1,7 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.item.weapon;
 
-import br.unicamp.mc322.pf.heroquest.item.HandednessType;
 import br.unicamp.mc322.pf.heroquest.item.Item;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.item.Equipable;
 
 public abstract class Weapon extends Item implements Equipable {
@@ -37,8 +37,9 @@ public abstract class Weapon extends Item implements Equipable {
 
 
 	@Override
-	public abstract void equip();
+	public abstract void equip(Entity entity);
 	
 	@Override
-	public abstract void unequip();
+	public abstract void unequip(Entity entity);
+	
 }

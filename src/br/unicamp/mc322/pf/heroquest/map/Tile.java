@@ -6,7 +6,7 @@ import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Interactable;
 public class Tile {
 	private TileType type;
 	private boolean isVisible;
-	//private Entity entity;
+	private Entity entity;
 	private Interactable interactable;
 	
 	public Tile() {
@@ -31,13 +31,34 @@ public class Tile {
 		return this.isVisible;
 	}
 	
-	public boolean isTranslucent() {
-		// Later, we need to consider the gameObjects visibility.
-		if (this.type == TileType.FLOOR) {
+	public boolean isTransposable() {
+	
+		if (entity != null )
+			return entity.getTransposability();
+		
+		if (interactable != null)
+			return interactable.getTransposability();
+		
+		switch (type) {
+		case WALL:
+			return false;
+		default:
 			return true;
 		}
-		else {
+	}
+	
+	public boolean isTranslucent() {	
+		if (entity != null )
+			return entity.getTranslucency();
+		
+		if (interactable != null)
+			return interactable.getTranslucency();
+		
+		switch (type) {
+		case WALL:
 			return false;
+		default:
+			return true;
 		}
 		
 	}

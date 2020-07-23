@@ -7,8 +7,8 @@ public class Trap extends Interactable {
 	private boolean disarmed;
 	private TrapType type;
 	
-	public Trap(Vector2 position, boolean isTranslucent, TrapType traptype) {
-		super(position, isTranslucent);
+	public Trap(Vector2 position, TrapType traptype) {
+		super(position, true, true);
 		type = traptype;
 		detected = false;
 		disarmed = false;

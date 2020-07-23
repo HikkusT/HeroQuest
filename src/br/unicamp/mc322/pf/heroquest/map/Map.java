@@ -1,5 +1,8 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
+import java.util.Vector;
+
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.map.generation.MapGenerator;
 import br.unicamp.mc322.pf.heroquest.map.illuminator.MapIlluminator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -32,20 +35,29 @@ public class Map {
 	}
 
 	public boolean getTranslucency(Vector2 point) {
-		return this.map[point.getX()][point.getY()].isTranslucent();
+		return map[point.getX()][point.getY()].isTranslucent();
 	}
 	public TileType getTileType(Vector2 point) {
-		return this.map[point.getX()][point.getY()].getTileType();
+		return map[point.getX()][point.getY()].getTileType();
 	}
 	
 	public boolean getVisibility(Vector2 point) {
-		return this.map[point.getX()][point.getY()].getVisibility();
+		return map[point.getX()][point.getY()].getVisibility();
 	}
 	
 	public void setVisibility(Vector2 point, boolean isVisible) {
 		this.map[point.getX()][point.getY()].setVisibility(isVisible);
 	}
 	
+	public void setEntity(Entity Entity, Vector2 position) {
+		if (map[position.getX()][position.getY()].isTransposable()) {
+
+		}
+		else {
+			// FAzer classe de erro;
+			throw new IllegalArgumentException("O robô não pode ir na direção indicada\n");
+		}
+	}
 	@Override
 	public String toString() {
 		String mapRepresentation = "";
