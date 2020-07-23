@@ -25,9 +25,12 @@ public abstract class Entity extends GameObject {
 		
 	}
 	
+	public void cure(int points) {
+		healthPoints += points;
+	}
 	
-	
-	
-	
+	public void getDamage(int points) {
+		healthPoints -= points;
+	}
 
 }
