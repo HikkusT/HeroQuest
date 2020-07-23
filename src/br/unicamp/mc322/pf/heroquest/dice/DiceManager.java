@@ -3,6 +3,13 @@ package br.unicamp.mc322.pf.heroquest.dice;
 public final class DiceManager {
 	private static Dice dice = new Dice();
 	
+	public static int rollNumberDices(int n) {
+		int result = 0;
+		for(int i = 0; i < n; i++)
+			result += dice.rollRedDice();
+		return result;
+	}
+	
 	public static int move() {
 		int dice1 = dice.rollRedDice();
 		int dice2 = dice.rollRedDice();

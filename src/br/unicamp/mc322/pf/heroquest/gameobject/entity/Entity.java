@@ -43,8 +43,8 @@ public abstract class Entity extends GameObject {
 	
 	protected final void receiveDamage(int damage) {
 		healthPoints -= damage;
-		// ver como vai ser a movimentação, para ver se tirar a entity de um tile será como matá-la. Além de ser necessário
-		// tirá-la do ciclo de entidades.
+		// ver como vai ser a movimentaï¿½ï¿½o, para ver se tirar a entity de um tile serï¿½ como matï¿½-la. Alï¿½m de ser necessï¿½rio
+		// tirï¿½-la do ciclo de entidades.
 	}
 	
 	
@@ -114,5 +114,12 @@ public abstract class Entity extends GameObject {
 	
 	}
 	
+	public void cure(int points) {
+		healthPoints += points;
+	}
+	
+	public void getDamage(int points) {
+		healthPoints -= points;
+	}
 
 }
