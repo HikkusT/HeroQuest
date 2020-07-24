@@ -33,6 +33,8 @@ public class HeroQuest {
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) { }
+			
+			renderer.renderWorld();
 		}
 	}
 }
