@@ -16,4 +16,10 @@ public class Navigator {
 		map.placeEntity(entity, destination);
 		map.removeEntity(origin);
 	}
+	
+	public boolean isBlocked(Entity entity) {
+		// TODO: Implement. It may be used by the AI to check if it can move
+		
+		return false;
+	}
 }
