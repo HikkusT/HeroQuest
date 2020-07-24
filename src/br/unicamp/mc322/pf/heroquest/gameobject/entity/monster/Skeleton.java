@@ -9,7 +9,7 @@ public class Skeleton extends Monster {
 
 	public Skeleton(Vector2 position, Navigator navigator) {
 		super("Skeleton", position, 1, 0, 2, 2, 10, navigator); 
-		this.strategy = new IdleStrategy(this);
+		this.strategy = new IdleStrategy();
 	}
 
 }
