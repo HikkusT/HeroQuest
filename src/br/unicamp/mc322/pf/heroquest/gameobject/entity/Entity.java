@@ -34,7 +34,7 @@ public abstract class Entity extends GameObject {
 	}
 	
 	public void setupTurn() {
-		
+		// Here we can do things like reset the number of movements I can make, etc and decide which strategy to use
 	}
 	
 	public final void performTurn() {

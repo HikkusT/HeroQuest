@@ -22,4 +22,6 @@ public class Navigator {
 		
 		return false;
 	}
+	
+	// TODO: Implement PathFinding. A* is cool, but go for BFS if time is short
 }
