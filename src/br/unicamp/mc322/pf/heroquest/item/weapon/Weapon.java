@@ -15,7 +15,7 @@ public abstract class Weapon extends Item implements Equipable {
 		this.range = range;		
 	}
 	
-	public int attack() {
+	public int attack(Entity user) {
 		return attackPoints;
 	}
 	

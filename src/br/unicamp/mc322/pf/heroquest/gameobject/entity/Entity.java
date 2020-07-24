@@ -11,15 +11,14 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Entity extends GameObject {
 	private String name;
-	//We need 2 weapons.
-	private Weapon weapon;
-	protected Armor armor;
 	private int healthPoints;
 	private int inteligencePoints;
 	private int attackPoints;
 	protected int defensePoints;
 	private Map map;
-
+	private Weapon[] weapons;
+	protected Armor armor;
+	
 	public Entity(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Map map) {
 		super(position, false, false);
 		this.name = name;
@@ -28,13 +27,17 @@ public abstract class Entity extends GameObject {
 		this.attackPoints = attackPoints;
 		this.defensePoints = defensePoints;
 		this.map = map;
+		this.weapons = new Weapon[2];
 	}
 	
 	public void attack(Entity entity) {
 		int attackDices = attackPoints;
 		
-		if (weapon != null) {
-			attackDices += weapon.attack();
+		if (weapons[0] != null) {
+			attackDices += weapons[0].attack(this);
+		}
+		if (weapons[1] != null) {
+			attackDices += weapons[1].attack(this);
 		}
 		
 		int damage = DiceManager.attack(attackDices);
@@ -63,6 +66,9 @@ public abstract class Entity extends GameObject {
 		equipment.equip(this);
 	}
 	
+	public void equiWeapon(Weapon weapon) {
+		this.weapons[0] = weapon;
+	}
 	
 	private void move(Directions direction) {
 		//Direction obtained from update.

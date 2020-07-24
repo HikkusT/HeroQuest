@@ -11,7 +11,7 @@ public abstract class OneHandedWeapon extends Weapon {
 
 	@Override
 	public void equip(Entity entity) {
-		
+		entity.equiWeapon(this);
 		
 	}
 

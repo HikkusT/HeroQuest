@@ -5,10 +5,15 @@ import br.unicamp.mc322.pf.heroquest.map.Map;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Barbarian extends Hero {
+	private static final String NAME = "Barbarian";
+	private static final int HEALTHPOINTS = 8;
+	private static final int INTELIGENCEPOINTS = 2;
+	private static final int ATTACKPOINTS = 3;
+	private static final int DEFENSEPOINTS = 2;
 
 	public Barbarian(Vector2 position, Map map) {
-		super("Barbarian", position, 8, 2, 3, 2, map);
-		new LongSword().equip(this);;
+		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, map);
+		new LongSword().equip(this);
 	}
 
 	@Override
