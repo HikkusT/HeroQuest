@@ -20,7 +20,7 @@ public class Tile {
 	
 	public Tile(TileType type) {
 		this.type = type;
-		this.isVisible = false;
+		this.isVisible = true;
 	}
 	
 	public void receiveEntity(Entity entity) {
