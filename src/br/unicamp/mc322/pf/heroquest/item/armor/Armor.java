@@ -1,5 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.item.armor;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.item.Equipable;
 import br.unicamp.mc322.pf.heroquest.item.Item;
 
@@ -13,15 +14,17 @@ public abstract class Armor extends Item implements Equipable {
 	}
 
 	@Override
-	public void equip() {
-		// TODO Auto-generated method stub
-
+	public void equip(Entity entity) {
+		
 	}
 
 	@Override
-	public void unequip() {
-		// TODO Auto-generated method stub
-
+	public void unequip(Entity entity) {
+		
+	}
+	
+	public int getDefensePoints() {
+		return defensePoints;
 	}
 
 }

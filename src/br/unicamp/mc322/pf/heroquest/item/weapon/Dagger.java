@@ -1,30 +1,21 @@
 package br.unicamp.mc322.pf.heroquest.item.weapon;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.item.Consumable;
 
 public class Dagger extends OneHandedWeapon implements Consumable {
 
-	public Dagger(String ItemName, int attackPoints, int range) {
-		super(ItemName, 1, 1);
-		// TODO Auto-generated constructor stub
+	public Dagger() {
+		super("Dagger", 1, 1);
+	}
+	@Override
+	public int attack() {
+		//this.consume();
+		return this.attackPoints;
 	}
 
 	@Override
-	public void consume() {
-		// TODO Auto-generated method stub
-
+	public void consume(Entity user) {
+		
 	}
-
-	@Override
-	public void equip() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void unequip() {
-		// TODO Auto-generated method stub
-
-	}
-
 }

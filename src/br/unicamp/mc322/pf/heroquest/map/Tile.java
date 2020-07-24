@@ -47,14 +47,43 @@ public class Tile {
 	public boolean getVisibility() {
 		return this.isVisible;
 	}
+	public void setEntity(Entity entity) {
+		this.entity = entity;
+	}
 	
-	public boolean isTranslucent() {
-		// Later, we need to consider the gameObjects visibility.
-		if (this.type == TileType.FLOOR) {
+	public void removeEntity() {
+		this.entity = null;
+	}
+	
+	
+	public boolean isTransposable() {
+	
+		if (entity != null )
+			return entity.getTransposability();
+		
+		if (interactable != null)
+			return interactable.getTransposability();
+		
+		switch (type) {
+		case WALL:
+			return false;
+		default:
 			return true;
 		}
-		else {
+	}
+	
+	public boolean isTranslucent() {	
+		if (entity != null )
+			return entity.getTranslucency();
+		
+		if (interactable != null)
+			return interactable.getTranslucency();
+		
+		switch (type) {
+		case WALL:
 			return false;
+		default:
+			return true;
 		}
 		
 	}

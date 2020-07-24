@@ -1,6 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.EntityManager;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.map.generation.MapGenerator;
 import br.unicamp.mc322.pf.heroquest.map.illuminator.MapIlluminator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -10,6 +11,8 @@ public class Map {
 	private EntityManager entityManager;
 	private Tile[][] map;
 	private Vector2 dimension;
+	
+	public Map() {} // IGNORE THIS. THIS IS ONLY FOR TESTING!!!!!
 	
 	public Map(MapGenerator generator, MapIlluminator illuminator, EntityManager entityManager) {
 		this.illuminator = illuminator;
@@ -36,19 +39,38 @@ public class Map {
 	}
 
 	public boolean getTranslucency(Vector2 point) {
-		return this.map[point.getX()][point.getY()].isTranslucent();
+		return map[point.getX()][point.getY()].isTranslucent();
 	}
 	public TileType getTileType(Vector2 point) {
-		return this.map[point.getX()][point.getY()].getTileType();
+		return map[point.getX()][point.getY()].getTileType();
 	}
 	
 	public boolean getVisibility(Vector2 point) {
-		return this.map[point.getX()][point.getY()].getVisibility();
+		return map[point.getX()][point.getY()].getVisibility();
 	}
 	
 	public void setVisibility(Vector2 point, boolean isVisible) {
 		this.map[point.getX()][point.getY()].setVisibility(isVisible);
 	}
+	
+	public void placeEntity(Entity entity, Vector2 position) {
+		int x = position.getX();
+		int y = position.getY();
+		if (map[x][y].isTransposable()) {
+			map[x][y].setEntity(entity);
+		}
+		else {
+			// We need to implement some error classes.
+			throw new IllegalArgumentException("A entidade n�o pode ir na dire��o indicada\n");
+		}
+	}
+	
+	public void removeEntity(Vector2 position) {
+		int x = position.getX();
+		int y = position.getY();
+		map[x][y].removeEntity();
+	}
+	
 	
 	@Override
 	public String toString() {

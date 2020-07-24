@@ -6,7 +6,9 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 public abstract class Interactable extends GameObject {
 	
 
-	public Interactable(Vector2 position, boolean isTranslucent) {
-		super(position, isTranslucent);
+	public Interactable(Vector2 position, boolean isTranslucent, boolean isTransposable) {
+		super(position, isTranslucent, isTransposable);
 	}
+	
+	public abstract void interact();
 }

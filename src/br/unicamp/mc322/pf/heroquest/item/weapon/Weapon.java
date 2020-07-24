@@ -1,11 +1,11 @@
 package br.unicamp.mc322.pf.heroquest.item.weapon;
 
-import br.unicamp.mc322.pf.heroquest.item.HandednessType;
 import br.unicamp.mc322.pf.heroquest.item.Item;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.item.Equipable;
 
 public abstract class Weapon extends Item implements Equipable {
-	private int attackPoints;
+	protected int attackPoints;
 	private int range;
 	private HandednessType handedness;
 	
@@ -15,20 +15,13 @@ public abstract class Weapon extends Item implements Equipable {
 		this.range = range;		
 	}
 	
-	public int getAttackPoints() {
+	public int attack() {
 		return attackPoints;
 	}
-
-	public void setAttackPoints(int attackPoints) {
-		this.attackPoints = attackPoints;
-	}
+	
 
 	public int getRange() {
 		return range;
-	}
-
-	public void setRange(int range) {
-		this.range = range;
 	}
 
 	public HandednessType getHandedness() {
@@ -37,8 +30,9 @@ public abstract class Weapon extends Item implements Equipable {
 
 
 	@Override
-	public abstract void equip();
+	public abstract void equip(Entity entity);
 	
 	@Override
-	public abstract void unequip();
+	public abstract void unequip(Entity entity);
+	
 }

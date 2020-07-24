@@ -47,12 +47,12 @@ public class BasicIlluminator extends MapIlluminator {
 		for (int i = 0; i < widht; i++) {
 			for (int j = 0; j < height; j++) {
 				int[][] directions = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
-				if (map.getVisibility(new Vector2(i, j)) && (map.getTileType(new Vector2(i, j)) == TileType.FLOOR)) {
+				if (map.getVisibility(new Vector2(i, j)) && (map.getTranslucency(new Vector2(i, j)))) {
 					for(int[] direction : directions) {
 						int x = direction[0];
 						int y = direction[1];
 						
-						if (map.getTileType(new Vector2(i + x, j + y)) == TileType.WALL) {
+						if (!(map.getTranslucency(new Vector2(i + x, j + y)))) {
 							map.setVisibility(new Vector2(i + x, j + y), true);
 						}
 					}
