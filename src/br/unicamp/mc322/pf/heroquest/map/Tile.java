@@ -14,13 +14,30 @@ public class Tile {
 	}
 	
 	public Tile(Interactable interactable) {
-		this();
+		this(TileType.FLOOR);
 		this.interactable = interactable;
 	}
 	
 	public Tile(TileType type) {
 		this.type = type;
-		this.isVisible = false;
+		this.isVisible = true;
+	}
+	
+	public void receiveEntity(Entity entity) {
+		// TODO: check if it is transposable instead
+		if (hasEntity()) {
+			throw new IllegalStateException("Trying to spawn an entity on already occupied tile");
+		}
+		
+		this.entity = entity;
+	}
+	
+	public boolean hasEntity() {
+		return entity != null;
+	}
+	
+	public Entity getEntity() {
+		return entity;
 	}
 	
 	public void setVisibility(boolean isVisible) {
@@ -74,12 +91,15 @@ public class Tile {
 	public TileType getTileType() {
 		//We have to define the final format of the tiles,
 		return this.type;
-		
 	}
 	
 	public String getSprite() {
 		if (!isVisible)
 			return "Unlit.png";
+		
+		if (entity != null) {
+			return "Skeleton.png";
+		}
 		
 		// TODO: Fix this
 		if (interactable != null) {

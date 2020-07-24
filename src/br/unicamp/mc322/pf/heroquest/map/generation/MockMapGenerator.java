@@ -1,5 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.map.generation;
 
+import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
 import br.unicamp.mc322.pf.heroquest.map.TileType;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -11,7 +12,7 @@ public class MockMapGenerator implements MapGenerator {
 		dimension = new Vector2(20, 20);
 	}
 	
-	public Tile[][] generate() {
+	public Tile[][] generate(Navigator navigator) {
 		Tile[][] map = new Tile[dimension.getX()][dimension.getY()];
 		Vector2 center = new Vector2(dimension.getX() / 2, dimension.getY() / 2);
 		

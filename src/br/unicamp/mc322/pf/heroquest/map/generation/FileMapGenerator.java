@@ -3,6 +3,7 @@ package br.unicamp.mc322.pf.heroquest.map.generation;
 import java.io.IOException;
 import java.util.List;
 
+import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
 import br.unicamp.mc322.pf.heroquest.map.TileType;
 import br.unicamp.mc322.pf.heroquest.utils.FileUtils;
@@ -13,7 +14,7 @@ public class FileMapGenerator implements MapGenerator {
 	private Tile[][] map;
 	private Vector2 dimension;
 	
-	public Tile[][] generate() {
+	public Tile[][] generate(Navigator navigator) {
 		try {
 			List<String> mapFile = FileUtils.readFile("map_files/example.txt");
 			
@@ -29,13 +30,13 @@ public class FileMapGenerator implements MapGenerator {
 			}
 		} catch (NumberFormatException e) {
 			System.out.println("The file has unexpected characters");
-			runFallbackGeneration();
+			runFallbackGeneration(navigator);
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("The file dimension isnt as specified");
-			runFallbackGeneration();
+			runFallbackGeneration(navigator);
 		} catch (IOException e) {
 			System.out.println("Problems reading file");
-			runFallbackGeneration();
+			runFallbackGeneration(navigator);
 		}
 		
 		return map;
@@ -65,9 +66,9 @@ public class FileMapGenerator implements MapGenerator {
 		}
 	}
 	
-	private void runFallbackGeneration() {
+	private void runFallbackGeneration(Navigator navigator) {
 		MapGenerator fallback = new MockMapGenerator();
-		map = fallback.generate();
+		map = fallback.generate(navigator);
 		dimension = fallback.retrieveDimension();
 	}
 }

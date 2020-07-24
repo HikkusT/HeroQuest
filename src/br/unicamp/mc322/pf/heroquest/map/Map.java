@@ -1,20 +1,27 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
-
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.EntityManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.map.generation.MapGenerator;
 import br.unicamp.mc322.pf.heroquest.map.illuminator.MapIlluminator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Map {
-	MapIlluminator illuminator;
+	private Navigator navigator;
+	private MapIlluminator illuminator;
+	private EntityManager entityManager;
 	private Tile[][] map;
 	private Vector2 dimension;
 	
-	public Map(MapGenerator generator, MapIlluminator illuminator) {
+	public Map() {} // IGNORE THIS. THIS IS ONLY FOR TESTING!!!!!
+	
+	public Map(MapGenerator generator, MapIlluminator illuminator, EntityManager entityManager) {
+		this.navigator = new Navigator(this);
 		this.illuminator = illuminator;
-		map = generator.generate();
+		this.entityManager = entityManager;
+		map = generator.generate(navigator);
 		dimension = generator.retrieveDimension();
+		entityManager.initFromMap(map, dimension);
 	}
 	
 	public Vector2 getDimension() {
@@ -56,7 +63,7 @@ public class Map {
 		}
 		else {
 			// We need to implement some error classes.
-			throw new IllegalArgumentException("A entidade não pode ir na direção indicada\n");
+			throw new IllegalArgumentException("A entidade nï¿½o pode ir na direï¿½ï¿½o indicada\n");
 		}
 	}
 	
