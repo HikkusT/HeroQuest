@@ -14,6 +14,7 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 public abstract class Entity extends GameObject {
 	private String name;
 	private int healthPoints;
+	private final int maxhealthPoints;
 	private int inteligencePoints;
 	private int attackPoints;
 	protected TurnStrategy strategy;
@@ -31,6 +32,7 @@ public abstract class Entity extends GameObject {
 		this.defensePoints = defensePoints;
 		this.weapons = new Weapon[2];
 		this.navigator = navigator;
+		this.maxhealthPoints = healthPoints;
 	}
 	
 	public void setupTurn() {

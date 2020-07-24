@@ -8,11 +8,13 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Monster extends Entity {
 	private int movementPoints;
+	private final int maxMovementPoints;
 	
 	public Monster(String name,Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, int movementPoints, Navigator navigator) {
+		
 		super(name, position, healthPoints, inteligencePoints, attackPoints, defensePoints, navigator);
 		this.movementPoints = movementPoints;
-
+		this.maxMovementPoints = movementPoints;
 	}
 	
 	public int getMovementPoints() {
