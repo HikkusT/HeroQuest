@@ -7,6 +7,7 @@ import br.unicamp.mc322.pf.heroquest.item.Equipable;
 import br.unicamp.mc322.pf.heroquest.item.armor.Armor;
 import br.unicamp.mc322.pf.heroquest.item.weapon.Weapon;
 import br.unicamp.mc322.pf.heroquest.map.Map;
+import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Directions;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
@@ -20,16 +21,16 @@ public abstract class Entity extends GameObject {
 	private int attackPoints;
 	protected TurnStrategy strategy;
 	protected int defensePoints;
-	private Map map;
+	private Navigator navigator;
 
-	public Entity(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Map map) {
+	public Entity(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Navigator navigator) {
 		super(position, false, false);
 		this.name = name;
 		this.healthPoints = healthPoints;
 		this.inteligencePoints = inteligencePoints;
 		this.attackPoints = attackPoints;
 		this.defensePoints = defensePoints;
-		this.map = map;
+		this.navigator = navigator;
 	}
 	
 	public void setupTurn() {
@@ -58,7 +59,7 @@ public abstract class Entity extends GameObject {
 		
 		//We have to discuss later about removing this entity from the active entities.
 		if (healthPoints <= 0) {
-			map.removeEntity(position);
+			// map.removeEntity(position);
 		}
 		
 	}
@@ -99,8 +100,7 @@ public abstract class Entity extends GameObject {
 		
 		Vector2 north = new Vector2(0, 1);
 		Vector2 new_position = Vector2.sum(this.position, north);
-		map.placeEntity(this, new_position);
-		map.removeEntity(position);
+		navigator.move(this, new_position);
 		position = new_position;
 	
 	}
@@ -109,8 +109,7 @@ public abstract class Entity extends GameObject {
 	{
 		Vector2 south = new Vector2(0, -1);
 		Vector2 new_position = Vector2.sum(this.position, south);
-		map.placeEntity(this, new_position);
-		map.removeEntity(position);
+		navigator.move(this, new_position);
 		position = new_position;
 	
 	}
@@ -119,8 +118,7 @@ public abstract class Entity extends GameObject {
 	{
 		Vector2 east = new Vector2(1, 0);
 		Vector2 new_position = Vector2.sum(this.position, east);
-		map.placeEntity(this, new_position);
-		map.removeEntity(position);
+		navigator.move(this, new_position);
 		position = new_position;
 	
 
@@ -130,8 +128,7 @@ public abstract class Entity extends GameObject {
 	{
 		Vector2 west = new Vector2(-1, 0);
 		Vector2 new_position = Vector2.sum(this.position, west);
-		map.placeEntity(this, new_position);
-		map.removeEntity(position);
+		navigator.move(this, new_position);
 		position = new_position;
 	
 	}

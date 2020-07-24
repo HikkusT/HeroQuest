@@ -7,6 +7,7 @@ import br.unicamp.mc322.pf.heroquest.map.illuminator.MapIlluminator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Map {
+	private Navigator navigator;
 	private MapIlluminator illuminator;
 	private EntityManager entityManager;
 	private Tile[][] map;
@@ -15,9 +16,10 @@ public class Map {
 	public Map() {} // IGNORE THIS. THIS IS ONLY FOR TESTING!!!!!
 	
 	public Map(MapGenerator generator, MapIlluminator illuminator, EntityManager entityManager) {
+		this.navigator = new Navigator(this);
 		this.illuminator = illuminator;
 		this.entityManager = entityManager;
-		map = generator.generate();
+		map = generator.generate(navigator);
 		dimension = generator.retrieveDimension();
 		entityManager.initFromMap(map, dimension);
 	}

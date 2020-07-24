@@ -10,6 +10,7 @@ import java.util.Random;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.monster.Skeleton;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Door;
 import br.unicamp.mc322.pf.heroquest.map.Map;
+import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
 import br.unicamp.mc322.pf.heroquest.map.TileType;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -26,7 +27,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 		rooms = new HashMap<Integer, List<Vector2>>();
 	}
 	
-	public Tile[][] generate() {
+	public Tile[][] generate(Navigator navigator) {
 		instantiateMap();
 		placeRectangle(new Vector2(14, 10), new Vector2(21, 16));	// Place central room
 		placeCross(new Vector2(2, 2), new Vector2(12, 12),
@@ -38,7 +39,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 		placeCross(new Vector2(19, 2), new Vector2(33, 8),
 				   new Vector2(23, 2), new Vector2(33, 12));		// Place bottom right corner
 		
-		spawnMonsters();
+		spawnMonsters(navigator);
 		connectMap();
 		
 		return map;
@@ -166,13 +167,13 @@ public class ClassicalMapGenerator implements MapGenerator {
 		}
 	}
 	
-	private void spawnMonsters() {
+	private void spawnMonsters(Navigator navigator) {
 		markRooms();
 		// TODO: Actually make it random
 		for (int roomIndex = 1; roomIndex < rooms.size(); roomIndex ++) {
 			List<Vector2> room = rooms.get(roomIndex);
 			Vector2 spawnPosition = room.get(random.nextInt(room.size()));
-			map[spawnPosition.getX()][spawnPosition.getY()].receiveEntity(new Skeleton(spawnPosition, new Map()));
+			map[spawnPosition.getX()][spawnPosition.getY()].receiveEntity(new Skeleton(spawnPosition, navigator));
 		}
 	}
 	
