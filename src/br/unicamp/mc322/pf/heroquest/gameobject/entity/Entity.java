@@ -1,6 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.TurnStrategy;
 import br.unicamp.mc322.pf.heroquest.item.armor.Armor;
 import br.unicamp.mc322.pf.heroquest.item.weapon.Weapon;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -11,10 +12,19 @@ public abstract class Entity extends GameObject {
 	private int healthPoints;
 	private int inteligencePoints;
 	private int attackPoints;
+	TurnStrategy strategy;
 
 	public Entity(Vector2 position, boolean isTranslucent) {
 		super(position, isTranslucent);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void setupTurn() {
+		
+	}
+	
+	public final void performTurn() {
+		strategy.execute();
 	}
 	
 	public void attack(Entity entity) {
@@ -24,10 +34,4 @@ public abstract class Entity extends GameObject {
 	public void defend(int Damage) {
 		
 	}
-	
-	
-	
-	
-	
-
 }

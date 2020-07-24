@@ -1,18 +1,22 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.EntityManager;
 import br.unicamp.mc322.pf.heroquest.map.generation.MapGenerator;
 import br.unicamp.mc322.pf.heroquest.map.illuminator.MapIlluminator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Map {
-	MapIlluminator illuminator;
+	private MapIlluminator illuminator;
+	private EntityManager entityManager;
 	private Tile[][] map;
 	private Vector2 dimension;
 	
-	public Map(MapGenerator generator, MapIlluminator illuminator) {
+	public Map(MapGenerator generator, MapIlluminator illuminator, EntityManager entityManager) {
 		this.illuminator = illuminator;
+		this.entityManager = entityManager;
 		map = generator.generate();
 		dimension = generator.retrieveDimension();
+		entityManager.initFromMap(map, dimension);
 	}
 	
 	public Vector2 getDimension() {
