@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.monster.Skeleton;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Door;
+import br.unicamp.mc322.pf.heroquest.map.Map;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
 import br.unicamp.mc322.pf.heroquest.map.TileType;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -166,10 +168,11 @@ public class ClassicalMapGenerator implements MapGenerator {
 	
 	private void spawnMonsters() {
 		markRooms();
+		// TODO: Actually make it random
 		for (int roomIndex = 1; roomIndex < rooms.size(); roomIndex ++) {
 			List<Vector2> room = rooms.get(roomIndex);
 			Vector2 spawnPosition = room.get(random.nextInt(room.size()));
-			//map[spawnPosition.getX()][spawnPosition.getY()];
+			map[spawnPosition.getX()][spawnPosition.getY()].receiveEntity(new Skeleton(spawnPosition, new Map()));
 		}
 	}
 	
