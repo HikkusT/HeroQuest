@@ -38,6 +38,7 @@ public abstract class Entity extends GameObject {
 	}
 	
 	public final void performTurn() {
+		
 		strategy.execute();
 	}
 	
