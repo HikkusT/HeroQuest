@@ -1,6 +1,5 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
-import java.util.Vector;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.map.generation.MapGenerator;
@@ -49,15 +48,25 @@ public class Map {
 		this.map[point.getX()][point.getY()].setVisibility(isVisible);
 	}
 	
-	public void setEntity(Entity Entity, Vector2 position) {
-		if (map[position.getX()][position.getY()].isTransposable()) {
-
+	public void placeEntity(Entity entity, Vector2 position) {
+		int x = position.getX();
+		int y = position.getY();
+		if (map[x][y].isTransposable()) {
+			map[x][y].setEntity(entity);
 		}
 		else {
-			// FAzer classe de erro;
-			throw new IllegalArgumentException("O robô não pode ir na direção indicada\n");
+			// We need to implement some error classes.
+			throw new IllegalArgumentException("A entidade não pode ir na direção indicada\n");
 		}
 	}
+	
+	public void removeEntity(Vector2 position) {
+		int x = position.getX();
+		int y = position.getY();
+		map[x][y].removeEntity();
+	}
+	
+	
 	@Override
 	public String toString() {
 		String mapRepresentation = "";

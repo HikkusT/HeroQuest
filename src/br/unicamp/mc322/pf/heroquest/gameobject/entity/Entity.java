@@ -2,6 +2,7 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
+import br.unicamp.mc322.pf.heroquest.item.Equipable;
 import br.unicamp.mc322.pf.heroquest.item.armor.Armor;
 import br.unicamp.mc322.pf.heroquest.item.weapon.Weapon;
 import br.unicamp.mc322.pf.heroquest.map.Map;
@@ -10,6 +11,7 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Entity extends GameObject {
 	private String name;
+	//We need 2 weapons.
 	private Weapon weapon;
 	protected Armor armor;
 	private int healthPoints;
@@ -32,31 +34,38 @@ public abstract class Entity extends GameObject {
 		int attackDices = attackPoints;
 		
 		if (weapon != null) {
-			attackDices += weapon.getAttackPoints();
+			attackDices += weapon.attack();
 		}
 		
 		int damage = DiceManager.attack(attackDices);
 		entity.defend(damage); 	
 	}
 	
-	public abstract void defend(int attackDamage);
+	protected abstract void defend(int attackDamage);
 	
 	protected final void receiveDamage(int damage) {
 		healthPoints -= damage;
-		// ver como vai ser a movimenta��o, para ver se tirar a entity de um tile ser� como mat�-la. Al�m de ser necess�rio
-		// tir�-la do ciclo de entidades.
+		
+		//We have to discuss later about removing this entity from the active entities.
+		if (healthPoints <= 0) {
+			map.removeEntity(position);
+		}
+		
 	}
 	
 	
-	public void equipWeapon(Weapon weapon) {
-		this.weapon = weapon;
+	public void cure(int points) {
+		healthPoints += points;
 	}
 	
-	public void equipArmor(Armor armor) {
-		this.armor = armor;
+	
+	public void equipEquipment(Equipable equipment) {
+		equipment.equip(this);
 	}
 	
-	public void move(Directions direction) {
+	
+	private void move(Directions direction) {
+		//Direction obtained from update.
 		try {
 			switch(direction) {
 			case NORTH:
@@ -81,7 +90,8 @@ public abstract class Entity extends GameObject {
 		
 		Vector2 north = new Vector2(0, 1);
 		Vector2 new_position = Vector2.sum(this.position, north);
-		//map.map.setEntity(new_position);
+		map.placeEntity(this, new_position);
+		map.removeEntity(position);
 		position = new_position;
 	
 	}
@@ -90,7 +100,8 @@ public abstract class Entity extends GameObject {
 	{
 		Vector2 south = new Vector2(0, -1);
 		Vector2 new_position = Vector2.sum(this.position, south);
-		//map.map.setEntity(new_position);
+		map.placeEntity(this, new_position);
+		map.removeEntity(position);
 		position = new_position;
 	
 	}
@@ -99,7 +110,8 @@ public abstract class Entity extends GameObject {
 	{
 		Vector2 east = new Vector2(1, 0);
 		Vector2 new_position = Vector2.sum(this.position, east);
-		//map.map.setEntity(new_position);
+		map.placeEntity(this, new_position);
+		map.removeEntity(position);
 		position = new_position;
 	
 
@@ -109,17 +121,11 @@ public abstract class Entity extends GameObject {
 	{
 		Vector2 west = new Vector2(-1, 0);
 		Vector2 new_position = Vector2.sum(this.position, west);
-		//map.map.setEntity(new_position);
+		map.placeEntity(this, new_position);
+		map.removeEntity(position);
 		position = new_position;
 	
 	}
-	
-	public void cure(int points) {
-		healthPoints += points;
-	}
-	
-	public void getDamage(int points) {
-		healthPoints -= points;
-	}
+
 
 }

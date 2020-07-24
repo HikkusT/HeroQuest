@@ -7,12 +7,16 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Monster extends Entity {
 	private int movementPoints;
+	
 	public Monster(String name,Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, int movementPoints, Map map) {
 		super(name, position, healthPoints, inteligencePoints, attackPoints, defensePoints, map);
 		this.movementPoints = movementPoints;
 
 	}
-
+	
+	public int getMovementPoints() {
+		return movementPoints;
+	}
 	@Override
 	public void defend(int attackDamage) {
 		int defenseDices = defensePoints;

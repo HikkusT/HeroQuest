@@ -1,8 +1,9 @@
-package br.unicamp.mc322.pf.heroquest.gameobject.entity;
+package br.unicamp.mc322.pf.heroquest.gameobject.entity.hero;
 
 import java.util.ArrayList;
 
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.item.Item;
 import br.unicamp.mc322.pf.heroquest.map.Map;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -10,10 +11,9 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 public abstract class Hero extends Entity {
 	private ArrayList<Item> backpack; 
 
-	public Hero(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, Map map) {
-		super(name, position, healthPoints, inteligencePoints, attackPoints, 2, map);
+	public Hero(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Map map) {
+		super(name, position, healthPoints, inteligencePoints, attackPoints, defensePoints, map);
 		backpack = new ArrayList<Item>(); 
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void detectTrap() {

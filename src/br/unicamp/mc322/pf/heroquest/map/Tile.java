@@ -30,6 +30,14 @@ public class Tile {
 	public boolean getVisibility() {
 		return this.isVisible;
 	}
+	public void setEntity(Entity entity) {
+		this.entity = entity;
+	}
+	
+	public void removeEntity() {
+		this.entity = null;
+	}
+	
 	
 	public boolean isTransposable() {
 	
