@@ -34,55 +34,54 @@ public abstract class Entity extends GameObject {
 		this.navigator = navigator;
 		this.maxhealthPoints = healthPoints;
 	}
-	
+
 	public void setupTurn() {
 		// Here we can do things like reset the number of movements I can make, etc and decide which strategy to use
 	}
-	
+
 	public final void performTurn() {
-		
+
 		strategy.execute();
 	}
-	
+
 	public void attack(Entity entity) {
 		int attackDices = attackPoints;
-		
+
 		if (weapons[0] != null) {
 			attackDices += weapons[0].attack(this);
 		}
 		if (weapons[1] != null) {
 			attackDices += weapons[1].attack(this);
 		}
-		
+
 		int damage = DiceManager.attack(attackDices);
-		entity.defend(damage); 	
+		entity.defend(damage);
 	}
-	
+
 	protected abstract void defend(int attackDamage);
-	
+
 	protected final void receiveDamage(int damage) {
 		healthPoints -= damage;
-		
+
 		//We have to discuss later about removing this entity from the active entities.
 		if (healthPoints <= 0) {
 			// map.removeEntity(position);
 		}
-		
+
 	}
-	
+
 	public void cure(int points) {
 		healthPoints += points;
 	}
-	
-	
+
 	public void equipEquipment(Equipable equipment) {
 		equipment.equip(this);
 	}
-	
+
 	public void equiWeapon(Weapon weapon) {
 		this.weapons[0] = weapon;
 	}
-	
+
 	private void move(Directions direction) {
 		//Direction obtained from update.
 		try {
@@ -95,51 +94,50 @@ public abstract class Entity extends GameObject {
 				this.goEast();
 			case WEST:
 				this.goWest();
-				
 			}
 		}
 		catch (IllegalArgumentException e) {
 			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
 		}
-		
+
 	}
-	
+
 	void goNorth()
 	{
-		
+
 		Vector2 north = new Vector2(0, 1);
 		Vector2 new_position = Vector2.sum(this.position, north);
 		navigator.move(this, new_position);
 		position = new_position;
-	
+
 	}
-	
+
 	void goSouth()
 	{
 		Vector2 south = new Vector2(0, -1);
 		Vector2 new_position = Vector2.sum(this.position, south);
 		navigator.move(this, new_position);
 		position = new_position;
-	
+
 	}
-	
+
 	void goEast()
 	{
 		Vector2 east = new Vector2(1, 0);
 		Vector2 new_position = Vector2.sum(this.position, east);
 		navigator.move(this, new_position);
 		position = new_position;
-	
+
 
 	}
-	
+
 	void goWest()
 	{
 		Vector2 west = new Vector2(-1, 0);
 		Vector2 new_position = Vector2.sum(this.position, west);
 		navigator.move(this, new_position);
 		position = new_position;
-	
+
 	}
 
 
