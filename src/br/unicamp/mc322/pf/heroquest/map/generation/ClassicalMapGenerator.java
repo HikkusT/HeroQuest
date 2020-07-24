@@ -36,6 +36,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 		placeCross(new Vector2(19, 2), new Vector2(33, 8),
 				   new Vector2(23, 2), new Vector2(33, 12));		// Place bottom right corner
 		
+		spawnMonsters();
 		connectMap();
 		
 		return map;
@@ -160,6 +161,15 @@ public class ClassicalMapGenerator implements MapGenerator {
 				}
 			}
 			break;
+		}
+	}
+	
+	private void spawnMonsters() {
+		markRooms();
+		for (int roomIndex = 1; roomIndex < rooms.size(); roomIndex ++) {
+			List<Vector2> room = rooms.get(roomIndex);
+			Vector2 spawnPosition = room.get(random.nextInt(room.size()));
+			//map[spawnPosition.getX()][spawnPosition.getY()];
 		}
 	}
 	
