@@ -83,62 +83,13 @@ public abstract class Entity extends GameObject {
 	}
 
 	private void move(Directions direction) {
-		//Direction obtained from update.
 		try {
-			switch(direction) {
-			case NORTH:
-				this.goNorth();
-			case SOUTH:
-				this.goSouth();
-			case EAST:
-				this.goEast();
-			case WEST:
-				this.goWest();
-			}
+			Vector2 target = Vector2.sum(position, direction.toVector2());
+			navigator.move(this, target);
+			position = target;
 		}
 		catch (IllegalArgumentException e) {
 			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
 		}
-
 	}
-
-	void goNorth()
-	{
-
-		Vector2 north = new Vector2(0, 1);
-		Vector2 new_position = Vector2.sum(this.position, north);
-		navigator.move(this, new_position);
-		position = new_position;
-
-	}
-
-	void goSouth()
-	{
-		Vector2 south = new Vector2(0, -1);
-		Vector2 new_position = Vector2.sum(this.position, south);
-		navigator.move(this, new_position);
-		position = new_position;
-
-	}
-
-	void goEast()
-	{
-		Vector2 east = new Vector2(1, 0);
-		Vector2 new_position = Vector2.sum(this.position, east);
-		navigator.move(this, new_position);
-		position = new_position;
-
-
-	}
-
-	void goWest()
-	{
-		Vector2 west = new Vector2(-1, 0);
-		Vector2 new_position = Vector2.sum(this.position, west);
-		navigator.move(this, new_position);
-		position = new_position;
-
-	}
-
-
 }
