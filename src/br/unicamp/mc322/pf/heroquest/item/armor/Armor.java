@@ -1,28 +1,40 @@
 package br.unicamp.mc322.pf.heroquest.item.armor;
 
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
-import br.unicamp.mc322.pf.heroquest.item.Equipable;
-import br.unicamp.mc322.pf.heroquest.item.Item;
+import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
+import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
+import br.unicamp.mc322.pf.heroquest.item.equipment.Set;
 
-public abstract class Armor extends Item implements Equipable {
+public abstract class Armor extends Equipment {
 
 	private int defensePoints;
 	public Armor(String itemName, int defensePoints) {
 		super(itemName);
 		this.defensePoints =  defensePoints;
-		// TODO Auto-generated constructor stub
-	}
 
-	@Override
-	public void equip(Entity entity) {
-		
-	}
-
-	@Override
-	public void unequip(Entity entity) {
-		
 	}
 	
+	@Override
+	public boolean equip(Set set){
+		ArmorSlot armorSlot = set.getArmorSlot();
+		if (armorSlot.isEmpty()) {
+			armorSlot.setEquipment(this);
+		}
+		
+		return armorSlot.isEmpty();
+	}
+	
+	@Override
+	public Equipment unequip(Set set){
+		ArmorSlot armorSlot = set.getArmorSlot();
+		Equipment removedEquipment = null;
+		
+		if (!armorSlot.isEmpty()) {
+			removedEquipment = armorSlot.removeEquipment();
+		}
+		return removedEquipment;
+		
+	}
+
 	public int getDefensePoints() {
 		return defensePoints;
 	}

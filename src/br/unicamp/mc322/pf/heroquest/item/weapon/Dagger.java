@@ -1,7 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.item.weapon;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
-import br.unicamp.mc322.pf.heroquest.item.Consumable;
 
 public class Dagger extends OneHandedWeapon{
 	private int charges = 3;
@@ -17,6 +16,4 @@ public class Dagger extends OneHandedWeapon{
 		}
 		return this.attackPoints;
 	}
-
-
 }

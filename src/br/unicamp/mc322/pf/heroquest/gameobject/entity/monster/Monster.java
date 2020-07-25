@@ -2,6 +2,7 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
+import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
 import br.unicamp.mc322.pf.heroquest.map.Map;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -20,12 +21,14 @@ public abstract class Monster extends Entity {
 	public int getMovementPoints() {
 		return movementPoints;
 	}
+	
 	@Override
 	public void defend(int attackDamage) {
 		int defenseDices = defensePoints;
+		ArmorSlot armorSlot = set.getArmorSlot();
 		
-		if (this.armor != null) {
-			defenseDices += armor.getDefensePoints();
+		if (!armorSlot.isEmpty()) {
+			defenseDices += armorSlot.getEquipment().getDefensePoints();
 		}
 		
 		int damageMitigated = DiceManager.defendMonster(defenseDices);
@@ -35,5 +38,6 @@ public abstract class Monster extends Entity {
 
 		this.receiveDamage(trueDamage);
 	}
+	
 
 }
