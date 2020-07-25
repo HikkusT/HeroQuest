@@ -1,4 +1,4 @@
-package br.unicamp.mc322.pf.heroquest.item.weapon;
+package br.unicamp.mc322.pf.heroquest.item.equipment.weapon;
 
 import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;

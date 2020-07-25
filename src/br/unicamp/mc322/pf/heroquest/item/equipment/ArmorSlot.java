@@ -1,6 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.item.equipment;
 
-import br.unicamp.mc322.pf.heroquest.item.armor.Armor;
+import br.unicamp.mc322.pf.heroquest.item.equipment.armor.Armor;
 
 public class ArmorSlot extends EquipmentSlot {
 

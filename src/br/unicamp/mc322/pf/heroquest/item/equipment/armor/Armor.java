@@ -1,4 +1,4 @@
-package br.unicamp.mc322.pf.heroquest.item.armor;
+package br.unicamp.mc322.pf.heroquest.item.equipment.armor;
 
 import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;

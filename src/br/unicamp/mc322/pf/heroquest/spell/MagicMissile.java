@@ -1,4 +1,4 @@
-package br.unicamp.mc322.pf.heroquest.item.spell;
+package br.unicamp.mc322.pf.heroquest.spell;
 
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.*;

@@ -8,7 +8,7 @@ public abstract class EquipmentSlot {
 	}
 	
 	public boolean isEmpty() {
-		if (this.equipment == null) {
+		if (equipment == null || equipment.getItemName() == "Fists") {
 			return true;
 		}
 		else {

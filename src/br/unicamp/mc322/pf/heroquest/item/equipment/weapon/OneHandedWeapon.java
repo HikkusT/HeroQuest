@@ -1,13 +1,13 @@
-package br.unicamp.mc322.pf.heroquest.item.weapon;
+package br.unicamp.mc322.pf.heroquest.item.equipment.weapon;
 
 import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Set;
 import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
 
-public abstract class TwoHandedWeapon extends Weapon {
+public abstract class OneHandedWeapon extends Weapon {
 
-	public TwoHandedWeapon(String ItemName, int attackPoints, int range) {
-		super(ItemName, attackPoints, range, HandednessType.TWOHANDED);
+	public OneHandedWeapon(String ItemName, int attackPoints, int range) {
+		super(ItemName, attackPoints, range, HandednessType.ONEHANDED);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -16,22 +16,29 @@ public abstract class TwoHandedWeapon extends Weapon {
 		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
 		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
 		
-		if (leftWeaponSlot.isEmpty() && rightWeaponSlot.isEmpty()) {
+		if (leftWeaponSlot.isEmpty()) {
 			leftWeaponSlot.setEquipment(this);
 		}
+		else if (rightWeaponSlot.isEmpty()) {
+			rightWeaponSlot.setEquipment(this);
+		}
 		
-		return leftWeaponSlot.isEmpty() && rightWeaponSlot.isEmpty();	
+		return leftWeaponSlot.isEmpty() || rightWeaponSlot.isEmpty();
 	}
 	
 	@Override
 	public Equipment unequip(Set set){
 		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
+		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
 		Equipment removedEquipment = null;
 		
 		if (!leftWeaponSlot.isEmpty()) {
 			removedEquipment = leftWeaponSlot.removeEquipment();
 		}
+		else if (!rightWeaponSlot.isEmpty()) {
+			removedEquipment = rightWeaponSlot.removeEquipment();
+		}
 		
-		return removedEquipment;	
+		return removedEquipment;		
 	}
 }
