@@ -38,13 +38,13 @@ public class HeroQuest {
 	private void runGameLoop() {
 		while (true) {
 			entityManager.nextTurn();
+			renderer.renderWorld();
 			
 			// TODO: Maybe remove this delay. It´s ugly
-			//try {
-			//	Thread.sleep(1000);
-			//} catch (InterruptedException e) { }
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) { }
 			
-			renderer.renderWorld();
 		}
 	}
 	
