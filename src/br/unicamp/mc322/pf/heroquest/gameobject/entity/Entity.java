@@ -8,7 +8,7 @@ import br.unicamp.mc322.pf.heroquest.item.armor.Armor;
 import br.unicamp.mc322.pf.heroquest.item.weapon.Weapon;
 import br.unicamp.mc322.pf.heroquest.map.Map;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
-import br.unicamp.mc322.pf.heroquest.utils.Directions;
+import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Entity extends GameObject {
@@ -82,7 +82,7 @@ public abstract class Entity extends GameObject {
 		this.weapons[0] = weapon;
 	}
 
-	private void move(Directions direction) {
+	private void move(Direction direction) {
 		try {
 			Vector2 target = Vector2.sum(position, direction.toVector2());
 			navigator.move(this, target);

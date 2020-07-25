@@ -2,7 +2,7 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.monster.Monster;
-import br.unicamp.mc322.pf.heroquest.utils.Directions;
+import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import java.util.Random;
 
 public class IdleStrategy implements TurnStrategy {
@@ -26,13 +26,13 @@ public class IdleStrategy implements TurnStrategy {
 		int direction = random.nextInt(4);
 		switch(direction) {
 			case 0:
-				monster.move(Directions.NORTH);
+				monster.move(Direction.NORTH);
 			case 1:
-				monster.move(Directions.SOUTH);
+				monster.move(Direction.SOUTH);
 			case 2:
-				monster.move(Directions.EAST);
+				monster.move(Direction.EAST);
 			case 3:
-				monster.move(Directions.WEST);
+				monster.move(Direction.WEST);
 			default:
 				break;
 		}

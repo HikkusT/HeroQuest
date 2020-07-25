@@ -1,6 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.utils;
 
-public enum Directions {
+public enum Direction {
 	NORTH,
 	EAST,
 	SOUTH,
