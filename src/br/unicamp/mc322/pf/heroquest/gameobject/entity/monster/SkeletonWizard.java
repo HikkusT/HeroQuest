@@ -1,29 +1,34 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.IdleStrategy;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.IdleStrategy;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
-public class Skeleton extends Monster {
-	private static final String NAME = "Skeleton";
+public class SkeletonWizard extends Monster {
+	private static final String NAME = "Skeleton Wizard";
 	private static final int HEALTHPOINTS = 1;
 	private static final int INTELIGENCEPOINTS = 0;
 	private static final int ATTACKPOINTS = 2;
 	private static final int DEFENSEPOINTS = 2;
 	private static final int MOVEMENTPOINTS = 10;
 
-	public Skeleton(Vector2 position, Navigator navigator, Hero hero) {
+	public SkeletonWizard(Vector2 position, Navigator navigator, Hero hero) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator, hero);
 		this.strategy = new IdleStrategy(this);
 	}
 
 	public boolean isHeroInRange() {
-		boolean isInRange = getBiggerWeaponRange() >= Vector2.distance(position, hero.getPosition()); 
-		return isInRange;
+		boolean canCastSpell = navigator.getVisibility(this); // && has charges
+		boolean canAttack = (1 == Vector2.distance(position, hero.getPosition()));
+		return (canCastSpell || canAttack);
 	}
 
 	public void attackHero() {
-		attack(hero);
+		boolean canCastSpell = navigator.getVisibility(this); // && has charges
+		if(canCastSpell)
+			//cast(hero.getPosition())
+		else
+			attack(hero);
 	}
 }

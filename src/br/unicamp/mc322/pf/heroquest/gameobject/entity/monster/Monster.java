@@ -28,8 +28,7 @@ public abstract class Monster extends Entity {
 
 	public abstract boolean isHeroInRange();
 
-	public void attackHero() {
-	}
+	public abstract void attackHero();
 
 	@Override
 	public void defend(int attackDamage) {

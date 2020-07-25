@@ -21,7 +21,7 @@ public abstract class Entity extends GameObject {
 	protected int defensePoints;
 	private Weapon[] weapons;
 	protected Armor armor;
-	private Navigator navigator;
+	protected Navigator navigator;
 
 	public Entity(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Navigator navigator) {
 		super(position, false, false);
@@ -40,7 +40,6 @@ public abstract class Entity extends GameObject {
 	}
 
 	public final void performTurn() {
-
 		strategy.execute();
 	}
 
@@ -82,7 +81,23 @@ public abstract class Entity extends GameObject {
 		this.weapons[0] = weapon;
 	}
 
-	private void move(Direction direction) {
+	public int getBiggerWeaponRange() {
+		int range0 = 0;
+		if(weapons[0] != null)
+			range0 = weapons[0].getRange();
+
+		int range1 = 0;
+		if(weapons[1] != null)
+			range1 = weapons[0].getRange();
+	
+		if(range0 >= range1)
+			return range0;
+		else
+			return range1;
+	}
+
+	public void move(Direction direction) {
+		//Direction obtained from update.
 		try {
 			Vector2 target = Vector2.sum(position, direction.toVector2());
 			navigator.move(this, target);
