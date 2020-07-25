@@ -6,7 +6,7 @@ import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.TurnStrategy;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Set;
 import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
-import br.unicamp.mc322.pf.heroquest.utils.Directions;
+import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Entity extends GameObject {
@@ -32,16 +32,15 @@ public abstract class Entity extends GameObject {
 		this.navigator = navigator;
 		
 	}
-	
+
 	public void setupTurn() {
 		// Here we can do things like reset the number of movements I can make, etc and decide which strategy to use
 	}
-	
+
 	public final void performTurn() {
-		
 		strategy.execute();
 	}
-	
+
 	public void attack(Entity entity) {
 		int attackDices = attackPoints;
 		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
@@ -53,85 +52,59 @@ public abstract class Entity extends GameObject {
 		if (!rightWeaponSlot.isEmpty()) {
 			attackDices += rightWeaponSlot.getEquipment().attack(this);
 		}
-		
+
 		int damage = DiceManager.attack(attackDices);
-		entity.defend(damage); 	
+		entity.defend(damage);
 	}
-	
+
 	protected abstract void defend(int attackDamage);
-	
+
 	protected final void receiveDamage(int damage) {
 		healthPoints -= damage;
-		
+
 		//We have to discuss later about removing this entity from the active entities.
 		if (healthPoints <= 0) {
 			//navigator.removeEntity(position);
 		}
-		
+
 	}
-	
+
 	public void cure(int points) {
 		healthPoints += points;
 	}
-			
-	private void move(Directions direction) {
+
+	public void equipEquipment(Equipable equipment) {
+		equipment.equip(this);
+	}
+
+	public void equiWeapon(Weapon weapon) {
+		this.weapons[0] = weapon;
+	}
+
+	public int getBiggerWeaponRange() {
+		int range0 = 0;
+		if(weapons[0] != null)
+			range0 = weapons[0].getRange();
+
+		int range1 = 0;
+		if(weapons[1] != null)
+			range1 = weapons[0].getRange();
+	
+		if(range0 >= range1)
+			return range0;
+		else
+			return range1;
+	}
+
+	public void move(Direction direction) {
 		//Direction obtained from update.
 		try {
-			switch(direction) {
-			case NORTH:
-				this.goNorth();
-			case SOUTH:
-				this.goSouth();
-			case EAST:
-				this.goEast();
-			case WEST:
-				this.goWest();
-				
-			}
+			Vector2 target = Vector2.sum(position, direction.toVector2());
+			navigator.move(this, target);
+			position = target;
 		}
 		catch (IllegalArgumentException e) {
 			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
 		}
-		
 	}
-	
-	void goNorth()
-	{
-		
-		Vector2 north = new Vector2(0, 1);
-		Vector2 new_position = Vector2.sum(this.position, north);
-		navigator.move(this, new_position);
-		position = new_position;
-	
-	}
-	
-	void goSouth()
-	{
-		Vector2 south = new Vector2(0, -1);
-		Vector2 new_position = Vector2.sum(this.position, south);
-		navigator.move(this, new_position);
-		position = new_position;
-	
-	}
-	
-	void goEast()
-	{
-		Vector2 east = new Vector2(1, 0);
-		Vector2 new_position = Vector2.sum(this.position, east);
-		navigator.move(this, new_position);
-		position = new_position;
-	
-
-	}
-	
-	void goWest()
-	{
-		Vector2 west = new Vector2(-1, 0);
-		Vector2 new_position = Vector2.sum(this.position, west);
-		navigator.move(this, new_position);
-		position = new_position;
-	
-	}
-
-
 }
