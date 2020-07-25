@@ -1,5 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.IdleStrategy;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;

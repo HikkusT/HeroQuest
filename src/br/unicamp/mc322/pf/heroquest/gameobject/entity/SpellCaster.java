@@ -1,5 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
+import br.unicamp.mc322.pf.heroquest.item.spell.Spell;
 import br.unicamp.mc322.pf.heroquest.utils.Container;
 
 public interface SpellCaster {

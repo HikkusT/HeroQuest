@@ -1,6 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.hero;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.SpellCaster;
+import br.unicamp.mc322.pf.heroquest.item.spell.Spell;
 import br.unicamp.mc322.pf.heroquest.item.weapon.ShortSword;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Container;
@@ -27,7 +28,7 @@ public class Elf extends Hero implements SpellCaster {
 	}
 
 	@Override
-	public void cast() {
+	public void cast(Container<Spell> spellbook) {
 		// TODO Auto-generated method stub
 		
 	}

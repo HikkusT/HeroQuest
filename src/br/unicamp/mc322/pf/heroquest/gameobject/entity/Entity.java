@@ -3,6 +3,7 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.TurnStrategy;
+import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Set;
 import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
@@ -18,7 +19,7 @@ public abstract class Entity extends GameObject {
 	protected TurnStrategy strategy;
 	protected int defensePoints;
 	protected Set set;
-	private Navigator navigator;
+	protected Navigator navigator;
 
 	public Entity(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Navigator navigator) {
 		super(position, false, false);
@@ -73,27 +74,28 @@ public abstract class Entity extends GameObject {
 		healthPoints += points;
 	}
 
-	public void equipEquipment(Equipable equipment) {
-		equipment.equip(this);
-	}
-
-	public void equiWeapon(Weapon weapon) {
-		this.weapons[0] = weapon;
+	public void equipEquipment(Equipment equipment) {
+		equipment.equip(set);// ta retornando true ou false caso de pra equipar ou nao.
 	}
 
 	public int getBiggerWeaponRange() {
-		int range0 = 0;
-		if(weapons[0] != null)
-			range0 = weapons[0].getRange();
-
-		int range1 = 0;
-		if(weapons[1] != null)
-			range1 = weapons[0].getRange();
-	
-		if(range0 >= range1)
-			return range0;
+		int rangeLeft = 0;
+		int rangeRight = 0;
+		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
+		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
+		
+		if (!leftWeaponSlot.isEmpty()) {
+			rangeLeft = leftWeaponSlot.getEquipment().getRange();
+		}
+		
+		if (!rightWeaponSlot.isEmpty()) {
+			rangeRight = rightWeaponSlot.getEquipment().getRange();
+		}
+		
+		if(rangeLeft >= rangeRight)
+			return rangeLeft;
 		else
-			return range1;
+			return rangeRight;
 	}
 
 	public void move(Direction direction) {

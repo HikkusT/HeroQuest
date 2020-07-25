@@ -17,8 +17,8 @@ public class Navigator {
 		map.removeEntity(origin);
 	}
 
-	public boolean getVisibility(Entity) {
-		map.getVisibility(Entity.getPosition());
+	public boolean getVisibility(Entity entity) {
+		return map.getVisibility(entity.getPosition());
 	}
 
 	public boolean isBlocked(Entity entity) {
