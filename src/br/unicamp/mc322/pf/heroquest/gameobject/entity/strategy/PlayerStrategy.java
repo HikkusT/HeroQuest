@@ -17,23 +17,24 @@ public class PlayerStrategy implements TurnStrategy {
 
 	@Override
 	public void execute() {
-		Command command = input.waitForNextCommand();
-		switch (command) {
-		case MOVE_UP:
-			player.move(Direction.NORTH);
-			break;
-		case MOVE_RIGHT:
-			player.move(Direction.EAST);
-			break;
-		case MOVE_DOWN:
-			player.move(Direction.SOUTH);
-			break;
-		case MOVE_LEFT:
-			player.move(Direction.WEST);
-			break;
-		default:
-			break;
-			
+		while (true) {
+			Command command = input.waitForNextCommand();
+			switch (command) {
+			case MOVE_UP:
+				player.move(Direction.NORTH);
+				break;
+			case MOVE_RIGHT:
+				player.move(Direction.EAST);
+				break;
+			case MOVE_DOWN:
+				player.move(Direction.SOUTH);
+				break;
+			case MOVE_LEFT:
+				player.move(Direction.WEST);
+				break;
+			default:
+				break;
+			}
 		}
 	}
 }

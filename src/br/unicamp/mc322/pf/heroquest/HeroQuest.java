@@ -51,4 +51,8 @@ public class HeroQuest {
 	public Input getInput() {
 		return input;
 	}
+	
+	public Renderer getRenderer() {
+		return renderer;
+	}
 }
