@@ -24,4 +24,6 @@ public abstract class GameObject {
 	public boolean getTransposability() {
 		return isTransposable;
 	}
+	
+	public abstract String getSprite();
 }

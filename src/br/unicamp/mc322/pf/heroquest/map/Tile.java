@@ -98,12 +98,11 @@ public class Tile {
 			return "Unlit.png";
 		
 		if (entity != null) {
-			return "Skeleton.png";
+			return entity.getSprite();
 		}
 		
-		// TODO: Fix this
 		if (interactable != null) {
-			return "Door.png";
+			return interactable.getSprite();
 		}
 		
 		switch (type) {

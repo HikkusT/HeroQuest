@@ -23,6 +23,11 @@ public class Elf extends Hero implements SpellCaster {
 	}
 	
 	@Override
+	public String getSprite() {
+		return "Elf.png";
+	}
+	
+	@Override
 	public String toString() {
 			return "E";
 	}

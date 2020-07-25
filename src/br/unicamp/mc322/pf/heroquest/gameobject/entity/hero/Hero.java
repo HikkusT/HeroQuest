@@ -2,6 +2,7 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.hero;
 
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.PlayerStrategy;
 import br.unicamp.mc322.pf.heroquest.item.Item;
 import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
@@ -14,6 +15,7 @@ public abstract class Hero extends Entity {
 	public Hero(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Navigator navigator) {
 		super(name, position, healthPoints, inteligencePoints, attackPoints, defensePoints, navigator);
 		backpack = new Container<Item>(); 
+		strategy = new PlayerStrategy(this);
 	}
 	
 	public void detectTrap() {

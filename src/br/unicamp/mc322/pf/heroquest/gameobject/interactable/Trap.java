@@ -37,4 +37,10 @@ public class Trap extends Interactable {
 		disarmed = true;
 		return type.getDamage();
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

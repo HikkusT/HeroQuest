@@ -25,5 +25,11 @@ public class Goblin extends Monster {
 	public void attackHero() {
 		attack(navigator.getHero());
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

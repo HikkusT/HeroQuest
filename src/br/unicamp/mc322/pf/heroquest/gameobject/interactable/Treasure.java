@@ -22,4 +22,10 @@ public class Treasure extends Interactable {
 	public void interact() {
 		isOpened = true;
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
