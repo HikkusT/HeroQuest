@@ -1,4 +1,4 @@
-package br.unicamp.mc322.pf.heroquest.item.spell;
+package br.unicamp.mc322.pf.heroquest.spell;
 
 public class Teleport extends Spell {
 	

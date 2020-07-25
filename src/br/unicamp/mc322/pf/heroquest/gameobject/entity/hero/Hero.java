@@ -3,6 +3,8 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.hero;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.PlayerStrategy;
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Interactable;
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
 import br.unicamp.mc322.pf.heroquest.item.Item;
 import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
@@ -18,8 +20,15 @@ public abstract class Hero extends Entity {
 		strategy = new PlayerStrategy(this);
 	}
 	
-	public void detectTrap() {
-		
+	//public void interact(InteractionType interaction, Interactable interactable) {
+		// We have to consider what is a valid interaction, like, disarming a disarmed trap, and what to do about it.
+		//interactable.interact(interaction, this);
+	//}
+	
+	public void collectTreasure(Item[] treasure) {
+		for (Item item : treasure) {
+			backpack.addObject(item);
+		}
 	}
 
 	@Override
@@ -31,7 +40,7 @@ public abstract class Hero extends Entity {
 			defenseDices += armorSlot.getEquipment().getDefensePoints();
 		}
 		
-		int damageMitigated = DiceManager.defendHero(defenseDices);
+		int damageMitigated = DiceManager.getHeroShieldRolls(defenseDices);
 		int trueDamage = attackDamage - damageMitigated;
 		
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;

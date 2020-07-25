@@ -16,27 +16,27 @@ public final class DiceManager {
 		return dice1 + dice2;
 	}
 	
-	public static int attack(int numDices) {
+	public static int getSkullRolls(int numDices) {
 		return rollCombatDices(numDices, DiceSide.SKULL);
 	}
 	
-	public static int defendHero(int numDices) {
+	public static int getHeroShieldRolls(int numDices) {
 		return rollCombatDices(numDices, DiceSide.HEROSHIELD);
 	}
 	
-	public static int defendMonster(int numDices) {
+	public static int getMonsterShieldRolls(int numDices) {
 		return rollCombatDices(numDices, DiceSide.MONSTERSHIELD);
 	}
 	
 	private static int rollCombatDices(int numDices, DiceSide side) {
-		int defensePoints = 0;
+		int rolls = 0;
 		DiceSide result;
 		
 		for(int i = 0; i < numDices; i++) {
 			result = dice.rollCombatDice();
 			if(result == side)
-				defensePoints++;
+				rolls++;
 		}	
-		return defensePoints;
+		return rolls;
 	}
 }

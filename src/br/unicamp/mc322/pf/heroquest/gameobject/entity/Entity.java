@@ -54,13 +54,13 @@ public abstract class Entity extends GameObject {
 			attackDices += rightWeaponSlot.getEquipment().attack(this);
 		}
 
-		int damage = DiceManager.attack(attackDices);
+		int damage = DiceManager.getSkullRolls(attackDices);
 		entity.defend(damage);
 	}
 
 	protected abstract void defend(int attackDamage);
 
-	protected final void receiveDamage(int damage) {
+	public final void receiveDamage(int damage) {
 		healthPoints -= damage;
 
 		//We have to discuss later about removing this entity from the active entities.

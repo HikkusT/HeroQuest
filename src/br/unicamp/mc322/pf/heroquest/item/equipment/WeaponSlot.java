@@ -1,5 +1,5 @@
 package br.unicamp.mc322.pf.heroquest.item.equipment;
-import br.unicamp.mc322.pf.heroquest.item.weapon.OneHandedWeapon;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.OneHandedWeapon;
 
 public class WeaponSlot extends EquipmentSlot {
 
