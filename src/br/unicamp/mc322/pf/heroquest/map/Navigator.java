@@ -16,6 +16,10 @@ public class Navigator {
 	public Hero getHero() {
 		return hero;
 	}
+
+	public boolean isPassable(Vector2 position) {
+		return map.isEmpty(position);
+	}
 	
 	public void move(Entity entity, Vector2 destination) {
 		// Maybe it should check and return a boolean instead of just throwing
