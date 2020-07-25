@@ -13,17 +13,17 @@ public class Skeleton extends Monster {
 	private static final int DEFENSEPOINTS = 2;
 	private static final int MOVEMENTPOINTS = 10;
 
-	public Skeleton(Vector2 position, Navigator navigator, Hero hero) {
-		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator, hero);
+	public Skeleton(Vector2 position, Navigator navigator) {
+		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator);
 		this.strategy = new IdleStrategy(this);
 	}
 
 	public boolean isHeroInRange() {
-		boolean isInRange = getBiggerWeaponRange() >= Vector2.distance(position, hero.getPosition()); 
+		boolean isInRange = getBiggerWeaponRange() >= Vector2.distance(position, navigator.getHero().getPosition()); 
 		return isInRange;
 	}
 
 	public void attackHero() {
-		attack(hero);
+		attack(navigator.getHero());
 	}
 }

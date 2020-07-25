@@ -36,6 +36,10 @@ public class Map {
 		return rotatedMap;
 	}
 	
+	public boolean isEmpty(Vector2 point) {
+		return map[point.getX()][point.getY()].isTransposable();
+	}
+	
 	public void CalculateIllumation() {
 		illuminator.illuminateMap(this, new Vector2(22,9));
 	}

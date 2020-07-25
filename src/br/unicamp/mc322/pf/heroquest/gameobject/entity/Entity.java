@@ -98,6 +98,11 @@ public abstract class Entity extends GameObject {
 			return rangeRight;
 	}
 
+	public boolean canMove(Direction direction) {
+		Vector2 target = Vector2.sum(position, direction.toVector2());
+		return navigator.isPassable(target);
+	}
+	
 	public void move(Direction direction) {
 		//Direction obtained from update.
 		try {

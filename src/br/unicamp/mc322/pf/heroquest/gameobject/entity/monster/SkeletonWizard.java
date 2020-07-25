@@ -13,22 +13,23 @@ public class SkeletonWizard extends Monster {
 	private static final int DEFENSEPOINTS = 2;
 	private static final int MOVEMENTPOINTS = 10;
 
-	public SkeletonWizard(Vector2 position, Navigator navigator, Hero hero) {
-		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator, hero);
+	public SkeletonWizard(Vector2 position, Navigator navigator) {
+		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator);
 		this.strategy = new IdleStrategy(this);
 	}
 
 	public boolean isHeroInRange() {
 		boolean canCastSpell = navigator.getVisibility(this); // && has charges
-		boolean canAttack = (1 == Vector2.distance(position, hero.getPosition()));
+		boolean canAttack = (1 == Vector2.distance(position, navigator.getHero().getPosition()));
 		return (canCastSpell || canAttack);
 	}
 
 	public void attackHero() {
 		boolean canCastSpell = navigator.getVisibility(this); // && has charges
-		if(canCastSpell)
+		if(canCastSpell) {
 			//cast(hero.getPosition())
+		}
 		else
-			attack(hero);
+			attack(navigator.getHero());
 	}
 }

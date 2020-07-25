@@ -13,17 +13,17 @@ public class Goblin extends Monster {
 	private static final int DEFENSEPOINTS = 2;
 	private static final int MOVEMENTPOINTS = 10;
 
-	public Goblin(Vector2 position, Navigator navigator, Hero hero) {
-		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator, hero);
+	public Goblin(Vector2 position, Navigator navigator) {
+		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator);
 		this.strategy = new IdleStrategy(this); //mudar
 	}
 
 	public boolean isHeroInRange() {
-		return (getBiggerWeaponRange() >= Vector2.distance(position, hero.getPosition()));
+		return (getBiggerWeaponRange() >= Vector2.distance(position, navigator.getHero().getPosition()));
 	}
 
 	public void attackHero() {
-		attack(hero);
+		attack(navigator.getHero());
 	}
 
 }

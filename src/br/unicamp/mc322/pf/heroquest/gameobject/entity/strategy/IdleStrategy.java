@@ -23,18 +23,34 @@ public class IdleStrategy implements TurnStrategy {
 	}
 
 	public void moveMonster() {
-		int direction = random.nextInt(4);
-		switch(direction) {
-			case 0:
-				monster.move(Direction.NORTH);
-			case 1:
-				monster.move(Direction.SOUTH);
-			case 2:
-				monster.move(Direction.EAST);
-			case 3:
-				monster.move(Direction.WEST);
-			default:
-				break;
+		boolean moved = false;
+		int direction;
+		while(!moved) {
+			direction = random.nextInt(4);
+			switch(direction) {
+				case 0:
+					if(monster.canMove(Direction.NORTH)) {
+						monster.move(Direction.NORTH);
+						moved = true;
+					}
+				case 1:
+					if(monster.canMove(Direction.SOUTH)) {
+						monster.move(Direction.SOUTH);
+						moved = true;
+					}
+				case 2:
+					if(monster.canMove(Direction.EAST)) {
+						monster.move(Direction.EAST);
+						moved = true;
+					}
+				case 3:
+					if(monster.canMove(Direction.WEST)) {
+						monster.move(Direction.WEST);
+						moved = true;
+					}
+				default:
+					break;
+			}
 		}
 		monster.decrementMovementPoints();
 	}
