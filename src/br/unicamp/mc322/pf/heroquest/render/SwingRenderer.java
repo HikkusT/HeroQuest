@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.event.KeyListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -23,9 +24,9 @@ public class SwingRenderer extends Renderer {
 	JPanel infoPanel;
 	JPanel eventPanel;
 	
-	public SwingRenderer(int width, int height) {
+	public SwingRenderer(KeyListener keyListener) {
 		gameWindow = new JFrame("HeroQuest");
-		gameWindow.setSize(width, height);
+		gameWindow.addKeyListener(keyListener);
 		setupBasicWindowLayout();
 		gameWindow.setVisible(true);
 	}
