@@ -1,7 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.IdleStrategy;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.SmartStrategy;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
@@ -15,7 +15,7 @@ public class Goblin extends Monster {
 
 	public Goblin(Vector2 position, Navigator navigator) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator);
-		this.strategy = new IdleStrategy(this); //mudar
+		this.strategy = new SmartStrategy(this);
 	}
 
 	public boolean isHeroInRange() {

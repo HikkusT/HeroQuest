@@ -24,6 +24,10 @@ public abstract class Monster extends Entity {
 	public int getMovementPoints() {
 		return movementPoints;
 	}
+
+	public void moveToHero() {
+		navigator.findSmallerPath(this, movementPoints);
+	}
 	
 	public abstract boolean isHeroInRange();
 
