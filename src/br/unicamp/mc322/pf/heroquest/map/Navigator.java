@@ -5,6 +5,8 @@ import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import java.util.Stack;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
+import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Navigator {
@@ -58,5 +60,16 @@ public class Navigator {
 		}
 	}
 
-	// TODO: Implement PathFinding. A* is cool, but go for BFS if time is short
+	public void broadcastInteraction(Hero source, InteractionType type) {
+		HeroQuest.getInstance().getRenderer().renderWorld();
+	}
+	
+	public void sendInteractionToNeighbors(Hero source, InteractionType type) {
+		Vector2 origin = source.getPosition();
+		map.getTile(origin.translated(Direction.NORTH)).interact(type, source);
+		map.getTile(origin.translated(Direction.EAST)).interact(type, source);
+		map.getTile(origin.translated(Direction.SOUTH)).interact(type, source);
+		map.getTile(origin.translated(Direction.WEST)).interact(type, source);
+		HeroQuest.getInstance().getRenderer().renderWorld();
+	}
 }
