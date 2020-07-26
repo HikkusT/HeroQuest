@@ -93,21 +93,13 @@ public class Tile {
 	public String getSprite() {
 		if (!isVisible)
 			return "Unlit.png";
-<<<<<<< HEAD
 
 		if (entity != null && entity.isVisible()) {
 			return entity.getSprite();
 		}
 
 		if (interactable != null && interactable.isVisible()) {
-=======
 
-		if (entity != null) {
-			return entity.getSprite();
-		}
-
-		if (interactable != null) {
->>>>>>> 4d3d144... Terminated FileMapGenerator, and attributed all symbols to gameobjects
 			return interactable.getSprite();
 		}
 
