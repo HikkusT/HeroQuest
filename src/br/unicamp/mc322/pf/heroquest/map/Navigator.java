@@ -82,11 +82,15 @@ public class Navigator {
 
 	public void broadcastInteraction(Hero source, InteractionType type) {
 		HeroQuest.getInstance().getRenderer().renderWorld();
+		for (Tile tile : map.getIlluminatedTiles()) {
+			tile.interact(type, source);
+		}
+		HeroQuest.getInstance().getRenderer().renderWorld();
 	}
 	
 	public void sendInteractionToNeighbors(Hero source, InteractionType type) {
 		Vector2 origin = source.getPosition();
-		for (Tile tile : getTilesOnRange(origin, 1)) {
+		for (Tile tile : map.getTilesOnRange(origin, 1)) {
 			tile.interact(type, source);
 		}
 		HeroQuest.getInstance().getRenderer().renderWorld();
@@ -95,32 +99,12 @@ public class Navigator {
 	public Set<Entity> getEntitiesOnRange(Entity source, int range) {
 		Vector2 origin = source.getPosition();
 		HashSet<Entity> entities = new HashSet<Entity>();
-		for (Tile tile : getTilesOnRange(origin, range)) {
+		for (Tile tile : map.getTilesOnRange(origin, range)) {
 			if (tile.hasEntity()) {
 				entities.add(tile.getEntity());
 			}
 		}
 		
 		return entities;
-	}
-	
-	private Set<Tile> getTilesOnRange(Vector2 origin, int range) {
-		if (range < 1)
-			throw new IllegalArgumentException("Range should be at least 1");
-		
-		HashSet<Tile> tiles = new HashSet<Tile>();
-		if (range == 1) {
-			tiles.add(map.getTile(origin.translated(Direction.NORTH)));
-			tiles.add(map.getTile(origin.translated(Direction.EAST)));
-			tiles.add(map.getTile(origin.translated(Direction.SOUTH)));
-			tiles.add(map.getTile(origin.translated(Direction.WEST)));
-			return tiles;
-		}
-		
-		tiles.addAll(getTilesOnRange(origin.translated(Direction.NORTH), range - 1));
-		tiles.addAll(getTilesOnRange(origin.translated(Direction.EAST), range - 1));
-		tiles.addAll(getTilesOnRange(origin.translated(Direction.SOUTH), range - 1));
-		tiles.addAll(getTilesOnRange(origin.translated(Direction.WEST), range - 1));
-		return tiles;
 	}
 }

@@ -1,9 +1,14 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.EntityManager;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.map.generation.MapGenerator;
 import br.unicamp.mc322.pf.heroquest.map.illuminator.MapIlluminator;
+import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Map {
@@ -30,6 +35,36 @@ public class Map {
 	
 	public Tile getTile(Vector2 point) {
 		return map[point.getX()][point.getY()];
+	}
+	
+	public Set<Tile> getTilesOnRange(Vector2 origin, int range) {
+		if (range < 1)
+			throw new IllegalArgumentException("Range should be at least 1");
+		
+		HashSet<Tile> tiles = new HashSet<Tile>();
+		if (range == 1) {
+			tiles.add(getTile(origin.translated(Direction.NORTH)));
+			tiles.add(getTile(origin.translated(Direction.EAST)));
+			tiles.add(getTile(origin.translated(Direction.SOUTH)));
+			tiles.add(getTile(origin.translated(Direction.WEST)));
+			return tiles;
+		}
+		
+		tiles.addAll(getTilesOnRange(origin.translated(Direction.NORTH), range - 1));
+		tiles.addAll(getTilesOnRange(origin.translated(Direction.EAST), range - 1));
+		tiles.addAll(getTilesOnRange(origin.translated(Direction.SOUTH), range - 1));
+		tiles.addAll(getTilesOnRange(origin.translated(Direction.WEST), range - 1));
+		return tiles;
+	}
+	
+	public Set<Tile> getIlluminatedTiles() {
+		HashSet<Tile> tiles = new HashSet<Tile>();
+		for (int i = 0; i < dimension.getX(); i ++)
+			for (int j = 0; j < dimension.getY(); j ++)
+				if (map[i][j].getVisibility())
+					tiles.add(map[i][j]);
+		
+		return tiles;
 	}
 	
 	public boolean isEmpty(Vector2 point) {
