@@ -66,4 +66,8 @@ public abstract class Hero extends Entity {
 	public HeroType getType() {
 		return type;
 	}
+	
+	public Container<Item> getBackpack() {
+		return backpack;
+	}
 }

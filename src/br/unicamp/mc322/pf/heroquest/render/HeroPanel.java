@@ -15,6 +15,7 @@ public class HeroPanel extends JPanel {
 	private JLabel name;
 	private JLabel hp;
 	private JLabel movement;
+	private JLabel backpack;
 	
 	HeroPanel(Hero hero) {
 		this.hero = hero;
@@ -28,9 +29,12 @@ public class HeroPanel extends JPanel {
 		hp.setForeground(new Color(255, 246, 227));
 		movement = new JLabel();
 		movement.setForeground(new Color(255, 246, 227));
+		backpack = new JLabel();
+		backpack.setForeground(new Color(255, 246, 227));
 		holder.add(name);
 		holder.add(hp);
 		holder.add(movement);
+		holder.add(backpack);
 		add(holder);
 	}
 	
@@ -43,6 +47,10 @@ public class HeroPanel extends JPanel {
 		name.setText("Class: " + hero.getType().toString());
 		hp.setText("HP: " + hero.getCurrentHP());
 		movement.setText("Movements: " + hero.getRemainingMovementPoints());
+		if (!hero.getBackpack().isEmpty())
+			backpack.setText("Items: " + hero.getBackpack().toString());
+		else
+			backpack.setText("");
 		
 		revalidate();
 		repaint();

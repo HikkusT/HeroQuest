@@ -16,10 +16,26 @@ public class Container<T> {
 	public void removeObject(T object) {
 		container.remove(object);
 	}
+	public boolean isEmpty() {
+		return container.isEmpty();
+	}
 	
-	public void printContainer() {
-		for (T object : container) {
-			System.out.println(object);
+	public String[] asOptions() {
+		String[] options = new String[container.size()];
+		for (int i = 0; i < container.size(); i++) {
+			options[i] = container.get(i).toString();
 		}
+		
+		return options;
+	}
+	
+	@Override
+	public String toString() {
+		String bag = "";
+		for (T object : container) {
+			bag += object.toString() + ", ";
+		}
+		
+		return bag.trim();
 	}
 }
