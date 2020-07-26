@@ -61,7 +61,7 @@ public class HeroQuest {
 				hero = HeroType.ELF;
 				answered = true;
 			}
-			else if(answer == Command.AUX) {
+			else if(answer == Command.END_TURN) {
 				hero = HeroType.WIZARD;
 				answered = true;
 			}
