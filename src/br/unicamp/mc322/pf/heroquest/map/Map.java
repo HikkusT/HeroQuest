@@ -107,6 +107,11 @@ public class Map {
 		return node;
 	}
 	
+	public void despawnEntity(Entity entity) {
+		removeEntity(entity.getPosition());
+		entityManager.remove(entity);
+	}
+	
 	public Tile[][] prepareToRender() {
 		Tile[][] rotatedMap = new Tile[dimension.getY()][dimension.getX()];
 		for (int i = 0; i < dimension.getY(); i ++)

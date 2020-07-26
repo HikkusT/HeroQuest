@@ -43,12 +43,14 @@ public class Navigator {
 		map.placeEntity(entity, destination);
 		map.removeEntity(origin);
 		try {
-			if(entity.getVisibility())
+			if(entity.getVisibility()) {
 				Thread.sleep(200);
-			else
+				HeroQuest.getInstance().getRenderer().update();
+			}
+			else {
 				Thread.sleep(20);
+			}
 		} catch (InterruptedException e) { }
-		HeroQuest.getInstance().getRenderer().update();
 	}
 
 	public boolean isInFieldOfView(Vector2 position) {
@@ -116,5 +118,9 @@ public class Navigator {
 		}
 		
 		return entities;
+	}
+	
+	public void despawnEntity(Entity entity) {
+		map.despawnEntity(entity);
 	}
 }

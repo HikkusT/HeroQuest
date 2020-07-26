@@ -81,9 +81,8 @@ public abstract class Entity extends GameObject {
 	public final void receiveDamage(int damage) {
 		healthPoints -= damage;
 
-		//We have to discuss later about removing this entity from the active entities.
 		if (healthPoints <= 0) {
-			//navigator.removeEntity(position);
+			destroy();
 		}
 
 	}
@@ -173,5 +172,9 @@ public abstract class Entity extends GameObject {
 
 	public boolean getVisibility() {
 		return navigator.isVisible(position);
+	}
+	
+	private void destroy() {
+		navigator.despawnEntity(this);
 	}
 }
