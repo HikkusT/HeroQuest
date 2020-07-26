@@ -11,7 +11,7 @@ public class Door extends Interactable {
 	
 	
 	public Door(Vector2 position) {
-		super(position, ISTRANSLUCENT, ISTRANSPOSABLE);
+		super(position);
 		isOpened = false;
 	}
 	
@@ -22,12 +22,12 @@ public class Door extends Interactable {
 	}
 	
 	@Override
-	public boolean getTranslucency() {
+	public boolean getTransposability() {
 		return isOpened;
 	}
 	
 	@Override
-	public boolean getTransposability() {
+	public boolean getTranslucency() {
 		return isOpened;
 	}
 	
