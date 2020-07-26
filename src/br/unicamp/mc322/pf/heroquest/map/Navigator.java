@@ -42,6 +42,14 @@ public class Navigator {
 		return false;
 	}
 
+	public boolean hasPath(Entity entity) {
+		Vector2 from = entity.getPosition();
+		Node node = map.calculatePath(from, hero.getPosition());
+		if(node == null)
+			return false;
+		return true;
+	}
+	
 	public void findSmallerPath(Entity entity, int movementPoints) {
 		Vector2 from = entity.getPosition();
 		Node node = map.calculatePath(from, hero.getPosition());

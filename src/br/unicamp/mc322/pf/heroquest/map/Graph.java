@@ -27,6 +27,9 @@ public class Graph {
 
 		while(!hasFound) {
 			node = queue.poll();
+			if(node == null)
+				return null;
+
 			for(i = 0; i < 4; i++) {
 				if(processRelativeNode(node, Direction.NORTH, to))
 					hasFound = true;
