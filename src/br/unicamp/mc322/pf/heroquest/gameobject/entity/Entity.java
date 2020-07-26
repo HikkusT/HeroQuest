@@ -174,7 +174,7 @@ public abstract class Entity extends GameObject {
 		return navigator.isVisible(position);
 	}
 	
-	private void destroy() {
+	protected void destroy() {
 		navigator.despawnEntity(this);
 	}
 }

@@ -42,15 +42,7 @@ public class Navigator {
 		Vector2 origin = entity.getPosition();
 		map.placeEntity(entity, destination);
 		map.removeEntity(origin);
-		try {
-			if(entity.getVisibility()) {
-				Thread.sleep(200);
-				HeroQuest.getInstance().getRenderer().update();
-			}
-			else {
-				Thread.sleep(20);
-			}
-		} catch (InterruptedException e) { }
+		HeroQuest.getInstance().getRenderer().update();
 	}
 
 	public boolean isInFieldOfView(Vector2 position) {

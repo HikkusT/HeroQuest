@@ -13,6 +13,7 @@ public class HeroQuest {
 	private Renderer renderer;
 	private Input input;
 	private EntityManager entityManager;
+	private boolean running;
 
 	public static HeroQuest getInstance() {
 		if (instance == null) {
@@ -22,7 +23,9 @@ public class HeroQuest {
 		return instance;
 	}
 
-	private HeroQuest() { }
+	private HeroQuest() { 
+		running = false;
+	}
 
 	public void start(Renderer renderer, Input input) {
 		this.renderer = renderer;
@@ -33,6 +36,13 @@ public class HeroQuest {
 		renderer.setMap(world);
 
 		runGameLoop();
+	}
+	
+	public void finishGame(boolean failed) {
+		if (failed) {
+			renderer.renderEvent("You lost the game :(");
+			running = false;
+		}
 	}
 
 	private HeroType chooseHeroType() {
@@ -54,7 +64,8 @@ public class HeroQuest {
 	}
 	
 	private void runGameLoop() {
-		while (true) {
+		running = true;
+		while (running) {
 			entityManager.nextTurn();
 			renderer.update();
 
