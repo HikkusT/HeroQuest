@@ -42,6 +42,12 @@ public class Navigator {
 		Vector2 origin = entity.getPosition();
 		map.placeEntity(entity, destination);
 		map.removeEntity(origin);
+		try {
+			if(entity.getVisibility())
+				Thread.sleep(200);
+			else
+				Thread.sleep(20);
+		} catch (InterruptedException e) { }
 		HeroQuest.getInstance().getRenderer().update();
 	}
 
@@ -78,11 +84,6 @@ public class Navigator {
 				break;
 			node = stack.pop();
 			entity.move(node.getPosition());
-			if(entity.getVisibility()) {
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e) { }
-			}
 		}
 	}
 
