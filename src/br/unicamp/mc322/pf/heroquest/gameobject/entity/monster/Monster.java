@@ -23,6 +23,10 @@ public abstract class Monster extends Entity {
 		navigator.findSmallerPath(this, movementPoints);
 	}
 
+	public void setupTurn() {
+		
+	}
+	
 	public abstract boolean isHeroInRange();
 
 	public abstract void attackHero();
