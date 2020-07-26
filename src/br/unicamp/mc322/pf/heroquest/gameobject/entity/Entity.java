@@ -137,7 +137,7 @@ public abstract class Entity extends GameObject {
 		}
 	}
 	
-	public void move(Direction direction) {
+	public boolean move(Direction direction) {
 		//Direction obtained from update.
 		//TODO: return boolean, if it moved or not.
 		try {
@@ -146,8 +146,12 @@ public abstract class Entity extends GameObject {
 			position = target;
 		}
 		catch (IllegalArgumentException e) {
-			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
+			return false;
 		}
+		
+		currentMovementPoints--;
+		HeroQuest.getInstance().getRenderer().update();
+		return true;
 	}
 	
 	public Navigator getNavigator() {

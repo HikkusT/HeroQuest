@@ -26,24 +26,20 @@ public class PlayerStrategy implements TurnStrategy {
 
 	@Override
 	public void execute() {
-		renderer.renderEvent("Your Turn!");
-		int movementPoints = DiceManager.move();
-		renderer.renderEvent("You got " + movementPoints + " movement points in dices.");
-
 		Command command = input.waitForNextCommand();		
 		if(command.isMovementCommand()) {
-			moveRound(command, movementPoints);
+			moveRound(command);
 			actionRound(command);
 		}
 		else {
 			actionRound(command);
-			moveRound(command, movementPoints);
+			moveRound(command);
 		}
 	}
 		
-	private void moveRound(Command command, int movementPoints) {
+	private void moveRound(Command command) {
 		renderer.renderEvent("Your movement turn has started");
-		for(int i = 0; i < movementPoints; i++) {
+		while (player.getRemainingMovementPoints() > 0) {
 			switch (command) {
 			case MOVE_UP:
 				player.move(Direction.NORTH);
@@ -64,7 +60,7 @@ public class PlayerStrategy implements TurnStrategy {
 				break;
 			}
 			
-			if((i + 1) == movementPoints)
+			if(player.getRemainingMovementPoints() == 0)
 				break;
 			command = input.waitForNextCommand();
 			if(command.isActionCommand() || command.isCombatCommand() || command == Command.END_TURN) 
