@@ -23,6 +23,19 @@ public class SwingInput implements Input, KeyListener {
 			break;
 		case KeyEvent.VK_E:
 			cachedCommand = Command.OPEN_DOOR;
+			break;
+		case KeyEvent.VK_1:
+			cachedCommand = Command.SEARCH_TREASURES;
+			break;
+		case KeyEvent.VK_2:
+			cachedCommand = Command.SEARCH_TRAPS;
+			break;
+		case KeyEvent.VK_3:
+			cachedCommand = Command.DISARM_TRAP;
+			break;
+		case KeyEvent.VK_SPACE:
+			cachedCommand = Command.ATTACK;
+			break;
 		default:
 			break;
 		}
