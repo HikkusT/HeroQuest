@@ -22,13 +22,15 @@ public class ClassicalMapGenerator implements MapGenerator {
 	private Tile[][] map;
 	private java.util.Map<Integer, List<Vector2>> rooms;
 	private Random random;
+	private HeroType hero;
 	
-	public ClassicalMapGenerator() {
+	public ClassicalMapGenerator(HeroType hero) {
+		this.hero = hero;
 		random = new Random();
 		rooms = new HashMap<Integer, List<Vector2>>();
 	}
 	
-	public Tile[][] generate(Navigator navigator, HeroType hero) {
+	public Tile[][] generate(Navigator navigator) {
 		instantiateMap();
 		placeRectangle(new Vector2(14, 10), new Vector2(21, 16));	// Place central room
 		placeCross(new Vector2(2, 2), new Vector2(12, 12),
@@ -41,7 +43,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 				   new Vector2(23, 2), new Vector2(33, 12));		// Place bottom right corner
 		
 		spawnMonsters(navigator);
-		spawnPlayer(hero, navigator);
+		spawnPlayer(navigator);
 		connectMap();
 		
 		return map;
@@ -179,7 +181,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 		}
 	}
 	
-	private void spawnPlayer(HeroType hero, Navigator navigator) {
+	private void spawnPlayer(Navigator navigator) {
 		map[17][1].receiveEntity(hero.createHero(new Vector2(17, 1), navigator));
 	}
 	

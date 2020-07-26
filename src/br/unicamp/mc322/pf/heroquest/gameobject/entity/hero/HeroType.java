@@ -5,10 +5,25 @@ import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
 
 public enum HeroType {
-	BARBARIAN,
-	DWARF,
-	ELF,
-	WIZARD;
+	BARBARIAN("Barbarian"),
+	DWARF("Dwarf"),
+	ELF("Elf"),
+	WIZARD("Wizard");
+	
+	private final String name;
+	
+	private HeroType(String name) {
+		this.name = name;
+	}
+	
+	public static HeroType fromString(String heroType) {
+		for (HeroType type : HeroType.values()) {
+			if (type.toString() == heroType)
+				return type;
+		}
+		
+		throw new IllegalArgumentException("Undefined hero type");
+	}
 	
 	public Hero createHero(Vector2 position, Navigator navigator) {
 		switch(this) {
@@ -23,5 +38,10 @@ public enum HeroType {
 		default:
 			return null;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return name;
 	}
 }

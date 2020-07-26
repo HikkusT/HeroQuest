@@ -15,22 +15,27 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
+import br.unicamp.mc322.pf.heroquest.input.SwingInput;
 import br.unicamp.mc322.pf.heroquest.map.Map;
 
 public class SwingRenderer extends Renderer {
-	JFrame gameWindow;
-	MapPanel mapPanel;
-	JPanel infoPanel;
-	JPanel eventPanel;
-	JScrollPane scroll;
+	private SwingInput swingInput;
+	private JFrame gameWindow;
+	private MapPanel mapPanel;
+	private HeroPanel infoPanel;
+	private JPanel eventPanel;
+	private JScrollPane scroll;
 	
-	public SwingRenderer(KeyListener keyListener) {
+	public SwingRenderer(SwingInput swingInput) {
+		this.swingInput = swingInput;
 		gameWindow = new JFrame("HeroQuest");
-		gameWindow.addKeyListener(keyListener);
+		gameWindow.addKeyListener(swingInput);
 		setupBasicWindowLayout();
 		gameWindow.setVisible(true);
 	}
@@ -52,12 +57,26 @@ public class SwingRenderer extends Renderer {
 		gameWindow.pack();
 	}
 	
+	public void setHero(Hero hero) {
+		if (infoPanel == null) {
+			infoPanel = new HeroPanel(hero);
+			infoPanel.setPreferredSize(new Dimension(300, 75));
+			infoPanel.setBackground(new Color(133, 153, 0));
+			infoPanel.setBorder(new EmptyBorder(new Insets(10, 10, 30, 10)));
+			GridBagConstraints c = new GridBagConstraints();
+			c.fill = GridBagConstraints.BOTH;
+			c.gridx = 0;
+			c.gridy = 1;
+			c.gridwidth = 1;
+			c.gridheight = 1;
+			gameWindow.add(infoPanel, c);
+		}
+		gameWindow.pack();
+	}
+	
 	private void setupBasicWindowLayout() {
 		gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameWindow.setLayout(new GridBagLayout());
-		
-		
-		//infoPanel = new JPanel();
 		
 		eventPanel = new JPanel();
 		eventPanel.setBackground(new Color(0, 43, 54));
@@ -75,7 +94,7 @@ public class SwingRenderer extends Renderer {
 		c2.fill = GridBagConstraints.BOTH;
 		c2.gridx = 1;
 		c2.gridy = 0;
-		c2.gridwidth = 2;
+		c2.gridwidth = 1;
 		c2.gridheight = 2;
 		c2.weightx = 2;
 		gameWindow.add(scroll, c2);
@@ -102,6 +121,20 @@ public class SwingRenderer extends Renderer {
 		eventPanel.add(Box.createVerticalStrut(3));
 		gameWindow.pack();
 		scroll.getVerticalScrollBar().setValue(scroll.getVerticalScrollBar().getMaximum());
+	}
+	
+	@Override
+	public void askQuestion(String question, String[] options) {
+		int answer = JOptionPane.showOptionDialog(
+			gameWindow, 
+			question, 
+			"Dialog",
+			JOptionPane.DEFAULT_OPTION, 
+			JOptionPane.QUESTION_MESSAGE, 
+			null,
+			options,
+			options[0]);
+		swingInput.setOption(answer);
 	}
 
 }

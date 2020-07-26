@@ -10,4 +10,6 @@ public abstract class Renderer {
 	public abstract void renderInfo();
 	
 	public abstract void renderEvent(String event);
+	
+	public abstract void askQuestion(String question, String[] options);
 }
