@@ -124,6 +124,18 @@ public abstract class Entity extends GameObject {
 		return navigator.isPassable(target);
 	}
 
+	public void move(Vector2 target) {
+		//Direction obtained from update.
+		//TODO: return boolean, if it moved or not.
+		try {
+			navigator.move(this, target);
+			position = target;
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
+		}
+	}
+	
 	public void move(Direction direction) {
 		//Direction obtained from update.
 		//TODO: return boolean, if it moved or not.

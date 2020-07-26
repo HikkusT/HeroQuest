@@ -15,14 +15,6 @@ public class SmartStrategy implements TurnStrategy {
 	}
 
 	public void execute() {
-		while(monster.getMovementPoints() > 0) {
-			if(monster.isHeroInRange())
-				monster.attackHero();
-			moveMonster();
-		}
-	}
-
-	public void moveMonster() {
 		monster.moveToHero();
 	}
 }

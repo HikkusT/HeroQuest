@@ -13,7 +13,7 @@ public class Navigator {
 
 	public Navigator(Map map) {
 		this.map = map;
-		hero = new Barbarian(new Vector2(0,0), this);
+		hero = new Barbarian(new Vector2(0, 0), this);
 	}
 
 	public Hero getHero() {
@@ -46,15 +46,20 @@ public class Navigator {
 		Vector2 from = entity.getPosition();
 		Node node = map.calculatePath(from, hero.getPosition());
 		Stack<Node> stack = new Stack<Node>();
-		while(node.getPosition() != from) {
+
+		while(!node.getPosition().equals(from)) {
 			stack.push(node);
 			node = node.getFather();
 		}
+
 		for(int i = 0; i < movementPoints; i++) {
-			node = stack.pop();
-			if(node.getPosition() == hero.getPosition())
+			if(stack.empty())
 				break;
-			move(entity, node.getPosition());
+			node = stack.pop();
+			entity.move(node.getPosition());
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) { }
 		}
 	}
 }
