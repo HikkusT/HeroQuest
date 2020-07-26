@@ -17,11 +17,13 @@ public abstract class GameObject {
 		return isTranslucent;
 	}
 	
+	public boolean getTransposability() {
+		return isTransposable;
+	}
+	
 	public Vector2 getPosition() {
 		return position;
 	}
 			
-	public boolean getTransposability() {
-		return isTransposable;
-	}
+
 }

@@ -34,9 +34,7 @@ public abstract class Entity extends GameObject {
 		
 	}
 
-	public void setupTurn() {
-		// Here we can do things like reset the number of movements I can make, etc and decide which strategy to use
-	}
+	public abstract void setupTurn();
 
 	public final void performTurn() {
 		strategy.execute();
@@ -105,6 +103,7 @@ public abstract class Entity extends GameObject {
 	
 	public void move(Direction direction) {
 		//Direction obtained from update.
+		//TODO: return boolean, if it moved or not.
 		try {
 			Vector2 target = Vector2.sum(position, direction.toVector2());
 			navigator.move(this, target);

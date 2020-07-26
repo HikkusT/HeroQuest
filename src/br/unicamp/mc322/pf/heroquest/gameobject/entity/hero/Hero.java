@@ -23,6 +23,10 @@ public abstract class Hero extends Entity {
 		//interactable.interact(interaction, this);
 	//}
 	
+	public void setupTurn() {
+		
+	}
+	
 	public void collectTreasure(Item[] treasure) {
 		for (Item item : treasure) {
 			backpack.addObject(item);

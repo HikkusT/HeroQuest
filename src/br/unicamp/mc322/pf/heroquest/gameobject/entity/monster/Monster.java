@@ -16,6 +16,10 @@ public abstract class Monster extends Entity {
 		this.movementPoints = movementPoints;
 		this.maxMovementPoints = movementPoints;
 	}
+	
+	public void setupTurn() {
+		movementPoints = maxMovementPoints;
+	}
 
 	public void decrementMovementPoints() {
 		movementPoints--;
@@ -38,7 +42,7 @@ public abstract class Monster extends Entity {
 			defenseDices += armorSlot.getEquipment().getDefensePoints();
 		}
 
-		int damageMitigated = DiceManager.defendMonster(defenseDices);
+		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);
 		int trueDamage = attackDamage - damageMitigated;
 
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;
