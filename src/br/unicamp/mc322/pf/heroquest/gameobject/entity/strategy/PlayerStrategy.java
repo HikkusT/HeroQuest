@@ -57,10 +57,15 @@ public class PlayerStrategy implements TurnStrategy {
 				player.getNavigator().sendInteractionToNeighbors(player, InteractionType.INTERACT_DOOR);
 				break;
 			case USE_ITEM:
+				renderer.renderEvent("Trying to use items...");
 				if (!player.getBackpack().isEmpty()) {
 					renderer.askQuestion("Which item do you wish to use?", player.getBackpack().asOptions());
 					int item = input.waitForOption();
+					player.useItem(player.getBackpack().getObjectAtIndex(item));
+				} else {
+					renderer.renderEvent("No items to use");
 				}
+				break;
 			default:
 				break;
 			}
