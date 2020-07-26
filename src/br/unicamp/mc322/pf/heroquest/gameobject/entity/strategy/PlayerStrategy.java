@@ -2,6 +2,7 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy;
 
 import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
 import br.unicamp.mc322.pf.heroquest.input.Command;
 import br.unicamp.mc322.pf.heroquest.input.Input;
 import br.unicamp.mc322.pf.heroquest.utils.Direction;
@@ -32,6 +33,8 @@ public class PlayerStrategy implements TurnStrategy {
 			case MOVE_LEFT:
 				player.move(Direction.WEST);
 				break;
+			case OPEN_DOOR:
+				player.getNavigator().sendInteractionToNeighbors(player, InteractionType.INTERACT_DOOR);
 			default:
 				break;
 			}

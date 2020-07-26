@@ -4,7 +4,8 @@ public enum Command {
 	MOVE_UP,
 	MOVE_RIGHT,
 	MOVE_DOWN,
-	MOVE_LEFT;
+	MOVE_LEFT,
+	OPEN_DOOR;
 	
 	public static boolean isMovementCommand(Command command) {
 		if (command == MOVE_UP || command == MOVE_RIGHT || command == MOVE_DOWN || command == MOVE_LEFT)

@@ -21,6 +21,8 @@ public class SwingInput implements Input, KeyListener {
 		case KeyEvent.VK_A:
 			cachedCommand = Command.MOVE_LEFT;
 			break;
+		case KeyEvent.VK_E:
+			cachedCommand = Command.OPEN_DOOR;
 		default:
 			break;
 		}
