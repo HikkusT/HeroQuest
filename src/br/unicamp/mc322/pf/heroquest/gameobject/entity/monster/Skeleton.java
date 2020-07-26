@@ -27,7 +27,7 @@ public class Skeleton extends Monster {
 	}
 
 	public boolean isHeroInRange() {
-		boolean isInRange = getBiggerWeaponRange() >= Vector2.distance(position, navigator.getHero().getPosition()); 
+		boolean isInRange = getBiggerWeaponRange() >= Vector2.distance(position, navigator.getHero().getPosition());
 		return isInRange;
 	}
 
