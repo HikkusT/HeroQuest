@@ -38,7 +38,7 @@ public class Navigator {
 		Vector2 origin = entity.getPosition();
 		map.placeEntity(entity, destination);
 		map.removeEntity(origin);
-		HeroQuest.getInstance().getRenderer().renderWorld();
+		HeroQuest.getInstance().getRenderer().update();
 	}
 
 	public boolean isInFieldOfView(Entity entity) {
@@ -81,11 +81,11 @@ public class Navigator {
 	}
 
 	public void broadcastInteraction(Hero source, InteractionType type) {
-		HeroQuest.getInstance().getRenderer().renderWorld();
+		HeroQuest.getInstance().getRenderer().update();
 		for (Tile tile : map.getIlluminatedTiles()) {
 			tile.interact(type, source);
 		}
-		HeroQuest.getInstance().getRenderer().renderWorld();
+		HeroQuest.getInstance().getRenderer().update();
 	}
 	
 	public void sendInteractionToNeighbors(Hero source, InteractionType type) {
@@ -93,7 +93,7 @@ public class Navigator {
 		for (Tile tile : map.getTilesOnRange(origin, 1)) {
 			tile.interact(type, source);
 		}
-		HeroQuest.getInstance().getRenderer().renderWorld();
+		HeroQuest.getInstance().getRenderer().update();
 	}
 	
 	public Set<Entity> getEntitiesOnRange(Vector2 origin, int range) {

@@ -13,6 +13,7 @@ public class Dwarf extends Hero {
 	
 	public Dwarf(Vector2 position,  Navigator navigator) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, navigator);
+		type = HeroType.DWARF;
 		new ShortSword().equip(set);
 	}
 	

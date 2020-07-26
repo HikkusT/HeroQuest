@@ -14,6 +14,7 @@ public class HeroPanel extends JPanel {
 	private JPanel holder;
 	private JLabel name;
 	private JLabel hp;
+	private JLabel movement;
 	
 	HeroPanel(Hero hero) {
 		this.hero = hero;
@@ -21,12 +22,15 @@ public class HeroPanel extends JPanel {
 		holder.setBackground(new Color(133, 153, 0));
 		holder.setLayout(new FlowLayout());
 		holder.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-		name = new JLabel("Class: ");
+		name = new JLabel();
 		name.setForeground(new Color(255, 246, 227));
-		hp = new JLabel("HP: ");
+		hp = new JLabel();
 		hp.setForeground(new Color(255, 246, 227));
+		movement = new JLabel();
+		movement.setForeground(new Color(255, 246, 227));
 		holder.add(name);
 		holder.add(hp);
+		holder.add(movement);
 		add(holder);
 	}
 	
@@ -36,6 +40,11 @@ public class HeroPanel extends JPanel {
 	}
 	
 	void updateInfo() {
+		name.setText("Class: " + hero.getType().toString());
+		hp.setText("HP: " + hero.getCurrentHP());
+		movement.setText("Movements: " + hero.getRemainingMovementPoints());
 		
+		revalidate();
+		repaint();
 	}
 }

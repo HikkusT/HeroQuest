@@ -12,6 +12,7 @@ import br.unicamp.mc322.pf.heroquest.utils.Container;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Hero extends Entity {
+	protected HeroType type;
 	private Container<Item> backpack; 
 
 	public Hero(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Navigator navigator) {
@@ -56,5 +57,9 @@ public abstract class Hero extends Entity {
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;
 
 		this.receiveDamage(trueDamage);
+	}
+	
+	public HeroType getType() {
+		return type;
 	}
 }

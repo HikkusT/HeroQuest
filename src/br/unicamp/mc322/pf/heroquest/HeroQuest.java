@@ -56,7 +56,7 @@ public class HeroQuest {
 	private void runGameLoop() {
 		while (true) {
 			entityManager.nextTurn();
-			renderer.renderWorld();
+			renderer.update();
 
 			// TODO: Maybe remove this delay. It´s ugly
 			try {

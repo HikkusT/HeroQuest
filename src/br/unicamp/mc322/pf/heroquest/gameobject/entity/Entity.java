@@ -19,6 +19,7 @@ public abstract class Entity extends GameObject {
 	private final int maxHealthPoints;
 	protected int inteligencePoints;
 	private int attackPoints;
+	protected int currentMovementPoints;
 	protected TurnStrategy strategy;
 	protected int defensePoints;
 	protected Set set;
@@ -161,5 +162,13 @@ public abstract class Entity extends GameObject {
 	@Override
 	public boolean getTranslucency() {
 		return true;
+	}
+	
+	public int getCurrentHP() {
+		return healthPoints;
+	}
+	
+	public int getRemainingMovementPoints() {
+		return currentMovementPoints;
 	}
 }
