@@ -21,7 +21,13 @@ public class Elf extends Hero implements SpellCaster {
 		new ShortSword().equip(set);
 		spellbook = new Container<Spell>();
 		spellbook.addObject(new SimpleHeal());
-		//adicionar magias iniciais.
+	}
+	
+	@Override
+	public void castSpell(Vector2 target, Spell spell) {
+		spell.cast(target, null);
+		spellbook.removeObject(spell);
+		
 	}
 	
 	@Override
@@ -34,9 +40,4 @@ public class Elf extends Hero implements SpellCaster {
 			return "E";
 	}
 
-	@Override
-	public void cast(Container<Spell> spellbook) {
-		// TODO Auto-generated method stub
-		
-	}
 }

@@ -50,7 +50,7 @@ public abstract class Monster extends Entity {
 	}
 	
 	@Override
-	protected void defendSpell(int attackDamage) {
+	public void defendSpell(int attackDamage) {
 		int defenseDices = inteligencePoints;
 		
 		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);

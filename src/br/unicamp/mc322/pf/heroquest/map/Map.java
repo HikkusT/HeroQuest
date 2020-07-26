@@ -39,10 +39,15 @@ public class Map {
 	}
 	
 	public Set<Tile> getTilesOnRange(Vector2 origin, int range) {
-		if (range < 1)
+		if (range < 0)
 			throw new IllegalArgumentException("Range should be at least 1");
 		
 		HashSet<Tile> tiles = new HashSet<Tile>();
+		
+		if (range == 0) {
+			tiles.add(getTile(origin));
+		}
+		
 		if (range == 1) {
 			tiles.add(getTile(origin.translated(Direction.NORTH)));
 			tiles.add(getTile(origin.translated(Direction.EAST)));

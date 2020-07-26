@@ -1,5 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.spell;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Teleport extends Spell {
@@ -16,8 +17,13 @@ public class Teleport extends Spell {
 	}
 
 	@Override
-	public void cast(Vector2 targetPosition) {
-		// TODO Auto-generated method stub
+	public void cast(Vector2 destination, Entity spellCaster) {
+		try {
+		spellCaster.getNavigator().move(spellCaster, destination);
 		
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
+		}
 	}
 }

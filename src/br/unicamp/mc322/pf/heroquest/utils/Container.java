@@ -17,6 +17,10 @@ public class Container<T> {
 		container.remove(object);
 	}
 	
+	public T getObjectAtIndex(int i) {
+		return container.get(i);
+	}
+	
 	public void printContainer() {
 		for (T object : container) {
 			System.out.println(object);

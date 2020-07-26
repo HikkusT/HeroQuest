@@ -65,7 +65,7 @@ public abstract class Entity extends GameObject {
 
 	protected abstract void defendAttack(int attackDamage);
 	
-	protected void defendSpell(int attackDamage) {
+	public void defendSpell(int attackDamage) {
 		int defenseDices = inteligencePoints;
 		
 		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);

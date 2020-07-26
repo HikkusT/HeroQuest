@@ -17,7 +17,6 @@ public class Wizard extends Hero implements SpellCaster {
 	private static final int ATTACKPOINTS = 1;
 	private static final int DEFENSEPOINTS = 2;
 	private Container<Spell> spellbook;
-	//adicionar magias iniciais.
 	
 	public Wizard(Vector2 position, Navigator navigator) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, navigator);
@@ -26,12 +25,13 @@ public class Wizard extends Hero implements SpellCaster {
 		spellbook.addObject(new Fireball());
 		spellbook.addObject(new Teleport());
 		spellbook.addObject(new MagicMissile());
-		//adicionar magias iniciais.
+
 	}
 	
 	@Override
-	public void cast(Container<Spell> spellbook) {
-		// TODO Auto-generated method stub
+	public void castSpell(Vector2 target, Spell spell) {
+		spell.cast(target, null);
+		spellbook.removeObject(spell);
 		
 	}
 	
