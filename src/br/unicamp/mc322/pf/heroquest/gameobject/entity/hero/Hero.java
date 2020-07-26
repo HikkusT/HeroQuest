@@ -20,10 +20,10 @@ public abstract class Hero extends Entity {
 		strategy = new PlayerStrategy(this);
 	}
 	
-	//public void interact(InteractionType interaction, Interactable interactable) {
-		// We have to consider what is a valid interaction, like, disarming a disarmed trap, and what to do about it.
-		//interactable.interact(interaction, this);
-	//}
+	@Override
+	public void setupTurn() {
+		
+	}
 	
 	public void collectTreasure(Item[] treasure) {
 		for (Item item : treasure) {
