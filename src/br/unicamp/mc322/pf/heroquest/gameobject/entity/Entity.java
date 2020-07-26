@@ -125,6 +125,6 @@ public abstract class Entity extends GameObject {
 	
 	@Override
 	public boolean getTranslucency() {
-		return false;
+		return true;
 	}
 }
