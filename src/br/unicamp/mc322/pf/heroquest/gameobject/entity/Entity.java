@@ -171,4 +171,8 @@ public abstract class Entity extends GameObject {
 	public int getRemainingMovementPoints() {
 		return currentMovementPoints;
 	}
+
+	public boolean getVisibility() {
+		return navigator.isVisible(position);
+	}
 }
