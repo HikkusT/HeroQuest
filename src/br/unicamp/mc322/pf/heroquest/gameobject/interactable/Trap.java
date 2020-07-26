@@ -30,10 +30,10 @@ public class Trap extends Interactable {
 	}
 	
 	public void interact(InteractionType interaction, Hero user) {
-		if (interaction == InteractionType.FINDTRAP) {
+		if (interaction == InteractionType.FIND_TRAP) {
 			this.detect();
 		}
-		else if (interaction == InteractionType.DISARMTRAP && this.isDetected) {
+		else if (interaction == InteractionType.DISARM_TRAP && this.isDetected) {
 			if(DiceManager.getMonsterShieldRolls(DICESTODISARM) == 0) {
 				activateTrap(user);
 			}

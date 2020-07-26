@@ -14,7 +14,7 @@ public class Treasure extends Interactable {
 	}
 
 	public void interact(InteractionType interaction, Hero user) {
-		if (interaction == InteractionType.FINDTREASURE && !isOpened) {
+		if (interaction == InteractionType.FIND_TREASURE && !isOpened) {
 			user.collectTreasure(content);
 		}
 		// TODO Possibility of summon a monster.
