@@ -38,6 +38,8 @@ public class SwingRenderer extends Renderer {
 		gameWindow.addKeyListener(swingInput);
 		setupBasicWindowLayout();
 		gameWindow.setVisible(true);
+		gameWindow.pack();
+		gameWindow.setLocationRelativeTo(null);
 	}
 	
 	public void setMap(Map map) {
@@ -55,6 +57,7 @@ public class SwingRenderer extends Renderer {
 			mapPanel.setMap(map);
 		}
 		gameWindow.pack();
+		gameWindow.setLocationRelativeTo(null);
 	}
 	
 	public void setHero(Hero hero) {
@@ -72,6 +75,7 @@ public class SwingRenderer extends Renderer {
 			gameWindow.add(infoPanel, c);
 		}
 		gameWindow.pack();
+		gameWindow.setLocationRelativeTo(null);
 	}
 	
 	private void setupBasicWindowLayout() {
