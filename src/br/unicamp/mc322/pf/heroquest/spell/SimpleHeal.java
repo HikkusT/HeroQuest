@@ -1,5 +1,8 @@
 package br.unicamp.mc322.pf.heroquest.spell;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.*;
+
+import javax.swing.text.Position;
+
 import br.unicamp.mc322.pf.heroquest.dice.*;
 import br.unicamp.mc322.pf.heroquest.render.*;
 
@@ -8,9 +11,9 @@ public class SimpleHeal extends Spell {
 	public SimpleHeal() {
 	}
 	
-	public void cast() {
+	public void cast(Position targetPosition) {
 		int result = DiceManager.rollNumberDices(1);
-		Hero.cure(result);
+		
 	}
 	
 	public String getName() {
