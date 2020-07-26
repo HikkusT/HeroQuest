@@ -1,14 +1,16 @@
 	package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
-import br.unicamp.mc322.pf.heroquest.HeroQuest;
+
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.TurnStrategy;
-import br.unicamp.mc322.pf.heroquest.item.consumable.Consumable;
-import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
+import br.unicamp.mc322.pf.heroquest.item.Item;
+
 import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Set;
 import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
+
+import br.unicamp.mc322.pf.heroquest.item.potion.Potion;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -91,13 +93,13 @@ public abstract class Entity extends GameObject {
 		}
 	}
 
-	public void equipEquipment(Equipment equipment) {
-		equipment.equip(set);// ta retornando true ou false caso de pra equipar ou nao.
-	}
+	public void useItem(Item item) {
+		item.use(this);
+	}	
+	public abstract void handleEquipment(Equipment equipment);
 	
-	public void consumeConsumable(Consumable consumable) {
-		consumable.consume(this);
-	}
+	public abstract void handlePotion(Potion potion);
+	
 
 	public int getBiggerWeaponRange() {
 		int rangeLeft = 0;
@@ -148,6 +150,9 @@ public abstract class Entity extends GameObject {
 			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
 		}
 	}
+	public String getName() {
+		return name;
+	}
 	
 	public Navigator getNavigator() {
 		return navigator;
@@ -162,4 +167,6 @@ public abstract class Entity extends GameObject {
 	public boolean getTranslucency() {
 		return true;
 	}
+
+
 }

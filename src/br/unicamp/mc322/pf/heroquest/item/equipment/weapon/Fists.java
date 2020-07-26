@@ -7,7 +7,13 @@ public class Fists extends TwoHandedWeapon {
 	private final static int RANGE = 1;
 	
 	public Fists() {
-		super(NAME, ATTACKPOINTS, RANGE);
+		super(ATTACKPOINTS, RANGE);
+	}
+	
+	
+	@Override
+	public String toString() {
+		return NAME;
 	}
 
 }

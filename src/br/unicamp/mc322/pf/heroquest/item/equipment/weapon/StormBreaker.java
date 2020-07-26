@@ -6,7 +6,13 @@ public class StormBreaker extends OneHandedWeapon {
 	private final static int RANGE = 1;
 
 	public StormBreaker() {
-		super(NAME, ATTACKPOINTS, RANGE);
+		super(ATTACKPOINTS, RANGE);
+	}
+
+	
+	@Override
+	public String toString() {
+		return NAME;
 	}
 
 }

@@ -1,9 +1,12 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
+
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.*;
+
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Dagger;
+
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
-import br.unicamp.mc322.pf.heroquest.map.Node;
+
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Goblin extends Monster {
@@ -16,6 +19,7 @@ public class Goblin extends Monster {
 
 	public Goblin(Vector2 position, Navigator navigator) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator);
+		this.handleEquipment(new Dagger());
 	}
 	
 	public void setupTurn() {
@@ -40,5 +44,6 @@ public class Goblin extends Monster {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

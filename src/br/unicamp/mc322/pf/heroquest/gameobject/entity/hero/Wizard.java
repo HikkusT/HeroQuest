@@ -3,7 +3,10 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.hero;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.SpellCaster;
 import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Dagger;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
+import br.unicamp.mc322.pf.heroquest.spell.Fireball;
+import br.unicamp.mc322.pf.heroquest.spell.MagicMissile;
 import br.unicamp.mc322.pf.heroquest.spell.Spell;
+import br.unicamp.mc322.pf.heroquest.spell.Teleport;
 import br.unicamp.mc322.pf.heroquest.utils.Container;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
@@ -20,6 +23,9 @@ public class Wizard extends Hero implements SpellCaster {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, navigator);
 		new Dagger().equip(set);
 		spellbook = new Container<Spell>();
+		spellbook.addObject(new Fireball());
+		spellbook.addObject(new Teleport());
+		spellbook.addObject(new MagicMissile());
 		//adicionar magias iniciais.
 	}
 	

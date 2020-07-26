@@ -1,17 +1,12 @@
 package br.unicamp.mc322.pf.heroquest.spell;
 
-import javax.swing.text.Position;
+import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Teleport extends Spell {
 	
 	public Teleport() {
 	} 
-	
-	@Override
-	public void cast(Position targetPosition) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	public String getName() {
 		return "Teleport";
 	}
@@ -20,5 +15,9 @@ public class Teleport extends Spell {
 		return "The hero or monster moves to another visible position.";
 	}
 
-
+	@Override
+	public void cast(Vector2 targetPosition) {
+		// TODO Auto-generated method stub
+		
+	}
 }

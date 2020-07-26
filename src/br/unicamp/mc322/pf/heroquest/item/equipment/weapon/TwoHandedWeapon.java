@@ -6,10 +6,15 @@ import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
 
 public abstract class TwoHandedWeapon extends Weapon {
 
-	public TwoHandedWeapon(String ItemName, int attackPoints, int range) {
-		super(ItemName, attackPoints, range, HandednessType.TWOHANDED);
-		// TODO Auto-generated constructor stub
+	public TwoHandedWeapon(int attackPoints, int range) {
+		super(attackPoints, range);
+
 	}
+	@Override
+	public HandednessType getHandedness() {
+		return HandednessType.TWOHANDED;
+	}
+
 
 	@Override
 	public boolean equip(Set set){

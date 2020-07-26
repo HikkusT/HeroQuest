@@ -1,10 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.spell;
 
-import javax.swing.text.Position;
-
-import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.*;
-
+import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 public class MagicMissile extends Spell {
 	
 	public MagicMissile() {
@@ -19,8 +15,10 @@ public class MagicMissile extends Spell {
 	}
 
 	@Override
-	public void cast(Position targetPosition) {
+	public void cast(Vector2 targetPosition) {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }

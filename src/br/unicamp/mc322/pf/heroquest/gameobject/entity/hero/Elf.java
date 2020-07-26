@@ -3,6 +3,7 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.hero;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.SpellCaster;
 import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.ShortSword;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
+import br.unicamp.mc322.pf.heroquest.spell.SimpleHeal;
 import br.unicamp.mc322.pf.heroquest.spell.Spell;
 import br.unicamp.mc322.pf.heroquest.utils.Container;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -19,6 +20,7 @@ public class Elf extends Hero implements SpellCaster {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, navigator);
 		new ShortSword().equip(set);
 		spellbook = new Container<Spell>();
+		spellbook.addObject(new SimpleHeal());
 		//adicionar magias iniciais.
 	}
 	

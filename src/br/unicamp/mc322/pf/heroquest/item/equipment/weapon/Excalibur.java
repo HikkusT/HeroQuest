@@ -6,8 +6,13 @@ public class Excalibur extends TwoHandedWeapon {
 	private final static int RANGE = 1;
 
 	public Excalibur() {
-		super(NAME, ATTACKPOINTS, RANGE);
+		super(ATTACKPOINTS, RANGE);
 
+	}
+	
+	@Override
+	public String toString() {
+		return NAME;
 	}
 
 }

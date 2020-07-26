@@ -6,8 +6,14 @@ public class LongSword extends TwoHandedWeapon {
 	private final static int RANGE = 1;
 	
 	public LongSword(){
-		super(NAME, ATTACKPOINTS, RANGE);
+		super(ATTACKPOINTS, RANGE);
 
+	}
+
+	
+	@Override
+	public String toString() {
+		return NAME;
 	}
 
 }

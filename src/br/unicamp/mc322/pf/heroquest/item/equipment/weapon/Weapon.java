@@ -6,10 +6,9 @@ import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 public abstract class Weapon extends Equipment {
 	protected int attackPoints;
 	private int range;
-	private HandednessType handedness;
 	
-	Weapon(String ItemName, int attackPoints, int range, HandednessType handedness){
-		super(ItemName);
+	Weapon(int attackPoints, int range){
+		super();
 		this.attackPoints = attackPoints;
 		this.range = range;		
 	}
@@ -22,8 +21,6 @@ public abstract class Weapon extends Equipment {
 		return range;
 	}
 
-	public HandednessType getHandedness() {
-		return handedness;
-	}
+	public abstract HandednessType getHandedness();
 
 }

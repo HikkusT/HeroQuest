@@ -4,7 +4,7 @@ public abstract class EquipmentSlot {
 	protected Equipment equipment;
 
 	public boolean isEmpty() {
-		if (equipment == null || equipment.getItemName() == "Fists") {
+		if (equipment == null) {
 			return true;
 		}
 		else {
