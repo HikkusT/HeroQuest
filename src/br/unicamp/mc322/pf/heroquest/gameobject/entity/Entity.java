@@ -1,10 +1,11 @@
-package br.unicamp.mc322.pf.heroquest.gameobject.entity;
+	package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
 import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.TurnStrategy;
 import br.unicamp.mc322.pf.heroquest.item.consumable.Consumable;
+import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Set;
 import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
@@ -16,7 +17,7 @@ public abstract class Entity extends GameObject {
 	private String name;
 	private int healthPoints;
 	private final int maxHealthPoints;
-	private int inteligencePoints;
+	protected int inteligencePoints;
 	private int attackPoints;
 	protected TurnStrategy strategy;
 	protected int defensePoints;
@@ -55,12 +56,23 @@ public abstract class Entity extends GameObject {
 		}
 
 		int damage = DiceManager.getSkullRolls(attackDices);
-		entity.defend(damage);
+		entity.defendAttack(damage);
 		
 		
 	}
 
-	protected abstract void defend(int attackDamage);
+	protected abstract void defendAttack(int attackDamage);
+	
+	protected void defendSpell(int attackDamage) {
+		int defenseDices = inteligencePoints;
+		
+		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);
+		int trueDamage = attackDamage - damageMitigated;
+
+		trueDamage = (trueDamage > 0) ? trueDamage : 0;
+
+		this.receiveDamage(trueDamage);
+	}
 
 	public final void receiveDamage(int damage) {
 		healthPoints -= damage;

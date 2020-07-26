@@ -34,7 +34,7 @@ public abstract class Hero extends Entity {
 	}
 
 	@Override
-	public void defend(int attackDamage) {
+	public void defendAttack(int attackDamage) {
 		int defenseDices = defensePoints;
 		ArmorSlot armorSlot = set.getArmorSlot();
 		
@@ -45,6 +45,18 @@ public abstract class Hero extends Entity {
 		int damageMitigated = DiceManager.getHeroShieldRolls(defenseDices);
 		int trueDamage = attackDamage - damageMitigated;
 		
+		trueDamage = (trueDamage > 0) ? trueDamage : 0;
+
+		this.receiveDamage(trueDamage);
+	}
+	
+	@Override
+	protected void defendSpell(int attackDamage) {
+		int defenseDices = inteligencePoints;
+		
+		int damageMitigated = DiceManager.getHeroShieldRolls(defenseDices);
+		int trueDamage = attackDamage - damageMitigated;
+
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;
 
 		this.receiveDamage(trueDamage);
