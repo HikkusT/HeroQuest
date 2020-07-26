@@ -16,5 +16,9 @@ public abstract class GameObject {
 	
 	public abstract boolean getTranslucency();
 	
+	public boolean isVisible() {
+		return true;
+	}
+	
 	public abstract String getSprite();
 }
