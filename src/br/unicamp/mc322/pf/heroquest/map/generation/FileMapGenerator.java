@@ -17,8 +17,12 @@ public class FileMapGenerator implements MapGenerator {
 	private Tile[][] map;
 	private Vector2 dimension;
 	private HeroType hero;
+	
+	public FileMapGenerator(HeroType hero) {
+		this.hero = hero;
+	}
 
-	public Tile[][] generate(Navigator navigator, HeroType hero) {
+	public Tile[][] generate(Navigator navigator) {
 		try {
 			List<String> mapFile = FileUtils.readFile("map_files/example.txt");
 
@@ -27,7 +31,6 @@ public class FileMapGenerator implements MapGenerator {
 			int height = Integer.parseInt(mapFile.get(1));
 			dimension = new Vector2(width, height);
 			map = new Tile[width][height];
-			this.hero = hero;
 
 			// Read each line of map in file and process it
 			for (int index = height + 1; index > 1; index --) {

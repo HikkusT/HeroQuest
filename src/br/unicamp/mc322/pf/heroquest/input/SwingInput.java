@@ -5,6 +5,11 @@ import java.awt.event.KeyListener;
 
 public class SwingInput implements Input, KeyListener {
 	private volatile Command cachedCommand;
+	private volatile int cachedOption;
+	
+	public void setOption(int option) {
+		cachedOption = option;
+	}
 	
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -59,6 +64,11 @@ public class SwingInput implements Input, KeyListener {
 		cachedCommand = null;
 		while (cachedCommand == null) { }
 		return cachedCommand;
+	}
+	
+	@Override
+	public int waitForOption() {
+		return cachedOption;
 	}
 	
 }
