@@ -32,6 +32,7 @@ public class EntityManager {
 		}
 		
 		Entity nextEntity = activeEntities.pollFirst();
+	
 		nextEntity.setupTurn();
 		nextEntity.performTurn();
 		activeEntities.addLast(nextEntity);
