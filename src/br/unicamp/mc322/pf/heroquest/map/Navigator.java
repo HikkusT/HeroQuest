@@ -96,8 +96,7 @@ public class Navigator {
 		HeroQuest.getInstance().getRenderer().renderWorld();
 	}
 	
-	public Set<Entity> getEntitiesOnRange(Entity source, int range) {
-		Vector2 origin = source.getPosition();
+	public Set<Entity> getEntitiesOnRange(Vector2 origin, int range) {
 		HashSet<Entity> entities = new HashSet<Entity>();
 		for (Tile tile : map.getTilesOnRange(origin, range)) {
 			if (tile.hasEntity()) {
