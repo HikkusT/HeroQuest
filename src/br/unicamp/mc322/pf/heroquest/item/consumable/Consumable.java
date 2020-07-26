@@ -4,5 +4,5 @@ import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 
 public interface Consumable {
 	//Consumables are items that are consumed when used.
-	void consume(Entity user);
+	public abstract void consume(Entity user);
 }

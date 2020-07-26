@@ -1,8 +1,10 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
+import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.TurnStrategy;
+import br.unicamp.mc322.pf.heroquest.item.consumable.Consumable;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Set;
 import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
@@ -13,7 +15,7 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 public abstract class Entity extends GameObject {
 	private String name;
 	private int healthPoints;
-	private final int maxhealthPoints;
+	private final int maxHealthPoints;
 	private int inteligencePoints;
 	private int attackPoints;
 	protected TurnStrategy strategy;
@@ -25,7 +27,7 @@ public abstract class Entity extends GameObject {
 		super(position, false, false);
 		this.name = name;
 		this.healthPoints = healthPoints;
-		this.maxhealthPoints = healthPoints;
+		this.maxHealthPoints = healthPoints;
 		this.inteligencePoints = inteligencePoints;
 		this.attackPoints = attackPoints;
 		this.defensePoints = defensePoints;
@@ -54,6 +56,8 @@ public abstract class Entity extends GameObject {
 
 		int damage = DiceManager.getSkullRolls(attackDices);
 		entity.defend(damage);
+		
+		
 	}
 
 	protected abstract void defend(int attackDamage);
@@ -70,10 +74,17 @@ public abstract class Entity extends GameObject {
 
 	public void cure(int points) {
 		healthPoints += points;
+		if (healthPoints > maxHealthPoints) {
+			healthPoints = maxHealthPoints;
+		}
 	}
 
 	public void equipEquipment(Equipment equipment) {
 		equipment.equip(set);// ta retornando true ou false caso de pra equipar ou nao.
+	}
+	
+	public void consumeConsumable(Consumable consumable) {
+		consumable.consume(this);
 	}
 
 	public int getBiggerWeaponRange() {
