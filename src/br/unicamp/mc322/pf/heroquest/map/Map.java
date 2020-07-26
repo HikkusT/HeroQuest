@@ -61,7 +61,7 @@ public class Map {
 		HashSet<Tile> tiles = new HashSet<Tile>();
 		for (int i = 0; i < dimension.getX(); i ++)
 			for (int j = 0; j < dimension.getY(); j ++)
-				if (map[i][j].getVisibility())
+				if (map[i][j].isIlluminated())
 					tiles.add(map[i][j]);
 		
 		return tiles;
@@ -72,22 +72,7 @@ public class Map {
 	}
 	
 	public void CalculateIllumation() {
-		illuminator.illuminateMap(this, new Vector2(22,9));
-	}
-
-	public boolean getTranslucency(Vector2 point) {
-		return map[point.getX()][point.getY()].isTranslucent();
-	}
-	public TileType getTileType(Vector2 point) {
-		return map[point.getX()][point.getY()].getTileType();
-	}
-	
-	public boolean getVisibility(Vector2 point) {
-		return map[point.getX()][point.getY()].getVisibility();
-	}
-	
-	public void setVisibility(Vector2 point, boolean isVisible) {
-		this.map[point.getX()][point.getY()].setVisibility(isVisible);
+		illuminator.illuminateMap(map, dimension, new Vector2(22,9));
 	}
 	
 	public void placeEntity(Entity entity, Vector2 position) {

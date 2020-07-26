@@ -48,13 +48,18 @@ public class Tile {
 		}
 	}
 	
-	public void setVisibility(boolean isVisible) {
-		this.isVisible = isVisible;
+	public void illuminate() {
+		this.isVisible = true;
 	}
 	
-	public boolean getVisibility() {
-		return this.isVisible;
+	public void blackOut() {
+		this.isVisible = false;
 	}
+	
+	public boolean isIlluminated() {
+		return isVisible;
+	}
+	
 	public void setEntity(Entity entity) {
 		this.entity = entity;
 	}

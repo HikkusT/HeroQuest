@@ -41,8 +41,8 @@ public class Navigator {
 		HeroQuest.getInstance().getRenderer().renderWorld();
 	}
 
-	public boolean getVisibility(Entity entity) {
-		return map.getVisibility(entity.getPosition());
+	public boolean isInFieldOfView(Entity entity) {
+		return map.getTile(entity.getPosition()).isIlluminated();
 	}
 
 	public boolean isBlocked(Entity entity) {
