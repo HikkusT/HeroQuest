@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.HeroType;
 import br.unicamp.mc322.pf.heroquest.map.generation.MapGenerator;
 import br.unicamp.mc322.pf.heroquest.map.illuminator.MapIlluminator;
 import br.unicamp.mc322.pf.heroquest.utils.Direction;
@@ -20,11 +21,11 @@ public class Map {
 	
 	public Map() {} // IGNORE THIS. THIS IS ONLY FOR TESTING!!!!!
 	
-	public Map(MapGenerator generator, MapIlluminator illuminator, EntityManager entityManager) {
+	public Map(MapGenerator generator, MapIlluminator illuminator, EntityManager entityManager, HeroType hero) {
 		this.navigator = new Navigator(this);
 		this.illuminator = illuminator;
 		this.entityManager = entityManager;
-		map = generator.generate(navigator);
+		map = generator.generate(navigator, hero);
 		dimension = generator.retrieveDimension();
 		entityManager.initFromMap(map, dimension);
 	}

@@ -33,6 +33,9 @@ public class SwingInput implements Input, KeyListener {
 		case KeyEvent.VK_3:
 			cachedCommand = Command.DISARM_TRAP;
 			break;
+		case KeyEvent.VK_4:
+			cachedCommand = Command.AUX;
+			break;	
 		case KeyEvent.VK_SPACE:
 			cachedCommand = Command.ATTACK;
 			break;
