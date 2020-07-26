@@ -57,6 +57,4 @@ public class Navigator {
 			move(entity, node.getPosition());
 		}
 	}
-
-	// TODO: Implement PathFinding. A* is cool, but go for BFS if time is short
 }
