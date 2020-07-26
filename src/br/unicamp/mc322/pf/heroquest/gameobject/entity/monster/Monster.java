@@ -8,17 +8,11 @@ import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Monster extends Entity {
-	private int movementPoints;
-	private final int maxMovementPoints;
+	private final int movementPoints;
 
 	public Monster(String name,Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, int movementPoints, Navigator navigator) {
 		super(name, position, healthPoints, inteligencePoints, attackPoints, defensePoints, navigator);
 		this.movementPoints = movementPoints;
-		this.maxMovementPoints = movementPoints;
-	}
-
-	public void decrementMovementPoints() {
-		movementPoints--;
 	}
 
 	public int getMovementPoints() {
@@ -27,6 +21,10 @@ public abstract class Monster extends Entity {
 
 	public void moveToHero() {
 		navigator.findSmallerPath(this, movementPoints);
+	}
+
+	public void setupTurn() {
+		
 	}
 	
 	public abstract boolean isHeroInRange();
@@ -37,18 +35,18 @@ public abstract class Monster extends Entity {
 	public void defend(int attackDamage) {
 		int defenseDices = defensePoints;
 		ArmorSlot armorSlot = set.getArmorSlot();
-		
+
 		if (!armorSlot.isEmpty()) {
 			defenseDices += armorSlot.getEquipment().getDefensePoints();
 		}
 
-		int damageMitigated = DiceManager.defendMonster(defenseDices);
+		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);
 		int trueDamage = attackDamage - damageMitigated;
 
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;
 
 		this.receiveDamage(trueDamage);
 	}
-	
+
 
 }

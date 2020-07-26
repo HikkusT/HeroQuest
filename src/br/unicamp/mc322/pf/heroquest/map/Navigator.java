@@ -21,6 +21,10 @@ public class Navigator {
 	public Hero getHero() {
 		return hero;
 	}
+	
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
 
 	public boolean isPassable(Vector2 position) {
 		return map.isEmpty(position);

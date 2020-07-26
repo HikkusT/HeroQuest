@@ -1,7 +1,12 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
+import java.util.Random;
+
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.IdleStrategy;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Dagger;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.LongSword;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.ShortSword;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Weapon;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
@@ -12,10 +17,13 @@ public class Skeleton extends Monster {
 	private static final int ATTACKPOINTS = 2;
 	private static final int DEFENSEPOINTS = 2;
 	private static final int MOVEMENTPOINTS = 10;
+	private static final Weapon[] INITIALWEAPONS = {new ShortSword(), new LongSword(), new Dagger()};
 
 	public Skeleton(Vector2 position, Navigator navigator) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator);
 		this.strategy = new IdleStrategy(this);
+		Weapon RandomWeapon = INITIALWEAPONS[new Random().nextInt(INITIALWEAPONS.length)];
+		this.equipEquipment(RandomWeapon);
 	}
 
 	public boolean isHeroInRange() {

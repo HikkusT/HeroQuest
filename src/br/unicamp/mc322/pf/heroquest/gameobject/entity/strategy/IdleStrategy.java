@@ -15,16 +15,20 @@ public class IdleStrategy implements TurnStrategy {
 	}
 
 	public void execute() {
-		while(monster.getMovementPoints() > 0) {
+		for(int i = 0; i < monster.getMovementPoints(); i++) {
 			if(monster.isHeroInRange())
 				monster.attackHero();
 			moveMonster();
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) { }
 		}
 	}
 
 	public void moveMonster() {
 		boolean moved = false;
 		int direction;
+		moved = false;
 		while(!moved) {
 			direction = random.nextInt(4);
 			switch(direction) {
@@ -56,6 +60,5 @@ public class IdleStrategy implements TurnStrategy {
 					break;
 			}
 		}
-		monster.decrementMovementPoints();
 	}
 }

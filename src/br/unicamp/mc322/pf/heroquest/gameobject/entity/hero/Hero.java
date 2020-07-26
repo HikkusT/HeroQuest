@@ -18,6 +18,7 @@ public abstract class Hero extends Entity {
 		super(name, position, healthPoints, inteligencePoints, attackPoints, defensePoints, navigator);
 		backpack = new Container<Item>(); 
 		strategy = new PlayerStrategy(this);
+		navigator.setHero(this);
 	}
 	
 	@Override
@@ -25,10 +26,8 @@ public abstract class Hero extends Entity {
 		
 	}
 	
-	public void collectTreasure(Item[] treasure) {
-		for (Item item : treasure) {
-			backpack.addObject(item);
-		}
+	public void collectTreasure(Item content) {
+			backpack.addObject(content);
 	}
 
 	@Override

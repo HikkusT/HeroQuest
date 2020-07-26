@@ -3,10 +3,6 @@ package br.unicamp.mc322.pf.heroquest.item.equipment;
 public abstract class EquipmentSlot {
 	protected Equipment equipment;
 
-	protected EquipmentSlot() {
-		
-	}
-	
 	public boolean isEmpty() {
 		if (equipment == null || equipment.getItemName() == "Fists") {
 			return true;
