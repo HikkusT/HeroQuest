@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Elf;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.monster.Skeleton;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Door;
 import br.unicamp.mc322.pf.heroquest.map.Map;
@@ -28,7 +28,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 		rooms = new HashMap<Integer, List<Vector2>>();
 	}
 	
-	public Tile[][] generate(Navigator navigator) {
+	public Tile[][] generate(Navigator navigator, HeroType hero) {
 		instantiateMap();
 		placeRectangle(new Vector2(14, 10), new Vector2(21, 16));	// Place central room
 		placeCross(new Vector2(2, 2), new Vector2(12, 12),
@@ -41,7 +41,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 				   new Vector2(23, 2), new Vector2(33, 12));		// Place bottom right corner
 		
 		spawnMonsters(navigator);
-		spawnPlayer(navigator);
+		spawnPlayer(hero, navigator);
 		connectMap();
 		
 		return map;
@@ -179,8 +179,8 @@ public class ClassicalMapGenerator implements MapGenerator {
 		}
 	}
 	
-	private void spawnPlayer(Navigator navigator) {
-		map[17][1].receiveEntity(new Elf(new Vector2(17, 1), navigator));
+	private void spawnPlayer(HeroType hero, Navigator navigator) {
+		map[17][1].receiveEntity(hero.createHero(new Vector2(17, 1), navigator));
 	}
 	
 	private void connectMap() {
