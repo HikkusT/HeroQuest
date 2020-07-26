@@ -21,7 +21,6 @@ public class BasicIlluminator extends MapIlluminator {
 		ArrayList<Vector2> edgePoints = new ArrayList<Vector2>(); 
 		int widht = map.getDimension().getX();
 		int height = map.getDimension().getY();
-		System.out.println(widht + height);
 		
 		for (int i = 0; i < widht; i ++) {
 			edgePoints.add(new Vector2(i, 0));
