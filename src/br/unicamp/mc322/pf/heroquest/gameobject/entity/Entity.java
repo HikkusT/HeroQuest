@@ -125,23 +125,8 @@ public abstract class Entity extends GameObject {
 		return navigator.isPassable(target);
 	}
 
-	public void move(Vector2 target) {
-		//Direction obtained from update.
-		//TODO: return boolean, if it moved or not.
+	public boolean move(Vector2 target) {
 		try {
-			navigator.move(this, target);
-			position = target;
-		}
-		catch (IllegalArgumentException e) {
-			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
-		}
-	}
-	
-	public boolean move(Direction direction) {
-		//Direction obtained from update.
-		//TODO: return boolean, if it moved or not.
-		try {
-			Vector2 target = Vector2.sum(position, direction.toVector2());
 			navigator.move(this, target);
 			position = target;
 		}
@@ -152,6 +137,10 @@ public abstract class Entity extends GameObject {
 		currentMovementPoints--;
 		HeroQuest.getInstance().getRenderer().update();
 		return true;
+	}
+	
+	public boolean move(Direction direction) {
+		return move(position.translated(direction));
 	}
 	
 	public Navigator getNavigator() {

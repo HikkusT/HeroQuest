@@ -35,7 +35,7 @@ public class MapPanel extends JPanel {
 		if (map == null) 
 			throw new IllegalStateException("Map is not set");
 		
-		// map.CalculateIllumation();
+		map.CalculateIllumation();
 		Tile[][] tileMap = map.prepareToRender();
 		for (int i = 0; i < tileMap.length; i ++) {
 			for (int j = 0; j < tileMap[0].length; j ++) {

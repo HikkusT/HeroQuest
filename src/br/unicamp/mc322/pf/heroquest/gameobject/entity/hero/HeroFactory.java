@@ -31,6 +31,7 @@ public class HeroFactory {
 			throw new IllegalArgumentException("Creation for this type of hero has not yet been implemented");
 		}
 		
+		navigator.setHero(hero);
 		HeroQuest.getInstance().getRenderer().setHero(hero);
 		return hero;
 	}

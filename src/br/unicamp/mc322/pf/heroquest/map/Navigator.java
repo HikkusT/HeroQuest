@@ -14,7 +14,7 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Navigator {
 	private Map map;
-	Hero hero;
+	private Hero hero;
 
 	public Navigator(Map map) {
 		this.map = map;

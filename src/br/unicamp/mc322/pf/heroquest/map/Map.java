@@ -19,8 +19,6 @@ public class Map {
 	private Tile[][] map;
 	private Vector2 dimension;
 	
-	public Map() {} // IGNORE THIS. THIS IS ONLY FOR TESTING!!!!!
-	
 	public Map(MapGenerator generator, MapIlluminator illuminator, EntityManager entityManager) {
 		this.navigator = new Navigator(this);
 		this.illuminator = illuminator;
@@ -77,7 +75,7 @@ public class Map {
 	}
 	
 	public void CalculateIllumation() {
-		illuminator.illuminateMap(map, dimension, new Vector2(22,9));
+		illuminator.illuminateMap(map, dimension, navigator.getHero().getPosition());
 	}
 	
 	public void placeEntity(Entity entity, Vector2 position) {
