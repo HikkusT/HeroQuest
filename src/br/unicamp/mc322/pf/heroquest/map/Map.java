@@ -28,12 +28,8 @@ public class Map {
 		return dimension;
 	}
 	
-	public Tile[][] prepareToRender() {
-		Tile[][] rotatedMap = new Tile[dimension.getY()][dimension.getX()];
-		for (int i = 0; i < dimension.getY(); i ++)
-			for (int j = 0; j < dimension.getX(); j ++)
-				rotatedMap[i][j] = map[j][dimension.getY() - 1 - i];
-		return rotatedMap;
+	public Tile getTile(Vector2 point) {
+		return map[point.getX()][point.getY()];
 	}
 	
 	public boolean isEmpty(Vector2 point) {
@@ -81,6 +77,14 @@ public class Map {
 		Graph graph = new Graph(dimension.getX(), dimension.getY(), navigator);
 		Node node = graph.calculatePath(from, to);
 		return node;
+	}
+	
+	public Tile[][] prepareToRender() {
+		Tile[][] rotatedMap = new Tile[dimension.getY()][dimension.getX()];
+		for (int i = 0; i < dimension.getY(); i ++)
+			for (int j = 0; j < dimension.getX(); j ++)
+				rotatedMap[i][j] = map[j][dimension.getY() - 1 - i];
+		return rotatedMap;
 	}
 	
 	@Override

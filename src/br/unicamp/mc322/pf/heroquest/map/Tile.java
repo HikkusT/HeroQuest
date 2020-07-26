@@ -1,7 +1,9 @@
 package br.unicamp.mc322.pf.heroquest.map;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Interactable;
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
 
 public class Tile {
 	private TileType type;
@@ -38,6 +40,12 @@ public class Tile {
 	
 	public Entity getEntity() {
 		return entity;
+	}
+	
+	public void interact(InteractionType type, Hero source) {
+		if (interactable != null) {
+			interactable.interact(type, source);
+		}
 	}
 	
 	public void setVisibility(boolean isVisible) {
@@ -86,11 +94,11 @@ public class Tile {
 		if (!isVisible)
 			return "Unlit.png";
 		
-		if (entity != null) {
+		if (entity != null && entity.isVisible()) {
 			return entity.getSprite();
 		}
 		
-		if (interactable != null) {
+		if (interactable != null && interactable.isVisible()) {
 			return interactable.getSprite();
 		}
 		
