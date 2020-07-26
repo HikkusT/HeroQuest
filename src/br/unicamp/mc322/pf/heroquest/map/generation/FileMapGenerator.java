@@ -91,7 +91,7 @@ public class FileMapGenerator implements MapGenerator {
 				break;
 			case 'H':
 				map[indexColumn][indexLine] = new Tile();
-				map[indexColumn][indexLine].receiveEntity(hero.createHero(new Vector2(indexColumn, indexLine), navigator));
+				map[indexColumn][indexLine].receiveEntity((HeroFactory.createHero(new Vector2(indexColumn, indexLine), navigator, hero)));
 				break;
 			default:
 				map[indexColumn][indexLine] = new Tile();
@@ -101,7 +101,7 @@ public class FileMapGenerator implements MapGenerator {
 
 	private void runFallbackGeneration(Navigator navigator) {
 		MapGenerator fallback = new MockMapGenerator();
-		map = fallback.generate(navigator, hero);
+		map = fallback.generate(navigator);
 		dimension = fallback.retrieveDimension();
 	}
 }

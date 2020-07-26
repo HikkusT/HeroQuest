@@ -7,4 +7,10 @@ public class ClothArmor extends Armor {
 	public ClothArmor() {
 		super(NAME, DEFENSEPOINTS);
 	}
+	
+	@Override
+	public String toString() {
+		return NAME;
+	}
+
 }

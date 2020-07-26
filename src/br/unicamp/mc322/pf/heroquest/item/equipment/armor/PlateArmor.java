@@ -7,5 +7,11 @@ public class PlateArmor extends Armor {
 	public PlateArmor() {
 		super(NAME, DEFENSEPOINTS);
 	}
+	
+	@Override
+	public String toString() {
+		return NAME;
+	}
+
 
 }
