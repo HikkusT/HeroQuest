@@ -39,6 +39,7 @@ public class SwingRenderer extends Renderer {
 		setupBasicWindowLayout();
 		gameWindow.setVisible(true);
 		gameWindow.pack();
+		gameWindow.requestFocus();
 		gameWindow.setLocationRelativeTo(null);
 	}
 	
