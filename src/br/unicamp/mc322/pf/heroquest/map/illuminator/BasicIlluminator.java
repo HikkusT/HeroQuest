@@ -16,11 +16,11 @@ public class BasicIlluminator extends MapIlluminator {
 	}
 
 	@Override
-	public void illuminateMap(Map map, Vector2 hero) {
-		this.resetMapillumination(map);
+	public void illuminateMap(Tile[][] map, Vector2 dimension, Vector2 hero) {
+		this.resetMapillumination(map, dimension);
 		ArrayList<Vector2> edgePoints = new ArrayList<Vector2>(); 
-		int widht = map.getDimension().getX();
-		int height = map.getDimension().getY();
+		int widht = dimension.getX();
+		int height = dimension.getY();
 		
 		for (int i = 0; i < widht; i ++) {
 			edgePoints.add(new Vector2(i, 0));
@@ -36,8 +36,8 @@ public class BasicIlluminator extends MapIlluminator {
 			ArrayList<Vector2> lineOfSight = getLineOfSight(hero, point);
 			
 			for(Vector2 pointInSight : lineOfSight) {
-				map.setVisibility(pointInSight, true);
-				if (!map.getTranslucency(pointInSight)){
+				map[pointInSight.getX()][pointInSight.getY()].illuminate();
+				if (!map[pointInSight.getX()][pointInSight.getY()].isTranslucent()){
 					break;
 				}		
 			}
@@ -46,13 +46,13 @@ public class BasicIlluminator extends MapIlluminator {
 		for (int i = 0; i < widht; i++) {
 			for (int j = 0; j < height; j++) {
 				int[][] directions = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
-				if (map.getVisibility(new Vector2(i, j)) && (map.getTranslucency(new Vector2(i, j)))) {
+				if (map[i][j].isIlluminated() && map[i][j].isTranslucent()) {
 					for(int[] direction : directions) {
 						int x = direction[0];
 						int y = direction[1];
 						
-						if (!(map.getTranslucency(new Vector2(i + x, j + y)))) {
-							map.setVisibility(new Vector2(i + x, j + y), true);
+						if (!map[i + x][j + y].isTranslucent()) {
+							map[i + x][j + y].illuminate();
 						}
 					}
 				}

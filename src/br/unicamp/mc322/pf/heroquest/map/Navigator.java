@@ -2,9 +2,14 @@ package br.unicamp.mc322.pf.heroquest.map;
 
 
 import br.unicamp.mc322.pf.heroquest.HeroQuest;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
+import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Navigator {
@@ -19,6 +24,10 @@ public class Navigator {
 	public Hero getHero() {
 		return hero;
 	}
+	
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
 
 	public boolean isPassable(Vector2 position) {
 		return map.isEmpty(position);
@@ -32,8 +41,8 @@ public class Navigator {
 		HeroQuest.getInstance().getRenderer().renderWorld();
 	}
 
-	public boolean getVisibility(Entity entity) {
-		return map.getVisibility(entity.getPosition());
+	public boolean isInFieldOfView(Entity entity) {
+		return map.getTile(entity.getPosition()).isIlluminated();
 	}
 
 	public boolean isBlocked(Entity entity) {
@@ -69,5 +78,33 @@ public class Navigator {
 				Thread.sleep(200);
 			} catch (InterruptedException e) { }
 		}
+	}
+
+	public void broadcastInteraction(Hero source, InteractionType type) {
+		HeroQuest.getInstance().getRenderer().renderWorld();
+		for (Tile tile : map.getIlluminatedTiles()) {
+			tile.interact(type, source);
+		}
+		HeroQuest.getInstance().getRenderer().renderWorld();
+	}
+	
+	public void sendInteractionToNeighbors(Hero source, InteractionType type) {
+		Vector2 origin = source.getPosition();
+		for (Tile tile : map.getTilesOnRange(origin, 1)) {
+			tile.interact(type, source);
+		}
+		HeroQuest.getInstance().getRenderer().renderWorld();
+	}
+	
+	public Set<Entity> getEntitiesOnRange(Entity source, int range) {
+		Vector2 origin = source.getPosition();
+		HashSet<Entity> entities = new HashSet<Entity>();
+		for (Tile tile : map.getTilesOnRange(origin, range)) {
+			if (tile.hasEntity()) {
+				entities.add(tile.getEntity());
+			}
+		}
+		
+		return entities;
 	}
 }

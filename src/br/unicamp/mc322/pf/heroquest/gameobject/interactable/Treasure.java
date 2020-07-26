@@ -15,8 +15,6 @@ import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.StormBreaker;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Treasure extends Interactable {
-	private static final boolean ISTRANSLUCENT = true;
-	private static final boolean ISTRANSPOSABLE = true;
 	private static final Item[] POSSIBLETREASURES= {new LongSword(), new ShortSword(), new Dagger(), new Excalibur(), new StormBreaker()
 													, new ClothArmor(), new PlateArmor(), new MinorHealthPotion(), new GreatHealthPotion()};
 	
@@ -24,7 +22,7 @@ public class Treasure extends Interactable {
 	private boolean isOpened;
 	
 	public Treasure(Vector2 position) {
-		super(position, ISTRANSLUCENT, ISTRANSPOSABLE);
+		super(position);
 		isOpened = false;
 		Item randomTreasure = POSSIBLETREASURES[new Random().nextInt(POSSIBLETREASURES.length)];
 		content = randomTreasure;
@@ -32,7 +30,7 @@ public class Treasure extends Interactable {
 	}
 
 	public void interact(InteractionType interaction, Hero user) {
-		if (interaction == InteractionType.FINDTREASURE && !isOpened) {
+		if (interaction == InteractionType.FIND_TREASURE && !isOpened) {
 			user.collectTreasure(content);
 		}
 		// TODO Possibility of summon a monster.

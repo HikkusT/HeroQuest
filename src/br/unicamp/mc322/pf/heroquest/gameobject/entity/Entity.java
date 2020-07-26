@@ -25,7 +25,7 @@ public abstract class Entity extends GameObject {
 	protected Navigator navigator;
 
 	public Entity(String name, Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, Navigator navigator) {
-		super(position, false, false);
+		super(position);
 		this.name = name;
 		this.healthPoints = healthPoints;
 		this.maxHealthPoints = healthPoints;
@@ -147,5 +147,19 @@ public abstract class Entity extends GameObject {
 		catch (IllegalArgumentException e) {
 			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
 		}
+	}
+	
+	public Navigator getNavigator() {
+		return navigator;
+	}
+	
+	@Override
+	public boolean getTransposability() {
+		return false;
+	}
+	
+	@Override
+	public boolean getTranslucency() {
+		return true;
 	}
 }

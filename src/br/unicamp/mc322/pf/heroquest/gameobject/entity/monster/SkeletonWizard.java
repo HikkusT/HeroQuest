@@ -19,13 +19,13 @@ public class SkeletonWizard extends Monster {
 	}
 
 	public boolean isHeroInRange() {
-		boolean canCastSpell = navigator.getVisibility(this); // && has charges
+		boolean canCastSpell = navigator.isInFieldOfView(this); // && has charges
 		boolean canAttack = (1 == Vector2.distance(position, navigator.getHero().getPosition()));
 		return (canCastSpell || canAttack);
 	}
 
 	public void attackHero() {
-		boolean canCastSpell = navigator.getVisibility(this); // && has charges
+		boolean canCastSpell = navigator.isInFieldOfView(this); // && has charges
 		if(canCastSpell) {
 			//cast(hero.getPosition())
 		}

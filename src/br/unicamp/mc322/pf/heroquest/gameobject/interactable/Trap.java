@@ -5,14 +5,12 @@ import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Trap extends Interactable {
-	private static final boolean ISTRANSLUCENT = true;
-	private static final boolean ISTRANSPOSABLE = true;
 	private static final int DICESTODISARM = 1;
 	private boolean isDetected;
 	private TrapType type;
 	
 	public Trap(Vector2 position, TrapType traptype) {
-		super(position, ISTRANSLUCENT, ISTRANSPOSABLE);
+		super(position);
 		type = traptype;
 		isDetected = false;
 	}
@@ -32,10 +30,10 @@ public class Trap extends Interactable {
 	}
 	
 	public void interact(InteractionType interaction, Hero user) {
-		if (interaction == InteractionType.FINDTRAP) {
+		if (interaction == InteractionType.FIND_TRAP) {
 			this.detect();
 		}
-		else if (interaction == InteractionType.DISARMTRAP && this.isDetected) {
+		else if (interaction == InteractionType.DISARM_TRAP && this.isDetected) {
 			if(DiceManager.getMonsterShieldRolls(DICESTODISARM) == 0) {
 				activateTrap(user);
 			}

@@ -6,15 +6,15 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class MapIlluminator {
 
-	public abstract void illuminateMap(Map map, Vector2 hero);
+	public abstract void illuminateMap(Tile[][] map, Vector2 dimension, Vector2 hero);
 
-	void resetMapillumination(Map map) {
-		int widht = map.getDimension().getX();
-		int height = map.getDimension().getY();
+	void resetMapillumination(Tile[][] map, Vector2 dimension) {
+		int widht = dimension.getX();
+		int height = dimension.getY();
 		
 		for (int i = 0; i < widht; i++) {
 			for (int j = 0; j < height; j++) {
-				map.setVisibility(new Vector2(i, j), false);
+				map[i][j].blackOut();;
 			}
 		}
 	}

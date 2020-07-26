@@ -5,6 +5,7 @@ import java.util.List;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.monster.*;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
+import br.unicamp.mc322.pf.heroquest.gameobject.interactable.*;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
 import br.unicamp.mc322.pf.heroquest.map.TileType;
@@ -73,6 +74,15 @@ public class FileMapGenerator implements MapGenerator {
 			case 'G':
 				map[indexColumn][indexLine] = new Tile();
 				map[indexColumn][indexLine].receiveEntity(new Goblin(new Vector2(indexColumn, indexLine), navigator));
+				break;
+			case 'T':
+				map[indexColumn][indexLine] = new Tile(new Trap(new Vector2(indexColumn, indexLine), TrapType.HOLE));
+				break;
+			case 'D':
+				map[indexColumn][indexLine] = new Tile(new Door(new Vector2(indexColumn, indexLine)));
+				break;
+			case 't':
+				map[indexColumn][indexLine] = new Tile(new Treasure(new Vector2(indexColumn, indexLine)));
 				break;
 			default:
 				map[indexColumn][indexLine] = new Tile();

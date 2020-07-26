@@ -16,6 +16,10 @@ public class Vector2 {
 	public int getY() {
 		return y;
 	}
+	
+	public Vector2 translated(Direction direction) {
+		return sum(this, direction.toVector2());
+	}
 
 	@Override
 	public boolean equals(Object obj) {
