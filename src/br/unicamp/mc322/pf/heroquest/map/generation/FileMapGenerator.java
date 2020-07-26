@@ -16,8 +16,9 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 public class FileMapGenerator implements MapGenerator {
 	private Tile[][] map;
 	private Vector2 dimension;
+	private HeroType hero;
 
-	public Tile[][] generate(Navigator navigator) {
+	public Tile[][] generate(Navigator navigator, HeroType hero) {
 		try {
 			List<String> mapFile = FileUtils.readFile("map_files/example.txt");
 
@@ -26,6 +27,7 @@ public class FileMapGenerator implements MapGenerator {
 			int height = Integer.parseInt(mapFile.get(1));
 			dimension = new Vector2(width, height);
 			map = new Tile[width][height];
+			this.hero = hero;
 
 			// Read each line of map in file and process it
 			for (int index = height + 1; index > 1; index --) {
@@ -84,6 +86,10 @@ public class FileMapGenerator implements MapGenerator {
 			case 't':
 				map[indexColumn][indexLine] = new Tile(new Treasure(new Vector2(indexColumn, indexLine)));
 				break;
+			case 'H':
+				map[indexColumn][indexLine] = new Tile();
+				map[indexColumn][indexLine].receiveEntity(hero.createHero(new Vector2(indexColumn, indexLine), navigator));
+				break;
 			default:
 				map[indexColumn][indexLine] = new Tile();
 				break;
@@ -92,7 +98,7 @@ public class FileMapGenerator implements MapGenerator {
 
 	private void runFallbackGeneration(Navigator navigator) {
 		MapGenerator fallback = new MockMapGenerator();
-		map = fallback.generate(navigator);
+		map = fallback.generate(navigator, hero);
 		dimension = fallback.retrieveDimension();
 	}
 }

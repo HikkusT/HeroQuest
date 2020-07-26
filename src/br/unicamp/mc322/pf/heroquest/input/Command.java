@@ -10,7 +10,8 @@ public enum Command {
 	SEARCH_TRAPS,
 	DISARM_TRAP,
 	ATTACK,
-	CAST;
+	CAST,
+	AUX;
 	
 	public boolean isMovementCommand() {
 		if (this == MOVE_UP || this == MOVE_RIGHT || this == MOVE_DOWN || this == MOVE_LEFT)
