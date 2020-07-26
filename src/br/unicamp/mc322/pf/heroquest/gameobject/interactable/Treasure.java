@@ -3,8 +3,6 @@ import java.util.Random;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 import br.unicamp.mc322.pf.heroquest.item.Item;
-import br.unicamp.mc322.pf.heroquest.item.consumable.GreatHealthPotion;
-import br.unicamp.mc322.pf.heroquest.item.consumable.MinorHealthPotion;
 import br.unicamp.mc322.pf.heroquest.item.equipment.armor.ClothArmor;
 import br.unicamp.mc322.pf.heroquest.item.equipment.armor.PlateArmor;
 import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Dagger;
@@ -12,6 +10,8 @@ import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Excalibur;
 import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.LongSword;
 import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.ShortSword;
 import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.StormBreaker;
+import br.unicamp.mc322.pf.heroquest.item.potion.GreatHealthPotion;
+import br.unicamp.mc322.pf.heroquest.item.potion.MinorHealthPotion;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Treasure extends Interactable {

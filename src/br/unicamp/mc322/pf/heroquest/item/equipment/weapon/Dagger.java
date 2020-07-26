@@ -9,7 +9,7 @@ public class Dagger extends TwoHandedWeapon{
 	private int charges = 3;
 
 	public Dagger() {
-		super(NAME, ATTACKPOINTS, RANGE);
+		super(ATTACKPOINTS, RANGE);
 	}
 	
 	
@@ -20,4 +20,10 @@ public class Dagger extends TwoHandedWeapon{
 		}
 		return this.attackPoints;
 	}
+	
+	@Override
+	public String toString() {
+		return NAME + "(" + charges + ")";
+	}
+
 }

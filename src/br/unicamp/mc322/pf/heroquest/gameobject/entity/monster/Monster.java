@@ -3,7 +3,8 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
-import br.unicamp.mc322.pf.heroquest.map.Map;
+import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
+import br.unicamp.mc322.pf.heroquest.item.potion.Potion;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
@@ -49,7 +50,7 @@ public abstract class Monster extends Entity {
 	}
 	
 	@Override
-	protected void defendSpell(int attackDamage) {
+	public void defendSpell(int attackDamage) {
 		int defenseDices = inteligencePoints;
 		
 		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);
@@ -60,5 +61,17 @@ public abstract class Monster extends Entity {
 		this.receiveDamage(trueDamage);
 	}
 
+	@Override
+	public void handleEquipment(Equipment equipment) {
+		boolean wasEquipped = equipment.equip(set);
+		if (!wasEquipped) {
+			equipment.unequip(set);	
+		}
+	}
+
+	@Override
+	public void handlePotion(Potion potion) {
+		potion.consume(this);
+	}
 
 }

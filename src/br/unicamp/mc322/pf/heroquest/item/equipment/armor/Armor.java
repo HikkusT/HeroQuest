@@ -8,7 +8,7 @@ public abstract class Armor extends Equipment {
 
 	private int defensePoints;
 	public Armor(String itemName, int defensePoints) {
-		super(itemName);
+		super();
 		this.defensePoints =  defensePoints;
 
 	}

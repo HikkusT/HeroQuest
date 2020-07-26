@@ -10,7 +10,7 @@ public class WeaponSlot extends EquipmentSlot {
 	
 	@Override
 	public boolean isEmpty() {
-		if (this.equipment == null || (this.equipment.getItemName() == "Fists")) {
+		if (this.equipment == null || (this.equipment.toString() == "Fists")) {
 			return true;
 		}
 		else {

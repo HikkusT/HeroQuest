@@ -45,8 +45,8 @@ public class Navigator {
 		HeroQuest.getInstance().getRenderer().update();
 	}
 
-	public boolean isInFieldOfView(Entity entity) {
-		return map.getTile(entity.getPosition()).isIlluminated();
+	public boolean isInFieldOfView(Vector2 position) {
+		return map.getTile(position).isIlluminated();
 	}
 
 	public boolean isBlocked(Entity entity) {
@@ -106,7 +106,11 @@ public class Navigator {
 		HashSet<Entity> entities = new HashSet<Entity>();
 		for (Tile tile : map.getTilesOnRange(origin, range)) {
 			if (tile.hasEntity()) {
-				entities.add(tile.getEntity());
+				Entity currentEntity = tile.getEntity();
+				if (this.isInFieldOfView(currentEntity.getPosition())) {
+					entities.add(currentEntity);
+				}
+				
 			}
 		}
 		

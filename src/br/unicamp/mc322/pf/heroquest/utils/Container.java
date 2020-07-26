@@ -29,6 +29,10 @@ public class Container<T> {
 		return options;
 	}
 	
+	public T getObjectAtIndex(int i) {
+		return container.get(i);
+	}
+	
 	@Override
 	public String toString() {
 		String bag = "";

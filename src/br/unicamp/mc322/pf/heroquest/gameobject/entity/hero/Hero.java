@@ -4,10 +4,10 @@ import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.PlayerStrategy;
-import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Interactable;
-import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
 import br.unicamp.mc322.pf.heroquest.item.Item;
 import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
+import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
+import br.unicamp.mc322.pf.heroquest.item.potion.Potion;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Container;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -52,7 +52,7 @@ public abstract class Hero extends Entity {
 	}
 	
 	@Override
-	protected void defendSpell(int attackDamage) {
+	public void defendSpell(int attackDamage) {
 		int defenseDices = inteligencePoints;
 		
 		int damageMitigated = DiceManager.getHeroShieldRolls(defenseDices);
@@ -61,6 +61,22 @@ public abstract class Hero extends Entity {
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;
 
 		this.receiveDamage(trueDamage);
+	}
+	
+	@Override
+	public void handleEquipment(Equipment equipment) {
+		boolean wasEquipped = equipment.equip(set);
+		if (!wasEquipped) {
+			Equipment removedEquipment = equipment.unequip(set);
+			if (removedEquipment != null) {
+				this.backpack.addObject(removedEquipment);
+			}		
+		}
+	}
+	
+	public void handlePotion(Potion potion) {
+		potion.consume(this);
+		this.backpack.removeObject(potion);
 	}
 	
 	public HeroType getType() {

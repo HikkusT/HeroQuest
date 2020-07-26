@@ -23,7 +23,7 @@ public class Skeleton extends Monster {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, MOVEMENTPOINTS, navigator);
 		this.strategy = new IdleStrategy(this);
 		Weapon RandomWeapon = INITIALWEAPONS[new Random().nextInt(INITIALWEAPONS.length)];
-		this.equipEquipment(RandomWeapon);
+		this.handleEquipment(RandomWeapon);
 	}
 
 	public boolean isHeroInRange() {

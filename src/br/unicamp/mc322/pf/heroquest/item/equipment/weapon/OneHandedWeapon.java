@@ -6,9 +6,13 @@ import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
 
 public abstract class OneHandedWeapon extends Weapon {
 
-	public OneHandedWeapon(String ItemName, int attackPoints, int range) {
-		super(ItemName, attackPoints, range, HandednessType.ONEHANDED);
-		// TODO Auto-generated constructor stub
+	public OneHandedWeapon(int attackPoints, int range) {
+		super(attackPoints, range);
+	}
+	
+	@Override
+	public HandednessType getHandedness() {
+		return HandednessType.ONEHANDED;
 	}
 
 	@Override

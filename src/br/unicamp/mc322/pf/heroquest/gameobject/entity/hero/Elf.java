@@ -3,6 +3,7 @@ package br.unicamp.mc322.pf.heroquest.gameobject.entity.hero;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.SpellCaster;
 import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.ShortSword;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
+import br.unicamp.mc322.pf.heroquest.spell.SimpleHeal;
 import br.unicamp.mc322.pf.heroquest.spell.Spell;
 import br.unicamp.mc322.pf.heroquest.utils.Container;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
@@ -20,7 +21,14 @@ public class Elf extends Hero implements SpellCaster {
 		type = HeroType.ELF;
 		new ShortSword().equip(set);
 		spellbook = new Container<Spell>();
-		//adicionar magias iniciais.
+		spellbook.addObject(new SimpleHeal());
+	}
+	
+	@Override
+	public void castSpell(Vector2 target, Spell spell) {
+		spell.cast(target, null);
+		spellbook.removeObject(spell);
+		
 	}
 	
 	@Override
@@ -33,9 +41,4 @@ public class Elf extends Hero implements SpellCaster {
 			return "E";
 	}
 
-	@Override
-	public void cast(Container<Spell> spellbook) {
-		// TODO Auto-generated method stub
-		
-	}
 }

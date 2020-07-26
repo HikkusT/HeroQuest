@@ -1,15 +1,9 @@
 package br.unicamp.mc322.pf.heroquest.item;
 
-public abstract class Item {
-	private String itemName;
-	
-	protected Item(String itemName){
-		this.itemName = itemName;
-	}
-	
-	
-	public String getItemName() {
-		return this.itemName;
-	}
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 
+public abstract class Item {
+	
+	public abstract void use(Entity user);
+	
 }
