@@ -1,8 +1,11 @@
-package br.unicamp.mc322.pf.heroquest.gameobject.entity;
+	package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
+import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.TurnStrategy;
+import br.unicamp.mc322.pf.heroquest.item.consumable.Consumable;
+import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Equipment;
 import br.unicamp.mc322.pf.heroquest.item.equipment.Set;
 import br.unicamp.mc322.pf.heroquest.item.equipment.WeaponSlot;
@@ -13,8 +16,8 @@ import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 public abstract class Entity extends GameObject {
 	private String name;
 	private int healthPoints;
-	private final int maxhealthPoints;
-	private int inteligencePoints;
+	private final int maxHealthPoints;
+	protected int inteligencePoints;
 	private int attackPoints;
 	protected TurnStrategy strategy;
 	protected int defensePoints;
@@ -25,7 +28,7 @@ public abstract class Entity extends GameObject {
 		super(position);
 		this.name = name;
 		this.healthPoints = healthPoints;
-		this.maxhealthPoints = healthPoints;
+		this.maxHealthPoints = healthPoints;
 		this.inteligencePoints = inteligencePoints;
 		this.attackPoints = attackPoints;
 		this.defensePoints = defensePoints;
@@ -53,10 +56,23 @@ public abstract class Entity extends GameObject {
 		}
 
 		int damage = DiceManager.getSkullRolls(attackDices);
-		entity.defend(damage);
+		entity.defendAttack(damage);
+		
+		
 	}
 
-	protected abstract void defend(int attackDamage);
+	protected abstract void defendAttack(int attackDamage);
+	
+	protected void defendSpell(int attackDamage) {
+		int defenseDices = inteligencePoints;
+		
+		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);
+		int trueDamage = attackDamage - damageMitigated;
+
+		trueDamage = (trueDamage > 0) ? trueDamage : 0;
+
+		this.receiveDamage(trueDamage);
+	}
 
 	public final void receiveDamage(int damage) {
 		healthPoints -= damage;
@@ -70,10 +86,17 @@ public abstract class Entity extends GameObject {
 
 	public void cure(int points) {
 		healthPoints += points;
+		if (healthPoints > maxHealthPoints) {
+			healthPoints = maxHealthPoints;
+		}
 	}
 
 	public void equipEquipment(Equipment equipment) {
 		equipment.equip(set);// ta retornando true ou false caso de pra equipar ou nao.
+	}
+	
+	public void consumeConsumable(Consumable consumable) {
+		consumable.consume(this);
 	}
 
 	public int getBiggerWeaponRange() {
@@ -101,6 +124,18 @@ public abstract class Entity extends GameObject {
 		return navigator.isPassable(target);
 	}
 
+	public void move(Vector2 target) {
+		//Direction obtained from update.
+		//TODO: return boolean, if it moved or not.
+		try {
+			navigator.move(this, target);
+			position = target;
+		}
+		catch (IllegalArgumentException e) {
+			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
+		}
+	}
+	
 	public void move(Direction direction) {
 		//Direction obtained from update.
 		//TODO: return boolean, if it moved or not.

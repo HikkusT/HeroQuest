@@ -8,7 +8,7 @@ import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Monster extends Entity {
-	private final int movementPoints;
+	protected final int movementPoints;
 
 	public Monster(String name,Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, int movementPoints, Navigator navigator) {
 		super(name, position, healthPoints, inteligencePoints, attackPoints, defensePoints, navigator);
@@ -32,7 +32,7 @@ public abstract class Monster extends Entity {
 	public abstract void attackHero();
 
 	@Override
-	public void defend(int attackDamage) {
+	public void defendAttack(int attackDamage) {
 		int defenseDices = defensePoints;
 		ArmorSlot armorSlot = set.getArmorSlot();
 
@@ -40,6 +40,18 @@ public abstract class Monster extends Entity {
 			defenseDices += armorSlot.getEquipment().getDefensePoints();
 		}
 
+		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);
+		int trueDamage = attackDamage - damageMitigated;
+
+		trueDamage = (trueDamage > 0) ? trueDamage : 0;
+
+		this.receiveDamage(trueDamage);
+	}
+	
+	@Override
+	protected void defendSpell(int attackDamage) {
+		int defenseDices = inteligencePoints;
+		
 		int damageMitigated = DiceManager.getMonsterShieldRolls(defenseDices);
 		int trueDamage = attackDamage - damageMitigated;
 
