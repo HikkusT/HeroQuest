@@ -16,8 +16,10 @@ public class IdleStrategy implements TurnStrategy {
 
 	public void execute() {
 		for(int i = 0; i < monster.getMovementPoints(); i++) {
-			if(monster.isHeroInRange())
+			if(monster.isHeroInRange()) {
 				monster.attackHero();
+				break;
+			}
 			moveMonster();
 			if(monster.getVisibility()) {
 				try {
