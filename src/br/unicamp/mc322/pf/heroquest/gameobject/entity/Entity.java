@@ -17,7 +17,7 @@ import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Entity extends GameObject {
-	private String name;
+	protected String name;
 	private int healthPoints;
 	private final int maxHealthPoints;
 	protected int inteligencePoints;
@@ -40,7 +40,7 @@ public abstract class Entity extends GameObject {
 		this.navigator = navigator;
 
 	}
-
+	
 	public abstract void setupTurn();
 
 	public final void performTurn() {
@@ -60,9 +60,8 @@ public abstract class Entity extends GameObject {
 		}
 
 		int damage = DiceManager.getSkullRolls(attackDices);
+		HeroQuest.getInstance().getRenderer().renderEvent(name + " caused " + damage + " of damage.");
 		entity.defendAttack(damage);
-		
-		
 	}
 
 	protected abstract void defendAttack(int attackDamage);
@@ -76,6 +75,7 @@ public abstract class Entity extends GameObject {
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;
 
 		this.receiveDamage(trueDamage);
+		HeroQuest.getInstance().getRenderer().renderEvent(name + " blocked " + damageMitigated + " and received " + trueDamage + " of damage.");
 	}
 
 	public final void receiveDamage(int damage) {
@@ -116,7 +116,7 @@ public abstract class Entity extends GameObject {
 		if (!rightWeaponSlot.isEmpty()) {
 			rangeRight = rightWeaponSlot.getEquipment().getRange();
 		}
-
+		
 		if(rangeLeft >= rangeRight)
 			return rangeLeft;
 		else

@@ -49,6 +49,7 @@ public abstract class Hero extends Entity {
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;
 
 		this.receiveDamage(trueDamage);
+		HeroQuest.getInstance().getRenderer().renderEvent(name + " blocked " + damageMitigated + " and received " + trueDamage + " of damage.");
 	}
 	
 	@Override

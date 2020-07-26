@@ -101,7 +101,6 @@ public class PlayerStrategy implements TurnStrategy {
 				finished = true;
 				break;
 			case ATTACK:
-				renderer.renderEvent("Attacking");
 				int range = player.getBiggerWeaponRange();
 				ArrayList<Entity> entities = new ArrayList<Entity> (player.getNavigator().getEntitiesOnRange(player.getPosition(), range));
 				player.attack(entities.get(0));

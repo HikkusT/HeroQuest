@@ -1,5 +1,6 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 
+import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.item.equipment.ArmorSlot;
@@ -47,6 +48,7 @@ public abstract class Monster extends Entity {
 		trueDamage = (trueDamage > 0) ? trueDamage : 0;
 
 		this.receiveDamage(trueDamage);
+		HeroQuest.getInstance().getRenderer().renderEvent(name + " blocked " + damageMitigated + " and received " + trueDamage + " of damage.");
 	}
 	
 	@Override

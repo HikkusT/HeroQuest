@@ -18,9 +18,12 @@ public class Navigator {
 
 	public Navigator(Map map) {
 		this.map = map;
-		hero = new Barbarian(new Vector2(0, 0), this);
 	}
 
+	public void attributeHero(Hero hero) {
+		this.hero = hero;
+	}
+	
 	public Hero getHero() {
 		return hero;
 	}
