@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Elf;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.monster.Skeleton;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Door;
 import br.unicamp.mc322.pf.heroquest.map.Map;
@@ -40,6 +41,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 				   new Vector2(23, 2), new Vector2(33, 12));		// Place bottom right corner
 		
 		spawnMonsters(navigator);
+		spawnPlayer(navigator);
 		connectMap();
 		
 		return map;
@@ -175,6 +177,10 @@ public class ClassicalMapGenerator implements MapGenerator {
 			Vector2 spawnPosition = room.get(random.nextInt(room.size()));
 			map[spawnPosition.getX()][spawnPosition.getY()].receiveEntity(new Skeleton(spawnPosition, navigator));
 		}
+	}
+	
+	private void spawnPlayer(Navigator navigator) {
+		map[17][1].receiveEntity(new Elf(new Vector2(17, 1), navigator));
 	}
 	
 	private void connectMap() {

@@ -15,6 +15,12 @@ public class Dwarf extends Hero {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, navigator);
 		new ShortSword().equip(set);
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public String toString() {

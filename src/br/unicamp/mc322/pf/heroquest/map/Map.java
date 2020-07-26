@@ -77,6 +77,11 @@ public class Map {
 		map[x][y].removeEntity();
 	}
 	
+	public Node calculatePath(Vector2 from, Vector2 to) {
+		Graph graph = new Graph(dimension.getX(), dimension.getY(), navigator);
+		Node node = graph.calculatePath(from, to);
+		return node;
+	}
 	
 	@Override
 	public String toString() {

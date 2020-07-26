@@ -64,12 +64,7 @@ public class Tile {
 		if (interactable != null)
 			return interactable.getTransposability();
 		
-		switch (type) {
-		case WALL:
-			return false;
-		default:
-			return true;
-		}
+		return type.isTransposable();
 	}
 	
 	public boolean isTranslucent() {	
@@ -79,13 +74,7 @@ public class Tile {
 		if (interactable != null)
 			return interactable.getTranslucency();
 		
-		switch (type) {
-		case WALL:
-			return false;
-		default:
-			return true;
-		}
-		
+		return type.isTranslucent();
 	}
 	
 	public TileType getTileType() {
@@ -98,20 +87,14 @@ public class Tile {
 			return "Unlit.png";
 		
 		if (entity != null) {
-			return "Skeleton.png";
+			return entity.getSprite();
 		}
 		
-		// TODO: Fix this
 		if (interactable != null) {
-			return "Door.png";
+			return interactable.getSprite();
 		}
 		
-		switch (type) {
-		case WALL:
-			return "Wall.png";
-		default:
-			return "Floor.png";
-		}
+		return type.getSprite();
 	}
 	
 	@Override
@@ -119,11 +102,6 @@ public class Tile {
 		if (!this.isVisible)
 			return " ";
 		
-		switch (type) {
-		case WALL:
-			return "#";
-		default:
-			return ".";
-		}
+		return type.toString();
 	}
 }

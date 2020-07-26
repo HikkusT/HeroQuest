@@ -30,4 +30,10 @@ public class Door extends Interactable {
 	public boolean getTransposability() {
 		return isOpened;
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return "Door.png";
+	}
 }

@@ -43,6 +43,12 @@ public class Trap extends Interactable {
 			this.destroyTrap();
 		}
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 			
 	//TODO Maybe we need to add the step on trap interaction.
 }

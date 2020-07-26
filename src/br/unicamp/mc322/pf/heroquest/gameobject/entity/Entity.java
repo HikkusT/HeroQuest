@@ -31,7 +31,7 @@ public abstract class Entity extends GameObject {
 		this.defensePoints = defensePoints;
 		this.set = new Set();
 		this.navigator = navigator;
-		
+
 	}
 
 	public abstract void setupTurn();
@@ -44,7 +44,7 @@ public abstract class Entity extends GameObject {
 		int attackDices = attackPoints;
 		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
 		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
-		
+
 		if (!leftWeaponSlot.isEmpty()) {
 			attackDices += leftWeaponSlot.getEquipment().attack(this);
 		}
@@ -81,15 +81,15 @@ public abstract class Entity extends GameObject {
 		int rangeRight = 0;
 		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
 		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
-		
+
 		if (!leftWeaponSlot.isEmpty()) {
 			rangeLeft = leftWeaponSlot.getEquipment().getRange();
 		}
-		
+
 		if (!rightWeaponSlot.isEmpty()) {
 			rangeRight = rightWeaponSlot.getEquipment().getRange();
 		}
-		
+
 		if(rangeLeft >= rangeRight)
 			return rangeLeft;
 		else
@@ -100,7 +100,7 @@ public abstract class Entity extends GameObject {
 		Vector2 target = Vector2.sum(position, direction.toVector2());
 		return navigator.isPassable(target);
 	}
-	
+
 	public void move(Direction direction) {
 		//Direction obtained from update.
 		//TODO: return boolean, if it moved or not.

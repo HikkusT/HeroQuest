@@ -26,4 +26,10 @@ public class Skeleton extends Monster {
 	public void attackHero() {
 		attack(navigator.getHero());
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return "Skeleton.png";
+	}
 }

@@ -32,4 +32,10 @@ public class SkeletonWizard extends Monster {
 		else
 			attack(navigator.getHero());
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return "Skeleton.png";
+	}
 }

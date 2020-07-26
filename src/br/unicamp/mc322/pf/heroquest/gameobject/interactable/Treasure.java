@@ -21,4 +21,10 @@ public class Treasure extends Interactable {
 		}
 		// TODO Possibility of summon a monster.
 	}
+	
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
