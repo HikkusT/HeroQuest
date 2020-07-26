@@ -1,6 +1,7 @@
 	package br.unicamp.mc322.pf.heroquest.gameobject.entity;
 
 
+import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.GameObject;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.TurnStrategy;
