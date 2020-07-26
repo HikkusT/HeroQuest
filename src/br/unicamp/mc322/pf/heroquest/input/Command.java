@@ -11,10 +11,10 @@ public enum Command {
 	DISARM_TRAP,
 	ATTACK,
 	CAST,
-	AUX;
+	END_TURN;
 	
 	public boolean isMovementCommand() {
-		if (this == MOVE_UP || this == MOVE_RIGHT || this == MOVE_DOWN || this == MOVE_LEFT)
+		if (this == MOVE_UP || this == MOVE_RIGHT || this == MOVE_DOWN || this == MOVE_LEFT || this == OPEN_DOOR)
 			return true;
 		else
 			return false;
