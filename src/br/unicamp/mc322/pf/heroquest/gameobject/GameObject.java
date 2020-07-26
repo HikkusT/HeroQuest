@@ -20,9 +20,5 @@ public abstract class GameObject {
 		return true;
 	}
 	
-	public Vector2 getPosition() {
-		return position;
-	}
-	
 	public abstract String getSprite();
 }
