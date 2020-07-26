@@ -19,9 +19,11 @@ public class IdleStrategy implements TurnStrategy {
 			if(monster.isHeroInRange())
 				monster.attackHero();
 			moveMonster();
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) { }
+			if(monster.getVisibility()) {
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) { }
+			}
 		}
 	}
 

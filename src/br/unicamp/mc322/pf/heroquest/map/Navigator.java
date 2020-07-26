@@ -29,6 +29,10 @@ public class Navigator {
 		this.hero = hero;
 	}
 
+	public boolean isVisible(Vector2 position) {
+		return map.isVisible(position);
+	}
+	
 	public boolean isPassable(Vector2 position) {
 		return map.isEmpty(position);
 	}
@@ -74,9 +78,11 @@ public class Navigator {
 				break;
 			node = stack.pop();
 			entity.move(node.getPosition());
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) { }
+			if(entity.getVisibility()) {
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) { }
+			}
 		}
 	}
 

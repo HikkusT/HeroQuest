@@ -162,4 +162,8 @@ public abstract class Entity extends GameObject {
 	public boolean getTranslucency() {
 		return true;
 	}
+	
+	public boolean getVisibility() {
+		return navigator.isVisible(position);
+	}
 }
