@@ -20,12 +20,10 @@ public class Goblin extends Monster {
 	
 	public void setupTurn() {
 		if(navigator.hasPath(this)) {
-			System.out.println("smaller");
 			strategy = new SmartStrategy(this);
 		}
 		else {
 			strategy = new IdleStrategy(this);
-			System.out.println("idle");
 		}
 	}
 
