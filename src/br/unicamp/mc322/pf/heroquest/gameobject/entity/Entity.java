@@ -115,6 +115,10 @@ public abstract class Entity extends GameObject {
 		}
 	}
 	
+	public Navigator getNavigator() {
+		return navigator;
+	}
+	
 	@Override
 	public boolean getTransposability() {
 		return false;
