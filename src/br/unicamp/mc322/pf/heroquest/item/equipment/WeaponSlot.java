@@ -1,10 +1,11 @@
 package br.unicamp.mc322.pf.heroquest.item.equipment;
-import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.OneHandedWeapon;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Fists;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Weapon;
 
 public class WeaponSlot extends EquipmentSlot {
 
 	public WeaponSlot() {
-		super();
+		this.equipment = new Fists();
 	}
 	
 	@Override
@@ -18,8 +19,16 @@ public class WeaponSlot extends EquipmentSlot {
 	}
 
 	@Override
-	public OneHandedWeapon getEquipment() {
-		return (OneHandedWeapon) equipment;
+	public Equipment removeEquipment() {
+		Equipment removedEquipment = equipment;
+		equipment = new Fists();
+		
+		return removedEquipment;
+	}
+	
+	@Override
+	public Weapon getEquipment() {
+		return (Weapon) equipment;
 	}
 
 }

@@ -29,10 +29,8 @@ public abstract class Hero extends Entity {
 		
 	}
 	
-	public void collectTreasure(Item[] treasure) {
-		for (Item item : treasure) {
-			backpack.addObject(item);
-		}
+	public void collectTreasure(Item content) {
+			backpack.addObject(content);
 	}
 
 	@Override
