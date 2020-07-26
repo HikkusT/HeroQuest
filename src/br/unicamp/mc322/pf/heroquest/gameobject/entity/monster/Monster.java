@@ -8,7 +8,7 @@ import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public abstract class Monster extends Entity {
-	private final int movementPoints;
+	protected final int movementPoints;
 
 	public Monster(String name,Vector2 position, int healthPoints, int inteligencePoints, int attackPoints, int defensePoints, int movementPoints, Navigator navigator) {
 		super(name, position, healthPoints, inteligencePoints, attackPoints, defensePoints, navigator);
