@@ -73,6 +73,10 @@ public class Map {
 		return tiles;
 	}
 	
+	public boolean isVisible(Vector2 point) {
+		return map[point.getX()][point.getY()].isIlluminated();
+	}
+	
 	public boolean isEmpty(Vector2 point) {
 		return map[point.getX()][point.getY()].isTransposable();
 	}

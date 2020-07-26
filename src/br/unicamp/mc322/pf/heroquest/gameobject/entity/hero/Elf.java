@@ -18,6 +18,7 @@ public class Elf extends Hero implements SpellCaster {
 	
 	public Elf(Vector2 position, Navigator navigator) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, navigator);
+		type = HeroType.ELF;
 		new ShortSword().equip(set);
 		spellbook = new Container<Spell>();
 		spellbook.addObject(new SimpleHeal());

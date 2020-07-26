@@ -106,14 +106,13 @@ public class SwingRenderer extends Renderer {
 	}
 	
 	@Override
-	public void renderWorld() {
+	protected void renderWorld() {
 		mapPanel.repaint();
 	}
 
 	@Override
-	public void renderInfo() {
-		// TODO Auto-generated method stub
-
+	protected void renderInfo() {
+		infoPanel.updateInfo();
 	}
 
 	@Override

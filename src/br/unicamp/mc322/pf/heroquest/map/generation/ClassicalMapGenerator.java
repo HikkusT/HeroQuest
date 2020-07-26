@@ -182,7 +182,7 @@ public class ClassicalMapGenerator implements MapGenerator {
 	}
 	
 	private void spawnPlayer(Navigator navigator) {
-		map[17][1].receiveEntity(hero.createHero(new Vector2(17, 1), navigator));
+		map[17][1].receiveEntity(HeroFactory.createHero(new Vector2(17, 1), navigator, hero));
 	}
 	
 	private void connectMap() {

@@ -13,6 +13,7 @@ public class Barbarian extends Hero {
 
 	public Barbarian(Vector2 position, Navigator navigator) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, navigator);
+		type = HeroType.BARBARIAN;
 		new LongSword().equip(set);
 	}
 

@@ -25,21 +25,6 @@ public enum HeroType {
 		throw new IllegalArgumentException("Undefined hero type");
 	}
 	
-	public Hero createHero(Vector2 position, Navigator navigator) {
-		switch(this) {
-		case BARBARIAN:
-			return new Barbarian(position, navigator);
-		case DWARF:
-			return new Dwarf(position, navigator); 
-		case ELF:
-			return new Elf(position, navigator);
-		case WIZARD:
-			return new Wizard(position, navigator);
-		default:
-			return null;
-		}
-	}
-	
 	@Override
 	public String toString() {
 		return name;

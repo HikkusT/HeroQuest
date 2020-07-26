@@ -21,6 +21,7 @@ public abstract class Entity extends GameObject {
 	private final int maxHealthPoints;
 	protected int inteligencePoints;
 	private int attackPoints;
+	protected int currentMovementPoints;
 	protected TurnStrategy strategy;
 	protected int defensePoints;
 	protected Set set;
@@ -138,7 +139,7 @@ public abstract class Entity extends GameObject {
 		}
 	}
 	
-	public void move(Direction direction) {
+	public boolean move(Direction direction) {
 		//Direction obtained from update.
 		//TODO: return boolean, if it moved or not.
 		try {
@@ -147,8 +148,12 @@ public abstract class Entity extends GameObject {
 			position = target;
 		}
 		catch (IllegalArgumentException e) {
-			System.out.println("\n***Invalid movement, there is something in your path!***\n***Please, enter a valid command!***\n");
+			return false;
 		}
+		
+		currentMovementPoints--;
+		HeroQuest.getInstance().getRenderer().update();
+		return true;
 	}
 	public String getName() {
 		return name;
@@ -167,6 +172,16 @@ public abstract class Entity extends GameObject {
 	public boolean getTranslucency() {
 		return true;
 	}
+	
+	public int getCurrentHP() {
+		return healthPoints;
+	}
+	
+	public int getRemainingMovementPoints() {
+		return currentMovementPoints;
+	}
 
-
+	public boolean getVisibility() {
+		return navigator.isVisible(position);
+	}
 }

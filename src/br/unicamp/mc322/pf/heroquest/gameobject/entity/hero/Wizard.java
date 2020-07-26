@@ -20,6 +20,7 @@ public class Wizard extends Hero implements SpellCaster {
 	
 	public Wizard(Vector2 position, Navigator navigator) {
 		super(NAME, position, HEALTHPOINTS, INTELIGENCEPOINTS, ATTACKPOINTS, DEFENSEPOINTS, navigator);
+		type = HeroType.WIZARD;
 		new Dagger().equip(set);
 		spellbook = new Container<Spell>();
 		spellbook.addObject(new Fireball());
