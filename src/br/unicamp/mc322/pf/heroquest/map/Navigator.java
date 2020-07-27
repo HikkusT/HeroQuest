@@ -84,6 +84,11 @@ public class Navigator {
 				break;
 			node = stack.pop();
 			entity.move(node.getPosition());
+			if(entity.getVisibility()) {
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) { }
+			}
 		}
 	}
 
