@@ -177,6 +177,7 @@ public abstract class Entity extends GameObject {
 	
 	public Set getSet(){
 		return set;
+	}
 	protected void destroy() {
 		navigator.despawnEntity(this);
 	}

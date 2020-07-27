@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class BasicIlluminator extends MapIlluminator {
 
 	public BasicIlluminator() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
