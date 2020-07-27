@@ -2,6 +2,7 @@ package br.unicamp.mc322.pf.heroquest.spell;
 
 import java.util.Set;
 
+import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 public class MagicMissile extends Spell {
@@ -20,11 +21,8 @@ public class MagicMissile extends Spell {
 
 	@Override
 	public void cast(Vector2 targetPosition, Entity spellCaster) {
-		Set<Entity> mainTarget = spellCaster.getNavigator().getEntitiesOnRange(targetPosition, 0);
-		for (Entity target : mainTarget) {
-			for (int i = 0; i < NUMBEROFMAGICARROWS; i++) {
-				target.defendSpell(MAGICARROWDAMAGE);	
-			}		
-		}	
+		HeroQuest.getInstance().getRenderer().renderEvent(spellCaster.getName() + " used Magic Missile and caused " + MAGICARROWDAMAGE + " of damage.");
+		Entity target = spellCaster.getNavigator().getEntity(targetPosition);
+		target.defendSpell(MAGICARROWDAMAGE);		
 	}
 }

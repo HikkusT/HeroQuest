@@ -28,15 +28,16 @@ public class SkeletonWizard extends Monster implements SpellCaster {
 	}
 
 	public boolean isHeroInRange() {
-		boolean canCastSpell = navigator.isInFieldOfView(position); // && has charges
-		boolean canAttack = (1 == Vector2.distance(position, navigator.getHero().getPosition()));
+		boolean canCastSpell = navigator.isInFieldOfView(position) && !spellbook.isEmpty();
+ 		boolean canAttack = (1 == Vector2.distance(position, navigator.getHero().getPosition()));
 		return (canCastSpell || canAttack);
 	}
 
 	public void attackHero() {
-		boolean canCastSpell = navigator.isInFieldOfView(position); // && has charges
+		boolean canCastSpell = navigator.isInFieldOfView(position) && !spellbook.isEmpty();
 		if(canCastSpell) {
-			//castSpell(navigator.getHero().getPosition(), spellbook.) // TODO:
+			Spell spell = spellbook.getObjectAtIndex(0);
+			castSpell(navigator.getHero().getPosition(), spell);
 		}
 		else
 			attack(navigator.getHero());
@@ -44,7 +45,7 @@ public class SkeletonWizard extends Monster implements SpellCaster {
 	
 	@Override
 	public void castSpell(Vector2 target, Spell spell) {
-		spell.cast(target, null);
+		spell.cast(target, this);
 		spellbook.removeObject(spell);
 		
 	}
