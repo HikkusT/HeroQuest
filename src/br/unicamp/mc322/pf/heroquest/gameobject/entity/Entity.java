@@ -49,7 +49,7 @@ public abstract class Entity extends GameObject {
 
 	public void attack(Entity entity) {
 		int attackDices = attackPoints;
-		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
+		WeaponSlot leftWeaponSlot = set.getLeftHandWeaponSlot();
 		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
 
 		if (!leftWeaponSlot.isEmpty()) {
@@ -97,6 +97,7 @@ public abstract class Entity extends GameObject {
 
 	public void useItem(Item item) {
 		item.use(this);
+		HeroQuest.getInstance().getRenderer().update();
 	}	
 	public abstract void handleEquipment(Equipment equipment);
 	
@@ -106,7 +107,7 @@ public abstract class Entity extends GameObject {
 	public int getBiggerWeaponRange() {
 		int rangeLeft = 0;
 		int rangeRight = 0;
-		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
+		WeaponSlot leftWeaponSlot = set.getLeftHandWeaponSlot();
 		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
 
 		if (!leftWeaponSlot.isEmpty()) {
@@ -173,5 +174,9 @@ public abstract class Entity extends GameObject {
 
 	public boolean getVisibility() {
 		return navigator.isVisible(position);
+	}
+	
+	public Set getSet(){
+		return set;
 	}
 }

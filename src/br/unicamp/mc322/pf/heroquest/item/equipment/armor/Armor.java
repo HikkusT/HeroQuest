@@ -15,12 +15,14 @@ public abstract class Armor extends Equipment {
 	
 	@Override
 	public boolean equip(Set set){
+		
 		ArmorSlot armorSlot = set.getArmorSlot();
-		if (armorSlot.isEmpty()) {
+		boolean armorSlotState = armorSlot.isEmpty();
+		if (armorSlotState) {
 			armorSlot.setEquipment(this);
 		}
 		
-		return armorSlot.isEmpty();
+		return armorSlotState;
 	}
 	
 	@Override

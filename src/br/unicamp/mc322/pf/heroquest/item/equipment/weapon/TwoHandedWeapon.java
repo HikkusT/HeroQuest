@@ -18,23 +18,36 @@ public abstract class TwoHandedWeapon extends Weapon {
 
 	@Override
 	public boolean equip(Set set){
-		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
+		WeaponSlot leftWeaponSlot = set.getLeftHandWeaponSlot();
 		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
+		WeaponSlot twoHandWeaponSlot = set.getTwoHandWeaponSlot();
 		
-		if (leftWeaponSlot.isEmpty() && rightWeaponSlot.isEmpty()) {
-			leftWeaponSlot.setEquipment(this);
+		boolean leftWeaponSlotState = leftWeaponSlot.isEmpty();
+		boolean rightWeaponSlotState = rightWeaponSlot.isEmpty();
+		boolean twoHandWeaponSlotState = twoHandWeaponSlot.isEmpty();
+		
+		if (leftWeaponSlotState && rightWeaponSlotState && twoHandWeaponSlotState) {
+			twoHandWeaponSlot.setEquipment(this);
 		}
 		
-		return leftWeaponSlot.isEmpty() && rightWeaponSlot.isEmpty();	
+		return leftWeaponSlotState && rightWeaponSlotState && twoHandWeaponSlotState;	
 	}
 	
 	@Override
 	public Equipment unequip(Set set){
-		WeaponSlot leftWeaponSlot = set.getleftHandWeaponSlot();
+		WeaponSlot leftWeaponSlot = set.getLeftHandWeaponSlot();
+		WeaponSlot rightWeaponSlot = set.getRightHandWeaponSlot();
+		WeaponSlot twoHandWeaponSlot = set.getTwoHandWeaponSlot();
 		Equipment removedEquipment = null;
 		
 		if (!leftWeaponSlot.isEmpty()) {
 			removedEquipment = leftWeaponSlot.removeEquipment();
+		}
+		else if (!rightWeaponSlot.isEmpty()) {
+			removedEquipment = rightWeaponSlot.removeEquipment();
+		}
+		else if (! twoHandWeaponSlot.isEmpty()) {
+			removedEquipment =  twoHandWeaponSlot.removeEquipment();
 		}
 		
 		return removedEquipment;	

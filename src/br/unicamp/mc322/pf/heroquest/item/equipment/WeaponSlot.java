@@ -25,7 +25,6 @@ public class WeaponSlot extends EquipmentSlot {
 		
 		return removedEquipment;
 	}
-	
 	@Override
 	public Weapon getEquipment() {
 		return (Weapon) equipment;

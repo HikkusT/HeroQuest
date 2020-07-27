@@ -71,7 +71,11 @@ public abstract class Hero extends Entity {
 			Equipment removedEquipment = equipment.unequip(set);
 			if (removedEquipment != null) {
 				this.backpack.addObject(removedEquipment);
-			}		
+			}
+		}
+		if (wasEquipped) {
+			this.backpack.removeObject(equipment);
+			
 		}
 	}
 	

@@ -1,10 +1,15 @@
 package br.unicamp.mc322.pf.heroquest.item.equipment;
 
+
 public abstract class EquipmentSlot {
 	protected Equipment equipment;
 
+	EquipmentSlot(){
+		equipment = null;
+	}
 	public boolean isEmpty() {
-		if (equipment == null) {
+		if (this.equipment == null || (this.equipment.toString() == "Fists")) {
+			
 			return true;
 		}
 		else {
