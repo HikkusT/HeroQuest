@@ -13,6 +13,14 @@ public class SmartStrategy implements TurnStrategy {
 	}
 
 	public void execute() {
-		monster.moveToHero();
+		if(monster.isHeroInRange()) {
+			monster.attackHero();
+		}
+		else {
+			monster.moveToHero();
+			if(monster.isHeroInRange()) {
+				monster.attackHero();
+			}
+		}
 	}
 }

@@ -1,10 +1,14 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.monster;
 
 
+import java.util.Random;
+
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy.*;
 
 import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Dagger;
-
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.LongSword;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.ShortSword;
+import br.unicamp.mc322.pf.heroquest.item.equipment.weapon.Weapon;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;

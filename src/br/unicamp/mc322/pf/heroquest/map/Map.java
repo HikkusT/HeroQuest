@@ -43,6 +43,7 @@ public class Map {
 		
 		if (range == 0) {
 			tiles.add(getTile(origin));
+			return tiles;
 		}
 		
 		if (range == 1) {
