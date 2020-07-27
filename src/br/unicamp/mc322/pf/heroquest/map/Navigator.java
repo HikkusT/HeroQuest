@@ -31,6 +31,10 @@ public class Navigator {
 		this.hero = hero;
 	}
 
+	public Entity getEntity(Vector2 position) {
+		return map.getTile(position).getEntity();
+	}
+	
 	public boolean isVisible(Vector2 position) {
 		return map.isVisible(position);
 	}
