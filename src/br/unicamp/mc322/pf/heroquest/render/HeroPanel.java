@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 
+@SuppressWarnings("serial")
 public class HeroPanel extends JPanel {
 	private Hero hero;
 	private JPanel holder;

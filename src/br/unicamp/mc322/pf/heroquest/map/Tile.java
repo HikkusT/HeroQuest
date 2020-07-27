@@ -115,6 +115,15 @@ public class Tile {
 	public String toString() {
 		if (!this.isVisible)
 			return " ";
+		
+		if (entity != null && entity.isVisible()) {
+			return entity.toString();
+		}
+
+		if (interactable != null && interactable.isVisible()) {
+
+			return interactable.toString();
+		}
 
 		return type.toString();
 	}

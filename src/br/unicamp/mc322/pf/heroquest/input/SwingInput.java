@@ -70,7 +70,7 @@ public class SwingInput implements Input, KeyListener {
 	}
 	
 	@Override
-	public int waitForOption() {
+	public int waitForOption(int expectedNumberOptions) {
 		return cachedOption;
 	}
 	

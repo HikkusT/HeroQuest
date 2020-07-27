@@ -51,9 +51,11 @@ public class SkeletonWizard extends Monster implements SpellCaster {
 	
 	@Override
 	public String getSprite() {
-		// TODO Auto-generated method stub
-		return "Skeleton.png";
+		return "SkeletonWizard.png";
 	}
 
-
+	@Override
+	public String toString() {
+		return "W";
+	}
 }

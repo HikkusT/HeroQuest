@@ -3,14 +3,9 @@ package br.unicamp.mc322.pf.heroquest.render;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.event.KeyListener;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;

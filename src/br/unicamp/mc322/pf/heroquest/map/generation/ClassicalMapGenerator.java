@@ -10,7 +10,6 @@ import java.util.Random;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.monster.Skeleton;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.Door;
-import br.unicamp.mc322.pf.heroquest.map.Map;
 import br.unicamp.mc322.pf.heroquest.map.Navigator;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
 import br.unicamp.mc322.pf.heroquest.map.TileType;

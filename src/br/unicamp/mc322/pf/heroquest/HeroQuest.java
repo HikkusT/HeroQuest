@@ -13,6 +13,7 @@ public class HeroQuest {
 	private Renderer renderer;
 	private Input input;
 	private EntityManager entityManager;
+	private boolean running;
 
 	public static HeroQuest getInstance() {
 		if (instance == null) {
@@ -22,7 +23,9 @@ public class HeroQuest {
 		return instance;
 	}
 
-	private HeroQuest() { }
+	private HeroQuest() { 
+		running = false;
+	}
 
 	public void start(Renderer renderer, Input input) {
 		this.renderer = renderer;
@@ -34,18 +37,25 @@ public class HeroQuest {
 
 		runGameLoop();
 	}
+	
+	public void finishGame(boolean failed) {
+		if (failed) {
+			renderer.renderEvent("You lost the game :(");
+			running = false;
+		}
+	}
 
 	private HeroType chooseHeroType() {
 		String[] classes = new String[] { "Barbarian", "Dwarf", "Elf", "Wizard" };
 		renderer.askQuestion("Choose your class:", classes);
-		int option = input.waitForOption();
+		int option = input.waitForOption(classes.length);
 		return HeroType.fromString(classes[option]);
 	}
 	
 	private Map createWorld(HeroType heroType) {
 		String[] mapGenerators = new String[] { "Random Map", "Loaded from file" };
 		renderer.askQuestion("Choose how the map should be generated", mapGenerators);
-		int option = input.waitForOption();
+		int option = input.waitForOption(mapGenerators.length);
 		if (option == 0) {
 			return new Map(new ClassicalMapGenerator(heroType), new BasicIlluminator(), entityManager);
 		} else {
@@ -54,7 +64,8 @@ public class HeroQuest {
 	}
 	
 	private void runGameLoop() {
-		while (true) {
+		running = true;
+		while (running) {
 			entityManager.nextTurn();
 			renderer.update();
 

@@ -91,4 +91,10 @@ public abstract class Hero extends Entity {
 	public Container<Item> getBackpack() {
 		return backpack;
 	}
+	
+	@Override
+	protected void destroy() {
+		super.destroy();
+		HeroQuest.getInstance().finishGame(true);
+	}
 }

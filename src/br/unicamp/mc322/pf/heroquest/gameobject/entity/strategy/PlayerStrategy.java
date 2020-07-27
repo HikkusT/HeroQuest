@@ -1,10 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy;
 
 import java.util.ArrayList;
-import java.util.Set;
-
 import br.unicamp.mc322.pf.heroquest.HeroQuest;
-import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
@@ -60,7 +57,7 @@ public class PlayerStrategy implements TurnStrategy {
 				renderer.renderEvent("Trying to use items...");
 				if (!player.getBackpack().isEmpty()) {
 					renderer.askQuestion("Which item do you wish to use?", player.getBackpack().asOptions());
-					int item = input.waitForOption();
+					int item = input.waitForOption(player.getBackpack().size());
 					player.useItem(player.getBackpack().getObjectAtIndex(item));
 				} else {
 					renderer.renderEvent("No items to use");

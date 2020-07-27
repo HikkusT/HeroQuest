@@ -1,6 +1,5 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy;
 
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.monster.Monster;
 import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import java.util.Random;

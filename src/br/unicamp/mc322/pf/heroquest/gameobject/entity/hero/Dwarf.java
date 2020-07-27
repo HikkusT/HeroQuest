@@ -19,12 +19,11 @@ public class Dwarf extends Hero {
 	
 	@Override
 	public String getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Dwarf.png";
 	}
 
 	@Override
 	public String toString() {
-			return "D";
+		return "D";
 	}
 }

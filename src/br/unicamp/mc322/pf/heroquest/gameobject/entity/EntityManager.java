@@ -24,6 +24,10 @@ public class EntityManager {
 			}
 		}
 	}
+	
+	public void remove(Entity entity) {
+		activeEntities.remove(entity);
+	}
 
 	public void nextTurn() {
 		if (activeEntities.isEmpty()) {

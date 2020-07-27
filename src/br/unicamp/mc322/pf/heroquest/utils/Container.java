@@ -20,6 +20,10 @@ public class Container<T> {
 		return container.isEmpty();
 	}
 	
+	public int size() {
+		return container.size();
+	}
+	
 	public String[] asOptions() {
 		String[] options = new String[container.size()];
 		for (int i = 0; i < container.size(); i++) {

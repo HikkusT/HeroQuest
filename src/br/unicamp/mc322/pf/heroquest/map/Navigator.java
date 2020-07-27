@@ -9,7 +9,6 @@ import java.util.Stack;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
-import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Navigator {
@@ -45,12 +44,6 @@ public class Navigator {
 		Vector2 origin = entity.getPosition();
 		map.placeEntity(entity, destination);
 		map.removeEntity(origin);
-		try {
-			if(entity.getVisibility())
-				Thread.sleep(200);
-			else
-				Thread.sleep(20);
-		} catch (InterruptedException e) { }
 		HeroQuest.getInstance().getRenderer().update();
 	}
 
@@ -119,5 +112,9 @@ public class Navigator {
 		}
 		
 		return entities;
+	}
+	
+	public void despawnEntity(Entity entity) {
+		map.despawnEntity(entity);
 	}
 }

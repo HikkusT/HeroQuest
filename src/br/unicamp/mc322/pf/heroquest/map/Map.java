@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.HeroType;
 import br.unicamp.mc322.pf.heroquest.map.generation.MapGenerator;
 import br.unicamp.mc322.pf.heroquest.map.illuminator.MapIlluminator;
 import br.unicamp.mc322.pf.heroquest.utils.Direction;
@@ -105,6 +104,11 @@ public class Map {
 		Graph graph = new Graph(dimension.getX(), dimension.getY(), navigator);
 		Node node = graph.calculatePath(from, to);
 		return node;
+	}
+	
+	public void despawnEntity(Entity entity) {
+		removeEntity(entity.getPosition());
+		entityManager.remove(entity);
 	}
 	
 	public Tile[][] prepareToRender() {

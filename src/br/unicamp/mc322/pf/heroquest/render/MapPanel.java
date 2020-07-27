@@ -10,6 +10,7 @@ import br.unicamp.mc322.pf.heroquest.map.Map;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
+@SuppressWarnings("serial")
 public class MapPanel extends JPanel {
 	private final String imgPath = "images/";
 	private final int spriteSize = 16;
