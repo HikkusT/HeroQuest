@@ -1,9 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.map.illuminator;
 
 
-import br.unicamp.mc322.pf.heroquest.map.Map;
 import br.unicamp.mc322.pf.heroquest.map.Tile;
-import br.unicamp.mc322.pf.heroquest.map.TileType;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 

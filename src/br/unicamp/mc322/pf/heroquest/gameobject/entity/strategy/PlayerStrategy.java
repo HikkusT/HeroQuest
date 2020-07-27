@@ -1,10 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.strategy;
 
 import java.util.ArrayList;
-import java.util.Set;
-
 import br.unicamp.mc322.pf.heroquest.HeroQuest;
-import br.unicamp.mc322.pf.heroquest.dice.DiceManager;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;

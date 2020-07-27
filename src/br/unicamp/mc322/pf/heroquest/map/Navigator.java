@@ -9,7 +9,6 @@ import java.util.Stack;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.Entity;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
 import br.unicamp.mc322.pf.heroquest.gameobject.interactable.InteractionType;
-import br.unicamp.mc322.pf.heroquest.utils.Direction;
 import br.unicamp.mc322.pf.heroquest.utils.Vector2;
 
 public class Navigator {

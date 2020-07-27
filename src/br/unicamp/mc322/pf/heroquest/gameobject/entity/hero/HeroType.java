@@ -1,9 +1,5 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.entity.hero;
 
-import br.unicamp.mc322.pf.heroquest.utils.Vector2;
-import br.unicamp.mc322.pf.heroquest.map.Navigator;
-import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.*;
-
 public enum HeroType {
 	BARBARIAN("Barbarian"),
 	DWARF("Dwarf"),
