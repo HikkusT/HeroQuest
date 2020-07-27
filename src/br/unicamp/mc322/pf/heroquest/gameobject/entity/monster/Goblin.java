@@ -41,9 +41,11 @@ public class Goblin extends Monster {
 	
 	@Override
 	public String getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Goblin.png";
 	}
 
-
+	@Override
+	public String toString() {
+		return "G";
+	}
 }

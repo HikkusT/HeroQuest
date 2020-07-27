@@ -19,8 +19,7 @@ public class Barbarian extends Hero {
 
 	@Override
 	public String getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Barbarian.png";
 	}
 	
 	@Override

@@ -38,14 +38,11 @@ public class Wizard extends Hero implements SpellCaster {
 	
 	@Override
 	public String getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Wizard.png";
 	}
 	
 	@Override
 	public String toString() {
-			return "W";
+		return "W";
 	}
-
-
 }

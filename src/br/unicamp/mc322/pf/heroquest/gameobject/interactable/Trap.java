@@ -44,8 +44,12 @@ public class Trap extends Interactable {
 	
 	@Override
 	public String getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Trap.png";
+	}
+	
+	@Override
+	public String toString() {
+		return "T";
 	}
 			
 	//TODO Maybe we need to add the step on trap interaction.

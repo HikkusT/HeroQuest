@@ -1,6 +1,7 @@
 package br.unicamp.mc322.pf.heroquest.gameobject.interactable;
 import java.util.Random;
 
+import br.unicamp.mc322.pf.heroquest.HeroQuest;
 import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 import br.unicamp.mc322.pf.heroquest.item.Item;
 import br.unicamp.mc322.pf.heroquest.item.equipment.armor.ClothArmor;
@@ -31,6 +32,7 @@ public class Treasure extends Interactable {
 
 	public void interact(InteractionType interaction, Hero user) {
 		if (interaction == InteractionType.FIND_TREASURE && !isOpened) {
+			HeroQuest.getInstance().getRenderer().renderEvent("You found a treasure! It has a " + content.toString());
 			user.collectTreasure(content);
 		}
 		// TODO Possibility of summon a monster.
@@ -39,6 +41,11 @@ public class Treasure extends Interactable {
 	@Override
 	public String getSprite() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Treasure.png";
+	}
+	
+	@Override
+	public String toString() {
+		return "t";
 	}
 }
