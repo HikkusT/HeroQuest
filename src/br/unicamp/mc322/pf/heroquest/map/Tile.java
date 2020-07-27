@@ -33,6 +33,12 @@ public class Tile {
 
 		this.entity = entity;
 	}
+	
+	public void addInteractable(Interactable interactable) {
+		if (this.interactable == null) {
+			this.interactable = interactable;
+		}
+	}
 
 	public boolean hasEntity() {
 		return entity != null;

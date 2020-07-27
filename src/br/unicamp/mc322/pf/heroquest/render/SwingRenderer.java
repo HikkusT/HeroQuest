@@ -85,7 +85,7 @@ public class SwingRenderer extends Renderer {
 		eventPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
 		scroll = new JScrollPane(eventPanel);
-		scroll.setPreferredSize(new Dimension(300, 10));
+		scroll.setPreferredSize(new Dimension(400, 10));
 		scroll.setBackground(new Color(0, 43, 54));
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
