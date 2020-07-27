@@ -6,7 +6,7 @@ public enum TrapType {
 	public int getDamage() {
 		switch(this) {
 		case HOLE:
-			return 10;
+			return 2;
 		default:
 			return 0;
 		}

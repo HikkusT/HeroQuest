@@ -23,7 +23,7 @@ public class Trap extends Interactable {
 	public void activateTrap(Hero hero) {
 		isDetected = true;
 		hero.receiveDamage(type.getDamage());
-		HeroQuest.getInstance().getRenderer().renderEvent("You felt in trap and received " + type.getDamage() + "damage.");
+		HeroQuest.getInstance().getRenderer().renderEvent("You felt in trap and received " + type.getDamage() + " damage.");
 		this.destroyTrap();
 	}
 	
