@@ -22,14 +22,12 @@ public class Fireball extends Spell {
 
 	@Override
 	public void cast(Vector2 targetPosition, Entity spellCaster) {
-		Set<Entity> mainTarget = spellCaster.getNavigator().getEntitiesOnRange(targetPosition, 0);
-		for (Entity target : mainTarget) {
+		Entity target = spellCaster.getNavigator().getEntity(targetPosition);
 			target.defendSpell(MAINTARGETDAMAGE);
-		}
 		
 		Set<Entity> adjacentTargets = spellCaster.getNavigator().getEntitiesOnRange(targetPosition, 1);
-		for (Entity target : adjacentTargets) {
-			target.defendSpell(ADJACENTTARGETDAMAGE);
+		for (Entity target1 : adjacentTargets) {
+			target1.defendSpell(ADJACENTTARGETDAMAGE);
 		}
 		
 	}
