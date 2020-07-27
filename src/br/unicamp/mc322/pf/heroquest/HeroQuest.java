@@ -48,14 +48,14 @@ public class HeroQuest {
 	private HeroType chooseHeroType() {
 		String[] classes = new String[] { "Barbarian", "Dwarf", "Elf", "Wizard" };
 		renderer.askQuestion("Choose your class:", classes);
-		int option = input.waitForOption();
+		int option = input.waitForOption(classes.length);
 		return HeroType.fromString(classes[option]);
 	}
 	
 	private Map createWorld(HeroType heroType) {
 		String[] mapGenerators = new String[] { "Random Map", "Loaded from file" };
 		renderer.askQuestion("Choose how the map should be generated", mapGenerators);
-		int option = input.waitForOption();
+		int option = input.waitForOption(mapGenerators.length);
 		if (option == 0) {
 			return new Map(new ClassicalMapGenerator(heroType), new BasicIlluminator(), entityManager);
 		} else {

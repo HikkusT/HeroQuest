@@ -1,9 +1,11 @@
 package br.unicamp.mc322.pf.heroquest.render;
 
+import br.unicamp.mc322.pf.heroquest.gameobject.entity.hero.Hero;
 import br.unicamp.mc322.pf.heroquest.map.Map;
 
 public class TerminalRenderer extends Renderer {
 	private Map map;
+	private Hero hero;
 	
 	@Override
 	public void setMap(Map map) {
@@ -11,7 +13,12 @@ public class TerminalRenderer extends Renderer {
 	}
 	
 	@Override
-	public void renderWorld() {
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
+	
+	@Override
+	protected void renderWorld() {
 		if (map == null) 
 			throw new IllegalStateException("Map is not set");
 		
@@ -20,13 +27,30 @@ public class TerminalRenderer extends Renderer {
 	}
 
 	@Override
-	public void renderInfo() {
-		// TODO Auto-generated method stub
-
+	protected void renderInfo() {
+		if (map == null) 
+			throw new IllegalStateException("Map is not set");
+		
+		System.out.print("Class: " + hero.getType() + "   ");
+		System.out.print("HP: " + hero.getCurrentHP() + "   ");
+		System.out.print("Movements: " + hero.getRemainingMovementPoints() + "   ");
+		if (!hero.getBackpack().isEmpty())
+			System.out.print("Items: " + hero.getBackpack().toString() + "   ");
+		System.out.println();
 	}
 
 	@Override
 	public void renderEvent(String event) {
 		System.out.println(event);
+	}
+	
+	@Override
+	public void askQuestion(String question, String[] options) {
+		System.out.println(question);
+		
+		for (int i = 0; i < options.length; i ++) {
+			System.out.print((i + 1) + "- ");
+			System.out.println(options[i]);
+		}
 	}
 }

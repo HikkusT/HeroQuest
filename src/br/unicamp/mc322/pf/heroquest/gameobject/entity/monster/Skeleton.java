@@ -40,4 +40,9 @@ public class Skeleton extends Monster {
 		// TODO Auto-generated method stub
 		return "Skeleton.png";
 	}
+	
+	@Override
+	public String toString() {
+		return "S";
+	}
 }

@@ -57,7 +57,7 @@ public class PlayerStrategy implements TurnStrategy {
 				renderer.renderEvent("Trying to use items...");
 				if (!player.getBackpack().isEmpty()) {
 					renderer.askQuestion("Which item do you wish to use?", player.getBackpack().asOptions());
-					int item = input.waitForOption();
+					int item = input.waitForOption(player.getBackpack().size());
 					player.useItem(player.getBackpack().getObjectAtIndex(item));
 				} else {
 					renderer.renderEvent("No items to use");

@@ -37,4 +37,9 @@ public class Door extends Interactable {
 	public String getSprite() {
 		return "Door.png";
 	}
+	
+	@Override
+	public String toString() {
+		return "O";
+	}
 }
