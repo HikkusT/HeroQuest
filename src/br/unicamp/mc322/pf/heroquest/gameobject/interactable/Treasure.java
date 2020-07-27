@@ -40,6 +40,11 @@ public class Treasure extends Interactable {
 	}
 	
 	@Override
+	public boolean isVisible() {
+		return !isOpened;
+	}
+	
+	@Override
 	public String getSprite() {
 		// TODO Auto-generated method stub
 		return "Treasure.png";

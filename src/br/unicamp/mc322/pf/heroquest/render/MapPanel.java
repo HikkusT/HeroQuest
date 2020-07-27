@@ -24,7 +24,6 @@ public class MapPanel extends JPanel {
 		this.map = map;
 		Vector2 newSize = map.getDimension();
 		setPreferredSize(new Dimension(newSize.getX() * spriteSize, newSize.getY() * spriteSize));
-		System.out.println(getWidth());
 	}
 	
 	public void paintComponent(Graphics g) {
