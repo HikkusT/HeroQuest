@@ -16,7 +16,7 @@ public class MagicMissile extends Spell {
 	}
 	
 	public String getDescription() {
-		return "Heals a value from 1 to 6 hit points (6-sided die).";
+		return "Shots 3 magic arrows.";
 	}
 
 	@Override
